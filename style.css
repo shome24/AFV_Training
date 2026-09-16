@@ -1,0 +1,1937 @@
+/* ==========================================================================
+   Pulsenmore Home Ultrasound Training Web Application - Stylesheet
+   Designed to match Pulsenmore_Scan_Training.pptx visual aesthetics & brand system
+   ========================================================================== */
+
+:root {
+  /* Color Palette matching Pulsenmore PPTX Theme */
+  --bg-sky-light: #edf6fd;
+  --bg-sky-mid: #dcedfa;
+  --bg-sky-deep: #c5e4f7;
+  
+  --pnm-red: #e5233b;
+  --pnm-red-hover: #cf1b31;
+  --pnm-red-light: rgba(229, 35, 59, 0.08);
+  --pnm-red-shadow: rgba(229, 35, 59, 0.35);
+  
+  --pnm-teal: #0284c7;
+  --pnm-cyan: #0ea5e9;
+  --pnm-cyan-light: #e0f2fe;
+  
+  --pnm-navy: #11263c;
+  --pnm-slate: #334155;
+  --pnm-muted: #64748b;
+  
+  --pnm-green: #10b981;
+  --pnm-green-dark: #059669;
+  --pnm-amber: #f59e0b;
+  --pnm-amber-dark: #d97706;
+  
+  --card-bg: #ffffff;
+  --card-radius: 28px;
+  --card-shadow: 0 16px 40px rgba(18, 72, 140, 0.09), 0 2px 8px rgba(0, 0, 0, 0.03);
+  --card-border-red: 3px solid #e5233b;
+  
+  --phone-bezel: #1e293b;
+  --phone-border: #334155;
+  --phone-shadow: 0 24px 55px rgba(15, 23, 42, 0.25);
+  
+  --font-main: 'Outfit', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Outfit', 'Poppins', sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  background: radial-gradient(ellipse at 50% 25%, #ebf5fc 0%, #d8edf9 50%, #c4e4f7 100%);
+  color: var(--pnm-navy);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  position: relative;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Background Atmospheric Decor (Twinkling 4-Point Stars & Swooshes matching PPTX) */
+.bg-decor-stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.star-svg {
+  position: absolute;
+  fill: #8fc7eb;
+  opacity: 0.55;
+  animation: starPulse 6s ease-in-out infinite alternate;
+}
+
+.star-1 { top: 12%; left: 8%; width: 28px; height: 28px; animation-delay: 0s; }
+.star-2 { top: 18%; left: 16%; width: 20px; height: 20px; animation-delay: 1.5s; }
+.star-3 { top: 28%; left: 11%; width: 16px; height: 16px; animation-delay: 3s; }
+.star-4 { top: 14%; right: 12%; width: 26px; height: 26px; animation-delay: 0.8s; }
+.star-5 { top: 32%; right: 8%; width: 18px; height: 18px; animation-delay: 2.2s; }
+.star-6 { bottom: 20%; left: 10%; width: 24px; height: 24px; animation-delay: 1.2s; }
+.star-7 { bottom: 22%; right: 14%; width: 22px; height: 22px; animation-delay: 2.8s; }
+.star-8 { bottom: 12%; right: 7%; width: 16px; height: 16px; animation-delay: 4s; }
+
+.bg-ambient-wave {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: 
+    radial-gradient(circle at 10% 40%, rgba(255, 255, 255, 0.45) 0%, transparent 60%),
+    radial-gradient(circle at 90% 60%, rgba(255, 255, 255, 0.4) 0%, transparent 55%);
+}
+
+@keyframes starPulse {
+  0% { transform: scale(0.9) rotate(0deg); opacity: 0.35; }
+  50% { transform: scale(1.1) rotate(5deg); opacity: 0.7; }
+  100% { transform: scale(0.95) rotate(-3deg); opacity: 0.45; }
+}
+
+/* ==========================================================================
+   Header Bar
+   ========================================================================== */
+.pnm-app-header {
+  position: relative;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(203, 225, 245, 0.7);
+  box-shadow: 0 2px 10px rgba(18, 72, 140, 0.04);
+}
+
+.pnm-brand-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.pnm-logo-symbol {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 24px;
+}
+
+.pnm-pulse-bar {
+  display: inline-block;
+  width: 3.5px;
+  background: var(--pnm-red);
+  border-radius: 4px;
+  animation: pulseBarAnim 1.8s ease-in-out infinite alternate;
+}
+.pnm-pulse-bar:nth-child(1) { height: 10px; animation-delay: 0.1s; }
+.pnm-pulse-bar:nth-child(2) { height: 18px; animation-delay: 0.3s; }
+.pnm-pulse-bar:nth-child(3) { height: 24px; animation-delay: 0.5s; }
+.pnm-pulse-bar:nth-child(4) { height: 14px; animation-delay: 0.2s; }
+
+@keyframes pulseBarAnim {
+  0% { transform: scaleY(0.7); opacity: 0.85; }
+  100% { transform: scaleY(1.1); opacity: 1; }
+}
+
+.pnm-brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.pnm-brand-title {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--pnm-navy);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.pnm-brand-sub {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--pnm-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.pnm-header-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pnm-slide-selector-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: #f1f7fc;
+  border: 1px solid #d4e7f7;
+  border-radius: 9999px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--pnm-navy);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pnm-slide-selector-pill:hover {
+  background: #e2f0fb;
+  border-color: #b9daf3;
+}
+
+.pnm-slide-selector-dropdown {
+  position: relative;
+}
+
+.pnm-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 320px;
+  max-height: 400px;
+  overflow-y: auto;
+  background: #ffffff;
+  border: 1px solid #dbeafe;
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.15);
+  padding: 8px;
+  z-index: 100;
+}
+
+.pnm-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 0.84rem;
+  color: var(--pnm-slate);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.pnm-dropdown-item:hover {
+  background: #f0f8ff;
+  color: var(--pnm-navy);
+}
+
+.pnm-dropdown-item.active {
+  background: #e0f2fe;
+  color: var(--pnm-teal);
+  font-weight: 700;
+}
+
+.pnm-dropdown-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #dbeafe;
+  color: var(--pnm-teal);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.pnm-dropdown-item.active .pnm-dropdown-badge {
+  background: var(--pnm-red);
+  color: #ffffff;
+}
+
+.pnm-header-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  background: #ffffff;
+  border: 1px solid #d0e3f4;
+  border-radius: 9999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--pnm-slate);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pnm-header-btn:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+  color: var(--pnm-navy);
+}
+
+.pnm-header-btn.active {
+  background: #e0f2fe;
+  border-color: var(--pnm-teal);
+  color: var(--pnm-teal);
+}
+
+/* ==========================================================================
+   Main Slide Stage Container
+   ========================================================================== */
+.pnm-stage-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 20px 16px 20px;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.pnm-stage-slide-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 540px;
+  animation: fadeInSlide 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ==========================================================================
+   Presentation Cards (Matching PPTX Layouts)
+   ========================================================================== */
+.pnm-slide-card {
+  background: var(--card-bg);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  width: 100%;
+  max-width: 660px;
+  padding: 36px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.pnm-slide-card.wide-card {
+  max-width: 820px;
+  padding: 40px 48px;
+}
+
+.pnm-slide-card.red-border-card {
+  border: var(--card-border-red);
+  box-shadow: 0 16px 40px rgba(229, 35, 59, 0.12), 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.pnm-card-title {
+  font-family: var(--font-heading);
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: var(--pnm-navy);
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.pnm-card-title.red-text {
+  color: var(--pnm-red);
+}
+
+.pnm-card-subtitle {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #3b82a6;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+.pnm-card-body-text {
+  font-size: 1.05rem;
+  color: #475569;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+/* Progress Stepper in Header of Card (e.g. Part 2 of 2) */
+.pnm-card-stepper-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.pnm-stepper-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.pnm-stepper-cancel-btn {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1e293b;
+  cursor: pointer;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pnm-stepper-label {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.pnm-stepper-bars {
+  display: flex;
+  gap: 6px;
+  width: 100%;
+}
+
+.pnm-stepper-bar-segment {
+  flex: 1;
+  height: 5px;
+  background: #e2e8f0;
+  border-radius: 9999px;
+}
+
+.pnm-stepper-bar-segment.active {
+  background: #10b981;
+}
+
+/* Checklist Cards with Round Icons (Slide 3 & Slide 5) */
+.pnm-checklist-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  margin: 16px 0 28px 0;
+  text-align: left;
+}
+
+.pnm-check-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 14px 18px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  transition: all 0.2s ease;
+}
+
+.pnm-check-item:hover {
+  background: #f0f7ff;
+  border-color: #bae6fd;
+}
+
+.pnm-check-icon-circle {
+  width: 54px;
+  height: 54px;
+  min-width: 54px;
+  border-radius: 50%;
+  background: #e0f2fe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.pnm-check-icon-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #10b981;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  border: 2px solid #ffffff;
+}
+
+.pnm-check-text {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #1e293b;
+  line-height: 1.4;
+}
+
+/* Dual Panel Layout for Step 1 (Slide 6) */
+.pnm-dual-panel-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  margin: 16px 0 28px 0;
+}
+
+.pnm-panel-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 16px 20px;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 20px;
+  text-align: left;
+}
+
+.pnm-panel-img-box {
+  width: 220px;
+  min-width: 220px;
+  height: 120px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #e0f2fe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pnm-panel-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pnm-panel-text-box {
+  flex: 1;
+}
+
+.pnm-panel-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--pnm-navy);
+  margin-bottom: 6px;
+}
+
+.pnm-panel-desc {
+  font-size: 0.98rem;
+  color: #475569;
+  line-height: 1.45;
+}
+
+/* ==========================================================================
+   Red Callout Speech Bubbles (Matching PPTX)
+   ========================================================================== */
+.pnm-callout-bubble {
+  background: #ffffff;
+  border: 3px solid var(--pnm-red);
+  border-radius: 18px;
+  padding: 16px 24px;
+  box-shadow: 0 12px 28px rgba(229, 35, 59, 0.18), 0 3px 8px rgba(0, 0, 0, 0.04);
+  color: #1e293b;
+  font-size: 1.08rem;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+  position: relative;
+  max-width: 440px;
+  z-index: 25;
+  animation: calloutFloat 4s ease-in-out infinite alternate;
+}
+
+@keyframes calloutFloat {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-4px); }
+}
+
+/* Downward pointing tail */
+.pnm-callout-bubble.tail-bottom::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-top: 15px solid var(--pnm-red);
+}
+
+/* Upward pointing tail */
+.pnm-callout-bubble.tail-top::after {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-bottom: 15px solid var(--pnm-red);
+}
+
+/* Red Alert Box with Warning Triangle (Slide 9) */
+.pnm-red-alert-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: #fef8ee;
+  border: 2px solid var(--pnm-red);
+  border-radius: 16px;
+  padding: 16px 20px;
+  text-align: left;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.pnm-alert-triangle-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  background: var(--pnm-red);
+  color: #ffffff;
+  border-radius: 6px;
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.pnm-red-alert-text {
+  font-size: 0.96rem;
+  color: #1e293b;
+  line-height: 1.45;
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   Realistic Smartphone Mockup Frame
+   ========================================================================== */
+.pnm-phone-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+}
+
+.pnm-iphone-mockup {
+  width: 320px;
+  height: 640px;
+  background: #0f172a;
+  border: 4px solid #334155;
+  border-radius: 46px;
+  box-shadow: var(--phone-shadow);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin: 12px 0;
+}
+
+.pnm-iphone-notch-bar {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  position: relative;
+  z-index: 20;
+  background: #ffffff;
+}
+
+.pnm-iphone-mockup.dark-theme .pnm-iphone-notch-bar {
+  background: #0b1320;
+  color: #ffffff;
+}
+
+.pnm-phone-clock {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.pnm-iphone-mockup.dark-theme .pnm-phone-clock {
+  color: #ffffff;
+}
+
+.pnm-phone-island {
+  width: 80px;
+  height: 18px;
+  background: #000000;
+  border-radius: 20px;
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.pnm-phone-status-icons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  color: #1e293b;
+}
+
+.pnm-iphone-mockup.dark-theme .pnm-phone-status-icons {
+  color: #ffffff;
+}
+
+.pnm-phone-screen-content {
+  flex: 1;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  position: relative;
+}
+
+.pnm-iphone-mockup.dark-theme .pnm-phone-screen-content {
+  background: #0b1320;
+  color: #ffffff;
+}
+
+.pnm-phone-home-indicator {
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  padding-bottom: 4px;
+}
+
+.pnm-iphone-mockup.dark-theme .pnm-phone-home-indicator {
+  background: #0b1320;
+}
+
+.pnm-home-bar-pill {
+  width: 110px;
+  height: 4px;
+  background: #1e293b;
+  border-radius: 9999px;
+  opacity: 0.6;
+}
+
+.pnm-iphone-mockup.dark-theme .pnm-home-bar-pill {
+  background: #94a3b8;
+}
+
+/* ==========================================================================
+   Pulsenmore Home Screen Phone Inner UI (Slide 1)
+   ========================================================================== */
+.pnm-home-ui-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+}
+
+.pnm-home-hamburger {
+  font-size: 1.2rem;
+  color: #1e293b;
+  cursor: pointer;
+}
+
+.pnm-mom-card-banner {
+  margin: 0 16px 16px 16px;
+  background: linear-gradient(135deg, #d4edf9 0%, #eef7fc 100%);
+  border-radius: 20px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pnm-mom-card-text h4 {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #1e3a5f;
+  line-height: 1.2;
+}
+
+.pnm-mom-card-text p {
+  font-size: 0.8rem;
+  color: #64748b;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pnm-mom-card-silhouette {
+  width: 54px;
+  height: 70px;
+  object-fit: contain;
+}
+
+.pnm-guide-carousel-title {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #1e293b;
+  padding: 0 18px;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.pnm-guide-cards-row {
+  display: flex;
+  gap: 10px;
+  padding: 0 16px;
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+
+.pnm-guide-mini-card {
+  min-width: 80px;
+  flex: 1;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 10px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #475569;
+  gap: 6px;
+}
+
+.pnm-guide-mini-icon {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+/* Big Round START Button on Slide 1 */
+.pnm-big-start-circle-btn {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #88d4f7 0%, #54b9eb 60%, #3ca7df 100%);
+  border: none;
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px auto;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(59, 130, 246, 0.35);
+  transition: all 0.25s ease;
+}
+
+.pnm-big-start-circle-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 14px 30px rgba(59, 130, 246, 0.45);
+}
+
+.pnm-device-status-row {
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 18px;
+  margin-top: auto;
+}
+
+.pnm-device-status-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #64748b;
+  position: relative;
+}
+
+.pnm-device-status-icon-wrap {
+  position: relative;
+}
+
+.pnm-status-check-badge {
+  position: absolute;
+  bottom: -2px;
+  right: -4px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #10b981;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.55rem;
+}
+
+/* ==========================================================================
+   Signature Crimson Action Buttons
+   ========================================================================== */
+.pnm-btn-pill-red {
+  background: linear-gradient(180deg, #ed253e 0%, #d81a32 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 9999px;
+  font-family: var(--font-heading);
+  font-size: 1.12rem;
+  font-weight: 700;
+  padding: 13px 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px var(--pnm-red-shadow);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+.pnm-btn-pill-red:hover {
+  background: linear-gradient(180deg, #f4334c 0%, #c4132a 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 9px 26px rgba(229, 35, 59, 0.48);
+}
+
+.pnm-btn-pill-red:active {
+  transform: translateY(1px);
+}
+
+.pnm-btn-pill-red.sm {
+  font-size: 0.95rem;
+  padding: 10px 28px;
+}
+
+.pnm-btn-pill-red.w-full {
+  width: 100%;
+}
+
+.pnm-btn-pill-green {
+  background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 9999px;
+  font-family: var(--font-heading);
+  font-size: 1.12rem;
+  font-weight: 700;
+  padding: 13px 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
+}
+
+.pnm-bottom-nav-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+  width: 100%;
+}
+
+.pnm-prev-btn {
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  color: #475569;
+  border-radius: 9999px;
+  padding: 12px 24px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pnm-prev-btn:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+  color: var(--pnm-navy);
+}
+
+/* ==========================================================================
+   Slide Pagination Dots
+   ========================================================================== */
+.pnm-dots-stepper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.pnm-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.pnm-dot.active {
+  width: 24px;
+  border-radius: 9999px;
+  background: var(--pnm-red);
+}
+
+/* ==========================================================================
+   Slide Specific Interactive Elements
+   ========================================================================== */
+
+/* Slide 2: Mom Reclined Illustration */
+.pnm-mom-intro-hero-img {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  border-radius: 20px;
+  margin-bottom: 24px;
+}
+
+/* Slide 4: 3-Screen Live Ultrasound Simulator */
+.pnm-slide4-grid {
+  display: flex;
+  gap: 16px;
+  align-items: stretch;
+  justify-content: center;
+  width: 100%;
+  max-width: 980px;
+  margin-bottom: 20px;
+}
+
+.pnm-scan-card-col {
+  flex: 1;
+  background: #ffffff;
+  border: 1.5px solid #dbeafe;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.pnm-scan-top-view {
+  height: 180px;
+  position: relative;
+  background: #1e293b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.pnm-scan-top-view img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pnm-hold-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #dc2626;
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 900;
+  padding: 8px 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.5);
+  letter-spacing: 0.06em;
+  animation: holdPulse 1.2s infinite alternate;
+}
+
+@keyframes holdPulse {
+  0% { transform: translate(-50%, -50%) scale(0.96); }
+  100% { transform: translate(-50%, -50%) scale(1.04); }
+}
+
+.pnm-scan-bottom-ultrasound {
+  height: 200px;
+  background: #000000;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pnm-scan-bottom-ultrasound img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pnm-ultrasound-live-overlay {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 5;
+}
+
+.pnm-live-indicator {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #10b981;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.pnm-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  animation: pulseLive 1s infinite;
+}
+
+@keyframes pulseLive {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* Slide 7: Quadrant Map */
+.pnm-quadrant-map-box {
+  width: 100%;
+  max-width: 440px;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 16px 0;
+}
+
+.pnm-quadrant-map-box img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Slide 8: Step 3 Sweep & Pace */
+.pnm-sweep-img-box {
+  width: 100%;
+  max-width: 440px;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 14px 0;
+}
+
+.pnm-sweep-img-box img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.pnm-sweep-interactive-card {
+  width: 100%;
+  background: #f0f9ff;
+  border: 1.5px solid #bae6fd;
+  border-radius: 18px;
+  padding: 16px;
+  margin-top: 14px;
+}
+
+.pnm-sweep-track {
+  width: 100%;
+  height: 14px;
+  background: #e2e8f0;
+  border-radius: 9999px;
+  position: relative;
+  margin: 14px 0 8px 0;
+  overflow: hidden;
+}
+
+.pnm-sweep-thumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #0284c7 0%, #38bdf8 100%);
+  border-radius: 9999px;
+  transition: width 0.1s linear;
+}
+
+/* Slide 9: Device Positioning Perpendicular & Tilt Simulator */
+.pnm-tilt-diagram-box {
+  width: 100%;
+  max-width: 460px;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 12px 0;
+}
+
+.pnm-tilt-diagram-box img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.pnm-tilt-simulator-widget {
+  width: 100%;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 16px 20px;
+  margin-top: 16px;
+  text-align: center;
+}
+
+.pnm-tilt-slider-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 10px 0;
+}
+
+.pnm-tilt-slider {
+  flex: 1;
+  height: 8px;
+  border-radius: 9999px;
+  accent-color: var(--pnm-teal);
+  cursor: pointer;
+}
+
+.pnm-tilt-banner-status {
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-top: 8px;
+}
+
+.pnm-tilt-banner-status.good {
+  background: #dcfce7;
+  color: #166534;
+  border: 1px solid #86efac;
+}
+
+.pnm-tilt-banner-status.warn {
+  background: #fef9c3;
+  color: #854d0e;
+  border: 1px solid #fde047;
+}
+
+/* Slide 10: Feedback Alerts Dual Screens */
+.pnm-alerts-dual-row {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  max-width: 660px;
+  margin: 16px 0;
+}
+
+.pnm-alert-screen-card {
+  flex: 1;
+  background: #0f172a;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 2px solid #334155;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.15);
+}
+
+.pnm-alert-banner-top {
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.pnm-alert-banner-top.yellow-warn {
+  background: #eab308;
+  color: #000000;
+}
+
+.pnm-alert-banner-top.green-good {
+  background: #22c55e;
+  color: #ffffff;
+}
+
+.pnm-alert-screen-body {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: #000000;
+}
+
+.pnm-alert-screen-body img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Slide 11: Uploading Screen */
+.pnm-upload-progress-box {
+  width: 85%;
+  background: #1e293b;
+  border-radius: 16px;
+  padding: 20px;
+  margin: 40px auto;
+  text-align: center;
+}
+
+.pnm-upload-bar-track {
+  width: 100%;
+  height: 8px;
+  background: #334155;
+  border-radius: 9999px;
+  overflow: hidden;
+  margin: 14px 0 8px 0;
+}
+
+.pnm-upload-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #38bdf8 0%, #0ea5e9 100%);
+  border-radius: 9999px;
+  transition: width 0.4s ease;
+}
+
+/* Slide 12/13: Knowledge Check Quiz */
+.pnm-quiz-group {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  margin: 20px 0 28px 0;
+  text-align: left;
+}
+
+.pnm-quiz-q-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pnm-quiz-q-text {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1e293b;
+  line-height: 1.35;
+}
+
+.pnm-quiz-options-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+
+.pnm-quiz-radio-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.98rem;
+  font-weight: 500;
+  color: #334155;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 8px;
+  transition: background 0.15s ease;
+}
+
+.pnm-quiz-radio-label:hover {
+  background: #f1f5f9;
+}
+
+.pnm-custom-radio {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #0284c7;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  display: grid;
+  place-content: center;
+}
+
+.pnm-custom-radio::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  background-color: var(--pnm-red);
+}
+
+.pnm-custom-radio:checked::before {
+  transform: scale(1);
+}
+
+.pnm-custom-radio:checked {
+  border-color: var(--pnm-red);
+}
+
+.pnm-quiz-feedback-msg {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #0284c7;
+  margin-top: 10px;
+}
+
+/* Slide 14: Completion Celebration */
+.pnm-cloud-sync-hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.pnm-cloud-img {
+  width: 220px;
+  height: auto;
+}
+
+.pnm-cloud-arrows-up {
+  display: flex;
+  gap: 12px;
+  margin-bottom: -10px;
+}
+
+.pnm-cloud-arrow {
+  color: var(--pnm-red);
+  font-size: 1.4rem;
+  animation: floatArrow 1.5s infinite alternate;
+}
+.pnm-cloud-arrow:nth-child(2) { animation-delay: 0.3s; }
+.pnm-cloud-arrow:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes floatArrow {
+  0% { transform: translateY(0); opacity: 0.7; }
+  100% { transform: translateY(-8px); opacity: 1; }
+}
+
+.pnm-completed-logo-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 16px 0;
+}
+
+/* ==========================================================================
+   Modals & Drawer Panels (Protocol Reference & Content Editor)
+   ========================================================================== */
+.pnm-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: modalFadeIn 0.25s ease;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.pnm-modal-card {
+  background: #ffffff;
+  border-radius: 28px;
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.3);
+  width: 100%;
+  max-width: 800px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.pnm-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 28px;
+  border-bottom: 1px solid #e2e8f0;
+  background: #f8fafc;
+}
+
+.pnm-modal-header h3 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--pnm-navy);
+}
+
+.pnm-modal-close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #64748b;
+  cursor: pointer;
+}
+
+.pnm-modal-body {
+  padding: 28px;
+  overflow-y: auto;
+  line-height: 1.6;
+  color: #334155;
+}
+
+.pnm-modal-body h4 {
+  color: var(--pnm-navy);
+  margin: 18px 0 8px 0;
+  font-size: 1.1rem;
+}
+
+.pnm-modal-body ul {
+  padding-left: 24px;
+  margin-bottom: 14px;
+}
+
+.pnm-modal-body li {
+  margin-bottom: 6px;
+}
+
+/* Content Editor Drawer */
+.pnm-editor-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 420px;
+  max-width: 90vw;
+  background: #ffffff;
+  box-shadow: -10px 0 40px rgba(15, 23, 42, 0.2);
+  z-index: 250;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pnm-editor-drawer.open {
+  transform: translateX(0);
+}
+
+.pnm-editor-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.pnm-editor-body {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pnm-editor-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pnm-editor-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #475569;
+  text-transform: uppercase;
+}
+
+.pnm-editor-input, .pnm-editor-textarea {
+  padding: 10px 14px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 0.92rem;
+  outline: none;
+}
+
+.pnm-editor-input:focus, .pnm-editor-textarea:focus {
+  border-color: var(--pnm-teal);
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+}
+
+.pnm-editor-textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+/* ==========================================================================
+   Comprehensive Mobile & Tablet Responsive Adaptations
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* Header */
+  .pnm-app-header {
+    padding: 8px 12px;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  
+  .pnm-brand-title {
+    font-size: 0.98rem;
+  }
+  
+  .pnm-brand-sub {
+    font-size: 0.65rem;
+  }
+  
+  .pnm-header-nav {
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  
+  .pnm-slide-selector-pill {
+    padding: 4px 10px;
+    font-size: 0.78rem;
+    max-width: 170px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .pnm-header-btn {
+    padding: 5px 9px;
+    font-size: 0.75rem;
+  }
+
+  .pnm-lang-toggle-btn {
+    padding: 5px 9px;
+    font-size: 0.78rem;
+  }
+
+  /* Stage & Container */
+  .pnm-stage-wrapper {
+    padding: 12px 10px 90px 10px;
+    min-height: calc(100vh - 120px);
+  }
+
+  .pnm-stage-slide-content {
+    min-height: unset;
+    width: 100%;
+  }
+  
+  /* Slide Cards */
+  .pnm-slide-card,
+  .pnm-slide-card.wide-card,
+  .pnm-slide-card.red-border-card {
+    padding: 22px 16px;
+    border-radius: 22px;
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .pnm-card-title {
+    font-size: 1.35rem;
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+  
+  .pnm-card-subtitle {
+    font-size: 0.95rem;
+    line-height: 1.35;
+    margin-bottom: 14px;
+  }
+
+  .pnm-card-body-text {
+    font-size: 0.92rem;
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  /* Phone Mockup Frame on Mobile */
+  .pnm-iphone-mockup {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    min-height: 560px;
+    border-radius: 38px;
+    border-width: 3px;
+    margin: 8px 0;
+  }
+
+  .pnm-big-start-circle-btn {
+    width: 130px;
+    height: 130px;
+    font-size: 1.3rem;
+    margin: 12px auto;
+  }
+
+  /* Speech Bubbles */
+  .pnm-callout-bubble {
+    width: 100%;
+    max-width: 100%;
+    padding: 12px 16px;
+    font-size: 0.95rem;
+    border-radius: 14px;
+    border-width: 2.5px;
+  }
+
+  /* Checklist Items */
+  .pnm-check-item {
+    padding: 10px 12px;
+    gap: 12px;
+    border-radius: 14px;
+  }
+
+  .pnm-check-icon-circle {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+  }
+
+  .pnm-check-text {
+    font-size: 0.92rem;
+  }
+
+  /* Slide 4 Grid */
+  .pnm-slide4-grid {
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+  }
+
+  .pnm-scan-top-view {
+    height: 150px;
+  }
+
+  .pnm-scan-bottom-ultrasound {
+    height: 160px;
+  }
+  
+  /* Slide 6 Dual Panels */
+  .pnm-panel-row {
+    flex-direction: column;
+    text-align: center;
+    padding: 14px;
+    gap: 12px;
+  }
+  
+  .pnm-panel-img-box {
+    width: 100%;
+    height: 140px;
+    min-width: unset;
+  }
+
+  .pnm-panel-title {
+    font-size: 1.15rem;
+  }
+
+  .pnm-panel-desc {
+    font-size: 0.9rem;
+  }
+  
+  /* Slide 10 Dual Alerts */
+  .pnm-alerts-dual-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .pnm-alert-screen-body {
+    height: 160px;
+  }
+
+  /* Quiz Radio Items */
+  .pnm-quiz-options-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .pnm-quiz-radio-label {
+    padding: 8px 10px;
+    background: #f8fafc;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+  }
+
+  /* Sticky Bottom Navigation on Mobile */
+  .pnm-bottom-nav-row {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(203, 225, 245, 0.8);
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px)) 16px;
+    margin-top: 0;
+    z-index: 40;
+    box-shadow: 0 -4px 16px rgba(15, 23, 42, 0.08);
+  }
+
+  .pnm-btn-pill-red {
+    padding: 11px 28px;
+    font-size: 1rem;
+    flex: 1;
+    max-width: 220px;
+  }
+
+  .pnm-prev-btn {
+    padding: 10px 18px;
+    font-size: 0.88rem;
+  }
+
+  .pnm-dots-stepper {
+    display: none; /* Hide dots on mobile to save space */
+  }
+
+  /* Slide 14 Buttons */
+  .pnm-cloud-img {
+    width: 170px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pnm-brand-sub {
+    display: none;
+  }
+
+  .pnm-card-title {
+    font-size: 1.22rem;
+  }
+}
+
+/* ==========================================================================
+   Hebrew Language & RTL Styling Support
+   ========================================================================== */
+.lang-he {
+  font-family: 'Heebo', 'Assistant', 'Plus Jakarta Sans', var(--font-main);
+  direction: rtl;
+  text-align: right;
+}
+
+.lang-he .pnm-card-title,
+.lang-he .pnm-card-subtitle,
+.lang-he .pnm-card-body-text {
+  font-family: 'Heebo', 'Assistant', var(--font-heading);
+}
+
+.lang-he .pnm-checklist-group {
+  text-align: right;
+}
+
+.lang-he .pnm-check-item {
+  flex-direction: row;
+}
+
+.lang-he .pnm-card-stepper-header {
+  text-align: right;
+}
+
+.lang-he .pnm-panel-row {
+  text-align: right;
+}
+
+.lang-he .pnm-red-alert-box {
+  text-align: right;
+}
+
+.lang-he .pnm-quiz-group {
+  text-align: right;
+}
+
+.lang-he .pnm-quiz-options-row {
+  flex-direction: row;
+}
+
+.lang-he .pnm-modal-body {
+  text-align: right;
+}
+
+.lang-he .pnm-modal-body ul {
+  padding-right: 24px;
+  padding-left: 0;
+}
+
+.lang-he .pnm-guide-carousel-title {
+  text-align: right;
+}
+
+.lang-he .pnm-editor-drawer {
+  left: 0;
+  right: auto;
+  transform: translateX(-100%);
+  box-shadow: 10px 0 40px rgba(15, 23, 42, 0.2);
+}
+
+.lang-he .pnm-editor-drawer.open {
+  transform: translateX(0);
+}
+
+.pnm-lang-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: #f0fdf4;
+  border: 1.5px solid #86efac;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #166534;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pnm-lang-toggle-btn:hover {
+  background: #dcfce7;
+  border-color: #4ade80;
+  transform: translateY(-1px);
+}
