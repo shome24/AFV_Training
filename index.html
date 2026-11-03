@@ -33,7 +33,7 @@
   <script type="text/babel">
 /**
  * Pulsenmore AFV-Dynamic Study Training Web Application
- * Complete 1:1 Redesign Matching Pulsenmore_Scan_Training.pptx (14 Slides)
+ * Unified Phone-First Architecture: All 14 Slides Fitted to Mobile Resolution
  * Fully Bilingual (English & Hebrew) + Web Audio API + Interactive Simulators & Content Editor
  */
 
@@ -189,19 +189,19 @@ const TRANSLATIONS = {
     brandSub: "Scan Training • AFV Study",
     soundOn: "🔊 Sound ON",
     soundOff: "🔇 Sound OFF",
-    protocolBtn: "📋 Clinical Protocol",
-    editBtn: "✏️ Edit Content",
+    protocolBtn: "📋 Protocol",
+    editBtn: "✏️ Edit",
     nextBtn: "Next >",
     prevBtn: "< Previous",
     cancelBtn: "< Cancel",
-    saveBtn: "💾 Save Changes Live",
+    saveBtn: "💾 Save Changes",
     slideLabel: "Slide",
     ofLabel: "of",
     langName: "עברית",
     slides: [
       {
         id: 1,
-        title: "App Home Screen & Start Scan",
+        title: "Home Screen & Start Scan",
         subtitle: "Mobile App AG Mode Initialization",
         calloutText: "This is the home screen. Tapping here will start the scan process.",
         homeMomTitle: "Hi there,\nMom-to-Be!",
@@ -219,7 +219,6 @@ const TRANSLATIONS = {
         title: "Part 1: Fetal Well-Being",
         subtitle: "Baseline assessment of heartbeat & fetal movements",
         description: "Right now, your baby is growing, moving, and getting stronger every day. This first part of the scan lets your care team check your baby's heartbeat and gentle movements. You'll see it all happen, live on your screen.",
-        heartbeatText: "Simulated Fetal Heart Rate: 130 BPM active",
         image: "assets/pptx_slides/slide_2_img_1.png"
       },
       {
@@ -233,18 +232,18 @@ const TRANSLATIONS = {
       },
       {
         id: 4,
-        title: "Part 1: Practice & Live Scan",
-        subtitle: "Vertical sweeps, real-time coupling and HOLD guidance",
+        title: "Part 1: Practice Scan",
+        subtitle: "Guided scanning tutorial",
         partLabel: "Part 1 of 2",
-        feedbackTitle: "Great practice",
-        feedbackSubtitle: "You're getting the hang of it",
-        tip1: "Keep the device pressed firmly against your skin throughout the scan",
-        tip2: "Move slowly - Follow the guide and match its pace",
-        scanBtnText: "I'm ready to scan",
-        stopBtnText: "Stop Practice",
-        holdText: "HOLD",
-        liveText: "LIVE FEED",
-        pauseText: "⏸ Pause"
+        display1Tab: "Display 1",
+        d1_calloutTop: "The scanning process includes 5 steps. During each step, the top part will display a guided tutorial.",
+        d1_scanStep: "Scan 4/5",
+        d1_duration: "25 Seconds",
+        d1_tapPrompt: "Tap to continue scan",
+        d1_calloutBottom: "Pressing the red button will allow you to start.",
+        display2Tab: "Display 2",
+        d2_calloutMiddle: "Move the device in the same direction, pace, & position as demonstrated. Maintain good, continuous contact with the skin.",
+        d2_backPrompt: "◀ Back"
       },
       {
         id: 5,
@@ -291,10 +290,10 @@ const TRANSLATIONS = {
         id: 9,
         title: "Step 4: Device Positioning (Crucial)",
         alertText: "Hold the device completely upright, perpendicular to the ground. Do NOT tilt it to follow the curve of your belly. The phone screen should face perfectly sideways.",
-        gyroTitle: "🎛️ Interactive Device Angle Gyroscope",
+        gyroTitle: "🎛️ Device Angle Gyroscope",
         tiltedText: "Tilted",
-        goodStatus: "✓ You're Doing Great! (90° Perpendicular • Clear Fluid Window)",
-        warnStatus: "⚠️ Keep it Level (Tilted angle causes acoustic shadow & false oligohydramnios)"
+        goodStatus: "✓ You're Doing Great! (90° Perpendicular)",
+        warnStatus: "⚠️ Keep it Level (Tilted angle causes acoustic shadow)"
       },
       {
         id: 10,
@@ -338,8 +337,9 @@ const TRANSLATIONS = {
         badgeText: "Congratulations you have completed the training!",
         logoText: "Pulsenmore Home Ultrasound",
         closingText: "Your data will be securely sent and awaits interpretation by your doctor. You can relax knowing the scan was performed accurately. Thank you for your cooperation in the study.",
-        restartBtn: "🔄 Restart Training",
-        guideBtn: "📖 View Full Clinical Protocol"
+        restartBtn: "🔄 Repeat Training",
+        closeBtn: "✕ Close Training",
+        closedMessage: "Training completed. You may now close this window."
       }
     ]
   },
@@ -350,12 +350,11 @@ const TRANSLATIONS = {
     brandSub: "הדרכת סריקה • מחקר AFV",
     soundOn: "🔊 שמע פעיל",
     soundOff: "🔇 שמע כבוי",
-    protocolBtn: "📋 פרוטוקול קליני",
-    editBtn: "✏️ עריכת תוכן",
+    editBtn: "✏️ עריכה",
     nextBtn: "הבא >",
     prevBtn: "< הקודם",
     cancelBtn: "< ביטול",
-    saveBtn: "💾 שמירת שינויים",
+    saveBtn: "💾 שמירה",
     slideLabel: "שקף",
     ofLabel: "מתוך",
     langName: "English",
@@ -364,7 +363,7 @@ const TRANSLATIONS = {
         id: 1,
         title: "מסך הבית והתחלת סריקה",
         subtitle: "אתחול האפליקציה במצב מודרך (AG Mode)",
-        calloutText: "זהו מסך הבית. לחיצה על כפתור ה-START תתחיל את תהליך הסריקה.",
+        calloutText: "זהו מסך הבית. לחיצה על עיגול ה-START תתחיל את תהליך הסריקה.",
         homeMomTitle: "שלום לך,\nאמא לעתיד!",
         homeMomWeek: "את בשבוע 22",
         homeGuideTitle: "מדריך אולטרסאונד",
@@ -380,7 +379,6 @@ const TRANSLATIONS = {
         title: "חלק 1: ניטור חיוניות ומדדי העובר",
         subtitle: "הערכת בסיס של דופק העובר ותנועותיו",
         description: "ממש עכשיו, התינוק שלך גדל, זז ומתחזק בכל יום. החלק הראשון של הבדיקה מאפשר לצוות הרפואי לבדוק ולמדוד את דופק העובר ואת תנועותיו העדינות. תוכלי לראות הכל קורה בשידור חי על גבי המסך שלך.",
-        heartbeatText: "סימולציית דופק עוברי: 130 פעימות לדקה (BPM) פעיל",
         image: "assets/pptx_slides/slide_2_img_1.png"
       },
       {
@@ -394,18 +392,18 @@ const TRANSLATIONS = {
       },
       {
         id: 4,
-        title: "חלק 1: תרגול וסריקה בזמן אמת",
-        subtitle: "סריקות אנכיות, בדיקת צימוד אקוסטי והנחיית HOLD",
+        title: "חלק 1: תרגול סריקה",
+        subtitle: "הדרכת סריקה מונחית",
         partLabel: "חלק 1 מתוך 2",
-        feedbackTitle: "תרגול מצוין",
-        feedbackSubtitle: "את קולטת את זה מעולה!",
-        tip1: "החזיקי את המכשיר צמוד היטב לעור לאורך כל מהלך הסריקה",
-        tip2: "זוזי לאט - עקבי אחר ההנחיה במסך והתאימי את קצב התנועה",
-        scanBtnText: "אני מוכנה לסרוק",
-        stopBtnText: "עצירת תרגול",
-        holdText: "HOLD",
-        liveText: "שידור חי",
-        pauseText: "⏸ השהה"
+        display1Tab: "תצוגה 1",
+        d1_calloutTop: "תהליך הסריקה כולל 5 שלבים. במהלך כל שלב, החלק העליון יציג סרטון הדרכה מונחה.",
+        d1_scanStep: "סריקה 4/5",
+        d1_duration: "25 שניות",
+        d1_tapPrompt: "לחצי להמשך סריקה",
+        d1_calloutBottom: "לחיצה על הכפתור האדום תאפשר לך להתחיל.",
+        display2Tab: "תצוגה 2",
+        d2_calloutMiddle: "הזיזי את המכשיר באותו כיוון, קצב ומיקום כפי שמודגם. שמרי על מגע רציף והצמדה טובה של המכשיר לעור.",
+        d2_backPrompt: "◀ חזרה"
       },
       {
         id: 5,
@@ -423,7 +421,7 @@ const TRANSLATIONS = {
         panel1Title: "הישעני לאחור.",
         panel1Desc: "גלשי מעט מטה במושב כך שהבטן תהיה במנח מאוזן ואופקי. כוח המשיכה מסייע בפיזור והשקעת הנוזל.",
         panel2Title: "מרחי ג'ל בנדיבות.",
-        panel2Desc: "מרחי הן על המכשיר והן על צידי הבטן (במותניים) לקבלת תמונה חלקה ורציפה."
+        panel2Desc: "מרחי הן על המכשיר והן על צידי הבטן לקבלת תמונה חלקה ורציפה."
       },
       {
         id: 7,
@@ -437,7 +435,7 @@ const TRANSLATIONS = {
       {
         id: 8,
         title: "שלב 3: תנועה וקצב הסריקה",
-        point1: "🔵 התחלה: הניחי את המכשיר בקצה החיצוני ביותר של הבטן (במותן).",
+        point1: "🔵 התחלה: הניחי את המכשיר בקצה החיצוני ביותר של הבטן.",
         point2: "🔵 תנועה: החליקי את המכשיר באיטיות פנימה לעבר קו האמצע.",
         point3: "🔵 קצב: תנועה יחידה זו צריכה להימשך בין 5 ל-10 שניות.",
         simTitle: "⏱️ סימולטור קצב סריקה",
@@ -452,10 +450,10 @@ const TRANSLATIONS = {
         id: 9,
         title: "שלב 4: מנח המכשיר (קריטי)",
         alertText: "החזיקי את המכשיר זקוף לחלוטין, בניצב לקרקע (90°). אל תטי אותו בהתאם לקימור הבטן! מסך הטלפון צריך לפנות הצידה במדויק.",
-        gyroTitle: "🎛️ מד זווית וג'ירוסקופ אינטראקטיבי",
+        gyroTitle: "🎛️ מד זווית וג'ירוסקופ",
         tiltedText: "מוטה",
-        goodStatus: "✓ מעולה! המכשיר ניצב ב-90° (חלון אקוסטי אופטימלי למדידת מי שפיר)",
-        warnStatus: "⚠️ שמרי על המכשיר מאוזן וישר (זווית מוטה גורמת להצללה אקוסטית ולאבחון שגוי)"
+        goodStatus: "✓ מעולה! המכשיר ניצב ב-90° (מדויק)",
+        warnStatus: "⚠️ שמרי על המכשיר מאוזן וישר"
       },
       {
         id: 10,
@@ -500,7 +498,8 @@ const TRANSLATIONS = {
         logoText: "פולסנמור אולטרסאונד ביתי",
         closingText: "הנתונים שלך יישלחו בצורה מאובטחת וממתינים לפענוח על ידי הרופא/ה המטפל/ת. את יכולה להיות רגועה בידיעה שהסריקה בוצעה במדויק. תודה על שיתוף הפעולה במחקר.",
         restartBtn: "🔄 התחילי הדרכה מחדש",
-        guideBtn: "📖 צפייה בפרוטוקול הקליני המלא"
+        closeBtn: "✕ סגירת הדרכה",
+        closedMessage: "ההדרכה הסתיימה. ניתן לסגור חלון זה."
       }
     ]
   }
@@ -560,7 +559,6 @@ function AppHeader() {
     toggleLanguage,
     soundEnabled, 
     toggleSound, 
-    setIsProtocolModalOpen, 
     isEditorOpen, 
     setIsEditorOpen 
   } = useTraining();
@@ -583,7 +581,7 @@ function AppHeader() {
       </div>
 
       <div className="pnm-header-nav">
-        {/* Language Switcher Button */}
+        {/* Language Switcher */}
         <button 
           className="pnm-lang-toggle-btn"
           onClick={toggleLanguage}
@@ -599,8 +597,8 @@ function AppHeader() {
             className="pnm-slide-selector-pill"
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           >
-            <span>{t.slideLabel} {currentStep} {t.ofLabel} {totalSteps}: {currentSlide.title}</span>
-            <span style={{ fontSize: '0.75rem' }}>▼</span>
+            <span>{currentStep}/{totalSteps}</span>
+            <span style={{ fontSize: '0.65rem' }}>▼</span>
           </div>
 
           {isDropdownOpen && (
@@ -630,15 +628,7 @@ function AppHeader() {
           onClick={toggleSound}
           title="Toggle Audio Feedback"
         >
-          <span>{soundEnabled ? t.soundOn : t.soundOff}</span>
-        </button>
-
-        {/* Clinical Protocol Modal Button */}
-        <button 
-          className="pnm-header-btn"
-          onClick={() => setIsProtocolModalOpen(true)}
-        >
-          <span>{t.protocolBtn}</span>
+          <span>{soundEnabled ? '🔊' : '🔇'}</span>
         </button>
 
         {/* Live Content Editor Drawer Toggle */}
@@ -654,7 +644,7 @@ function AppHeader() {
 }
 
 // ==========================================================================
-// 4. Slide Components (1:1 with Pulsenmore_Scan_Training.pptx)
+// 4. Slide Components (Formatted to Fit Phone Dimensions)
 // ==========================================================================
 
 // --- Slide 1: Home Screen Intro with Callout pointing to START ---
@@ -662,99 +652,78 @@ function Slide1_Home({ slide }) {
   const { nextSlide, t } = useTraining();
 
   return (
-    <div className="pnm-stage-slide-content">
+    <div className="pnm-slide-card-inner">
       {/* Red Callout Speech Bubble */}
-      <div className="pnm-callout-bubble tail-bottom" style={{ marginBottom: '14px' }}>
+      <div className="pnm-callout-bubble tail-bottom">
         {slide.calloutText}
       </div>
 
-      {/* Realistic iPhone Bezel Frame */}
-      <div className="pnm-iphone-mockup">
-        {/* Notch & Status Bar */}
-        <div className="pnm-iphone-notch-bar">
-          <span className="pnm-phone-clock">12:17</span>
-          <div className="pnm-phone-island"></div>
-          <div className="pnm-phone-status-icons">
-            <span>5G</span>
-            <span>📶</span>
-            <span>86% 🔋</span>
-          </div>
+      {/* Phone Screen Inner UI */}
+      <div className="pnm-home-ui-header">
+        <span className="pnm-home-hamburger">☰</span>
+        <span style={{ fontSize: '0.82rem', fontWeight: 800, color: '#0284c7' }}>Pulsenmore ES</span>
+      </div>
+
+      <div className="pnm-mom-card-banner">
+        <div className="pnm-mom-card-text" style={{ whiteSpace: 'pre-line' }}>
+          <h4>{slide.homeMomTitle}</h4>
+          <p>{slide.homeMomWeek} ℹ️</p>
         </div>
+        <div style={{ fontSize: '2.4rem' }}>🤰</div>
+      </div>
 
-        {/* Phone Screen Inner UI */}
-        <div className="pnm-phone-screen-content">
-          <div className="pnm-home-ui-header">
-            <span className="pnm-home-hamburger">☰</span>
-            <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#0284c7' }}>Pulsenmore ES</span>
-          </div>
-
-          <div className="pnm-mom-card-banner">
-            <div className="pnm-mom-card-text" style={{ whiteSpace: 'pre-line' }}>
-              <h4>{slide.homeMomTitle}</h4>
-              <p>{slide.homeMomWeek} ℹ️</p>
-            </div>
-            <div style={{ fontSize: '2.5rem' }}>🤰</div>
-          </div>
-
-          <div className="pnm-guide-carousel-title">{slide.homeGuideTitle}</div>
-          <div className="pnm-guide-cards-row">
-            <div className="pnm-guide-mini-card">
-              <span className="pnm-guide-mini-icon">📋</span>
-              <span>{slide.homeGuideCard1}</span>
-            </div>
-            <div className="pnm-guide-mini-card">
-              <span className="pnm-guide-mini-icon">💡</span>
-              <span>{slide.homeGuideCard2}</span>
-            </div>
-            <div className="pnm-guide-mini-card">
-              <span className="pnm-guide-mini-icon">📱</span>
-              <span>{slide.homeGuideCard3}</span>
-            </div>
-          </div>
-
-          <div style={{ textAlign: 'center', fontSize: '0.75rem', color: '#64748b', marginBottom: '4px' }}>
-            {slide.homeTimeRemaining}
-          </div>
-
-          {/* Big Round START Button */}
-          <button 
-            className="pnm-big-start-circle-btn"
-            onClick={() => {
-              soundFX.playClick();
-              nextSlide();
-            }}
-          >
-            START
-          </button>
-
-          {/* Device Status Bar at bottom */}
-          <div className="pnm-device-status-row">
-            <div className="pnm-device-status-item">
-              <div className="pnm-device-status-icon-wrap">
-                <span style={{ fontSize: '1.4rem' }}>📱</span>
-                <span className="pnm-status-check-badge">✓</span>
-              </div>
-              <span style={{ whiteSpace: 'pre-line' }}>{slide.homeIphoneStatus}</span>
-            </div>
-            <div className="pnm-device-status-item">
-              <div className="pnm-device-status-icon-wrap">
-                <span style={{ fontSize: '1.4rem' }}>🔍</span>
-                <span className="pnm-status-check-badge">✓</span>
-              </div>
-              <span style={{ whiteSpace: 'pre-line' }}>{slide.homeDeviceStatus}</span>
-            </div>
-          </div>
+      <div className="pnm-guide-carousel-title">{slide.homeGuideTitle}</div>
+      <div className="pnm-guide-cards-row">
+        <div className="pnm-guide-mini-card">
+          <span className="pnm-guide-mini-icon">📋</span>
+          <span>{slide.homeGuideCard1}</span>
         </div>
+        <div className="pnm-guide-mini-card">
+          <span className="pnm-guide-mini-icon">💡</span>
+          <span>{slide.homeGuideCard2}</span>
+        </div>
+        <div className="pnm-guide-mini-card">
+          <span className="pnm-guide-mini-icon">📱</span>
+          <span>{slide.homeGuideCard3}</span>
+        </div>
+      </div>
 
-        {/* Home Indicator Bar */}
-        <div className="pnm-phone-home-indicator">
-          <div className="pnm-home-bar-pill"></div>
+      <div style={{ textAlign: 'center', fontSize: '0.75rem', color: '#64748b', marginBottom: '4px' }}>
+        {slide.homeTimeRemaining}
+      </div>
+
+      {/* Big Round START Button */}
+      <button 
+        className="pnm-big-start-circle-btn"
+        onClick={() => {
+          soundFX.playClick();
+          nextSlide();
+        }}
+      >
+        START
+      </button>
+
+      {/* Device Status Bar at bottom */}
+      <div className="pnm-device-status-row">
+        <div className="pnm-device-status-item">
+          <div className="pnm-device-status-icon-wrap">
+            <span style={{ fontSize: '1.3rem' }}>📱</span>
+            <span className="pnm-status-check-badge">✓</span>
+          </div>
+          <span style={{ whiteSpace: 'pre-line' }}>{slide.homeIphoneStatus}</span>
+        </div>
+        <div className="pnm-device-status-item">
+          <div className="pnm-device-status-icon-wrap">
+            <span style={{ fontSize: '1.3rem' }}>🔍</span>
+            <span className="pnm-status-check-badge">✓</span>
+          </div>
+          <span style={{ whiteSpace: 'pre-line' }}>{slide.homeDeviceStatus}</span>
         </div>
       </div>
 
       {/* Bottom Nav Action Button */}
-      <div className="pnm-bottom-nav-row">
-        <button className="pnm-btn-pill-red" onClick={nextSlide}>
+      <div className="pnm-phone-bottom-nav">
+        <button className="pnm-btn-pill-red w-full" onClick={nextSlide}>
           {t.nextBtn}
         </button>
       </div>
@@ -764,43 +733,33 @@ function Slide1_Home({ slide }) {
 
 // --- Slide 2: Part 1: Fetal Well-Being ---
 function Slide2_Part1Intro({ slide }) {
-  const { nextSlide, soundEnabled, t } = useTraining();
-  const [isPlayingSound, setIsPlayingSound] = useState(false);
-
-  useEffect(() => {
-    if (soundEnabled) {
-      soundFX.startHeartbeat();
-      setIsPlayingSound(true);
-    }
-    return () => {
-      soundFX.stopHeartbeat();
-    };
-  }, [soundEnabled]);
+  const { nextSlide, prevSlide, t } = useTraining();
 
   return (
-    <div className="pnm-stage-slide-content">
-      <div className="pnm-slide-card wide-card">
-        {/* Mom Reclined Illustration with Sonogram Cone */}
-        <img 
-          src={slide.image || "assets/pptx_slides/slide_2_img_1.png"}
-          alt="Mom Reclining Fetal Well-Being"
-          className="pnm-mom-intro-hero-img"
-          onError={(e) => { e.target.src = "assets/mother_welcome.jpg"; }}
-        />
+    <div className="pnm-slide-card-inner">
+      <div className="pnm-card-stepper-header">
+        <div className="pnm-stepper-top-row">
+          <button className="pnm-stepper-cancel-btn" onClick={prevSlide}>
+            {t.cancelBtn}
+          </button>
+        </div>
+      </div>
 
-        <h2 className="pnm-card-title">{slide.title}</h2>
-        <p className="pnm-card-body-text" style={{ maxWidth: '620px' }}>
-          {slide.description}
-        </p>
+      {/* Mom Reclined Illustration */}
+      <img 
+        src={slide.image || "assets/pptx_slides/slide_2_img_1.png"}
+        alt="Mom Reclining Fetal Well-Being"
+        className="pnm-mom-intro-hero-img"
+        onError={(e) => { e.target.src = "assets/mother_welcome.jpg"; }}
+      />
 
-        {isPlayingSound && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#0284c7', fontSize: '0.88rem', fontWeight: 600, marginBottom: '14px' }}>
-            <span style={{ animation: 'pulseLive 1s infinite' }}>💓</span>
-            <span>{slide.heartbeatText}</span>
-          </div>
-        )}
+      <h2 className="pnm-card-title">{slide.title}</h2>
+      <p className="pnm-card-body-text">
+        {slide.description}
+      </p>
 
-        <button className="pnm-btn-pill-red" onClick={nextSlide}>
+      <div className="pnm-phone-bottom-nav">
+        <button className="pnm-btn-pill-red w-full" onClick={nextSlide}>
           {t.nextBtn}
         </button>
       </div>
@@ -813,42 +772,42 @@ function Slide3_Part1Prep({ slide }) {
   const { nextSlide, prevSlide, t } = useTraining();
 
   return (
-    <div className="pnm-stage-slide-content">
-      <div className="pnm-slide-card">
-        <div className="pnm-card-stepper-header">
-          <div className="pnm-stepper-top-row">
-            <button className="pnm-stepper-cancel-btn" onClick={prevSlide}>
-              {t.cancelBtn}
-            </button>
+    <div className="pnm-slide-card-inner">
+      <div className="pnm-card-stepper-header">
+        <div className="pnm-stepper-top-row">
+          <button className="pnm-stepper-cancel-btn" onClick={prevSlide}>
+            {t.cancelBtn}
+          </button>
+        </div>
+      </div>
+
+      <h2 className="pnm-card-title">{slide.title}</h2>
+      <p className="pnm-card-subtitle">{slide.subtitle}</p>
+
+      <div className="pnm-checklist-group">
+        <div className="pnm-check-item">
+          <div className="pnm-check-icon-circle">
+            <span>🛋️</span>
           </div>
+          <div className="pnm-check-text">{slide.item1}</div>
         </div>
 
-        <h2 className="pnm-card-title">{slide.title}</h2>
-        <p className="pnm-card-subtitle">{slide.subtitle}</p>
-
-        <div className="pnm-checklist-group">
-          <div className="pnm-check-item">
-            <div className="pnm-check-icon-circle">
-              <span style={{ fontSize: '1.5rem' }}>🛋️</span>
-            </div>
-            <div className="pnm-check-text">{slide.item1}</div>
+        <div className="pnm-check-item">
+          <div className="pnm-check-icon-circle">
+            <span>💧</span>
           </div>
-
-          <div className="pnm-check-item">
-            <div className="pnm-check-icon-circle">
-              <span style={{ fontSize: '1.5rem' }}>💧</span>
-            </div>
-            <div className="pnm-check-text">{slide.item2}</div>
-          </div>
-
-          <div className="pnm-check-item">
-            <div className="pnm-check-icon-circle">
-              <span style={{ fontSize: '1.5rem' }}>📱</span>
-            </div>
-            <div className="pnm-check-text">{slide.item3}</div>
-          </div>
+          <div className="pnm-check-text">{slide.item2}</div>
         </div>
 
+        <div className="pnm-check-item">
+          <div className="pnm-check-icon-circle">
+            <span>📱</span>
+          </div>
+          <div className="pnm-check-text">{slide.item3}</div>
+        </div>
+      </div>
+
+      <div className="pnm-phone-bottom-nav">
         <button 
           className="pnm-btn-pill-red w-full"
           onClick={() => {
@@ -859,104 +818,160 @@ function Slide3_Part1Prep({ slide }) {
           {slide.actionBtnText}
         </button>
       </div>
-
-      <div className="pnm-bottom-nav-row">
-        <button className="pnm-prev-btn" onClick={prevSlide}>{t.prevBtn}</button>
-        <button className="pnm-btn-pill-red" onClick={nextSlide}>{t.nextBtn}</button>
-      </div>
     </div>
   );
 }
 
-// --- Slide 4: Part 1: Practice & Live Scan Flow ---
+// --- Slide 4: Part 1: Practice Scan (2-Display Scanning Screen) ---
 function Slide4_Part1Scan({ slide }) {
-  const { nextSlide, prevSlide, soundEnabled, t } = useTraining();
-  const [isScanning, setIsScanning] = useState(false);
+  const { nextSlide, prevSlide, t } = useTraining();
+  const [activeDisplay, setActiveDisplay] = useState(1); // 1 = Display 1, 2 = Display 2
 
-  useEffect(() => {
-    if (isScanning && soundEnabled) {
-      soundFX.startHeartbeat();
-    } else {
-      soundFX.stopHeartbeat();
-    }
-    return () => soundFX.stopHeartbeat();
-  }, [isScanning, soundEnabled]);
+  const handleStartScan = () => {
+    soundFX.playClick();
+    setActiveDisplay(2);
+  };
+
+  const handleBackToTutorial = () => {
+    soundFX.playClick();
+    setActiveDisplay(1);
+  };
 
   return (
-    <div className="pnm-stage-slide-content">
-      <div className="pnm-slide4-grid">
-        {/* Left Screen */}
-        <div className="pnm-scan-card-col">
-          <div className="pnm-scan-top-view">
-            <img src="assets/afv _p4_i1.jpeg" alt="Top-down scan orientation" onError={e => e.target.src = "assets/scan_part1_feed.jpg"} />
-          </div>
-          <div className="pnm-scan-bottom-ultrasound">
-            <div className="pnm-ultrasound-live-overlay">
-              <span className="pnm-live-indicator">
-                <span className="pnm-live-dot"></span>
-                <span>{slide.liveText}</span>
-              </span>
-              <span style={{ color: '#ffffff', fontSize: '0.72rem' }}>{slide.pauseText}</span>
-            </div>
-            <img src="assets/scan_part1_feed.jpg" alt="Ultrasound B-Mode Sonogram" />
-          </div>
-        </div>
-
-        {/* Center Screen */}
-        <div className="pnm-scan-card-col" style={{ padding: '24px 20px', textAlign: 'center', justifyContent: 'center' }}>
-          <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#1e293b', marginBottom: '4px' }}>{slide.partLabel}</div>
-          <div className="pnm-stepper-bars" style={{ marginBottom: '16px' }}>
-            <div className="pnm-stepper-bar-segment active"></div>
-            <div className="pnm-stepper-bar-segment active"></div>
-            <div className="pnm-stepper-bar-segment active"></div>
-            <div className="pnm-stepper-bar-segment"></div>
-            <div className="pnm-stepper-bar-segment"></div>
-          </div>
-
-          <h3 style={{ fontSize: '1.45rem', fontWeight: 800, color: '#1e293b', marginBottom: '4px' }}>
-            {slide.feedbackTitle}
-          </h3>
-          <p style={{ fontSize: '0.92rem', color: '#0284c7', fontWeight: 600, marginBottom: '20px' }}>
-            {slide.feedbackSubtitle}
-          </p>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', textAlign: 'left', marginBottom: '24px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <span style={{ fontSize: '1.4rem' }}>📱</span>
-              <span style={{ fontSize: '0.88rem', color: '#334155' }}>{slide.tip1}</span>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <span style={{ fontSize: '1.4rem' }}>⏱️</span>
-              <span style={{ fontSize: '0.88rem', color: '#334155' }}>{slide.tip2}</span>
-            </div>
-          </div>
-
-          <button 
-            className="pnm-btn-pill-red sm"
-            onClick={() => {
-              setIsScanning(!isScanning);
-              soundFX.playClick();
-            }}
-          >
-            {isScanning ? slide.stopBtnText : slide.scanBtnText}
+    <div className="pnm-slide-card-inner pnm-slide4-container">
+      {/* Top Stepper Header */}
+      <div className="pnm-card-stepper-header">
+        <div className="pnm-stepper-top-row">
+          <button className="pnm-stepper-cancel-btn" onClick={prevSlide}>
+            {t.cancelBtn}
           </button>
+          <span className="pnm-stepper-label">{slide.partLabel}</span>
         </div>
-
-        {/* Right Screen */}
-        <div className="pnm-scan-card-col">
-          <div className="pnm-scan-top-view">
-            <img src="assets/afv _p4_i3.jpeg" alt="Scan in progress HOLD badge" onError={e => e.target.src = "assets/scan_part1_feed.jpg"} />
-            <div className="pnm-hold-badge">{slide.holdText}</div>
-          </div>
-          <div className="pnm-scan-bottom-ultrasound">
-            <img src="assets/scan_part1_feed.jpg" alt="Live ultrasound" />
-          </div>
+        <div className="pnm-stepper-bars">
+          <div className="pnm-stepper-bar-segment active"></div>
+          <div className="pnm-stepper-bar-segment active"></div>
+          <div className="pnm-stepper-bar-segment active"></div>
+          <div className="pnm-stepper-bar-segment"></div>
+          <div className="pnm-stepper-bar-segment"></div>
         </div>
       </div>
 
-      <div className="pnm-bottom-nav-row">
-        <button className="pnm-prev-btn" onClick={prevSlide}>{t.prevBtn}</button>
-        <button className="pnm-btn-pill-red" onClick={nextSlide}>{t.nextBtn}</button>
+      {/* DISPLAY 1: Guided Tutorial Screen */}
+      {activeDisplay === 1 && (
+        <div className="pnm-slide4-display pnm-display-1-view animate-fade-in">
+          {/* Top Callout Speech Bubble (pointing down to tutorial) */}
+          <div className="pnm-callout-bubble tail-bottom pnm-slide4-callout-top">
+            {slide.d1_calloutTop}
+          </div>
+
+          {/* Phone Screen Mockup Inner */}
+          <div className="pnm-scan-phone-frame">
+            {/* Top Area: 3D Tutorial Belly Diagram / Animation */}
+            <div className="pnm-tutorial-screen-box">
+              <img
+                src="assets/slide4_screens/display1_tutorial.png"
+                alt="Tutorial Guided Scan"
+                className="pnm-tutorial-screen-img"
+                onError={(e) => { e.target.src = "assets/afv _p4_i1.jpeg"; }}
+              />
+              <span className="pnm-screen-expand-btn" title="Expand View">⛶</span>
+            </div>
+
+            {/* Bottom Dark Controller Area */}
+            <div className="pnm-scan-bottom-control-area">
+              <div className="pnm-scan-info-row">
+                <span className="pnm-scan-step-pill">{slide.d1_scanStep}</span>
+                <span className="pnm-scan-duration-pill">
+                  {slide.d1_duration} <span className="pnm-mini-expand">⛶</span>
+                </span>
+              </div>
+
+              <p className="pnm-tap-to-continue-label">{slide.d1_tapPrompt}</p>
+
+              {/* Big Red Circular Start / Record Button */}
+              <div className="pnm-start-scan-btn-wrapper">
+                <button
+                  className="pnm-red-record-circle-btn"
+                  onClick={handleStartScan}
+                  title="Start Scan"
+                >
+                  <span className="pnm-record-inner-circle"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Callout Speech Bubble (pointing up to the red button) */}
+          <div className="pnm-callout-bubble tail-top pnm-slide4-callout-bottom">
+            {slide.d1_calloutBottom}
+          </div>
+        </div>
+      )}
+
+      {/* DISPLAY 2: Second Scanning Screen */}
+      {activeDisplay === 2 && (
+        <div className="pnm-slide4-display pnm-display-2-view animate-fade-in">
+          {/* Phone Screen Mockup Inner */}
+          <div className="pnm-scan-phone-frame pnm-scan-active-frame">
+            {/* Top Area: Probe Movement & Contact Guidance */}
+            <div className="pnm-guide-screen-box">
+              <img
+                src="assets/slide4_screens/display2_guide.png"
+                alt="Probe Movement Guidance"
+                className="pnm-guide-screen-img"
+                onError={(e) => { e.target.src = "assets/afv _p4_i2.jpeg"; }}
+              />
+              <span className="pnm-screen-expand-btn" title="Expand View">⛶</span>
+            </div>
+
+            {/* Middle Callout Speech Bubble (pointing UP to transducer contact) */}
+            <div className="pnm-callout-bubble tail-top pnm-slide4-callout-middle">
+              {slide.d2_calloutMiddle}
+            </div>
+
+            {/* Bottom Area: Ultrasound Sonogram Screen */}
+            <div className="pnm-live-sonogram-screen-box">
+              <div className="pnm-sonogram-img-wrapper">
+                <img
+                  src="assets/slide4_screens/display2_feed.png"
+                  alt="Ultrasound B-Mode Sonogram"
+                  className="pnm-live-sonogram-img"
+                  onError={(e) => { e.target.src = "assets/scan_part1_feed.jpg"; }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Bottom Navigation Buttons */}
+      <div className="pnm-phone-bottom-nav">
+        <button
+          className="pnm-prev-btn"
+          onClick={() => {
+            if (activeDisplay === 2) {
+              handleBackToTutorial();
+            } else {
+              prevSlide();
+            }
+          }}
+        >
+          {t.prevBtn}
+        </button>
+        <button
+          className="pnm-btn-pill-red"
+          style={{ flex: 1 }}
+          onClick={() => {
+            soundFX.playClick();
+            if (activeDisplay === 1) {
+              setActiveDisplay(2);
+            } else {
+              nextSlide();
+            }
+          }}
+        >
+          {t.nextBtn}
+        </button>
       </div>
     </div>
   );
@@ -967,54 +982,54 @@ function Slide5_Part2Intro({ slide }) {
   const { nextSlide, prevSlide, t } = useTraining();
 
   return (
-    <div className="pnm-stage-slide-content">
-      <div className="pnm-slide-card">
-        <div className="pnm-card-stepper-header">
-          <div className="pnm-stepper-top-row">
-            <button className="pnm-stepper-cancel-btn" onClick={prevSlide}>
-              {t.cancelBtn}
-            </button>
+    <div className="pnm-slide-card-inner">
+      <div className="pnm-card-stepper-header">
+        <div className="pnm-stepper-top-row">
+          <button className="pnm-stepper-cancel-btn" onClick={prevSlide}>
+            {t.cancelBtn}
+          </button>
+          <span className="pnm-stepper-label">{slide.partLabel}</span>
+        </div>
+        <div className="pnm-stepper-bars">
+          <div className="pnm-stepper-bar-segment active"></div>
+          <div className="pnm-stepper-bar-segment active"></div>
+          <div className="pnm-stepper-bar-segment active"></div>
+          <div className="pnm-stepper-bar-segment active"></div>
+          <div className="pnm-stepper-bar-segment"></div>
+          <div className="pnm-stepper-bar-segment"></div>
+          <div className="pnm-stepper-bar-segment"></div>
+          <div className="pnm-stepper-bar-segment"></div>
+        </div>
+      </div>
+
+      <h2 className="pnm-card-title">{slide.title}</h2>
+      <p className="pnm-card-subtitle">{slide.subtitle}</p>
+
+      <div className="pnm-checklist-group">
+        <div className="pnm-check-item">
+          <div className="pnm-check-icon-circle">
+            <span>🛋️</span>
           </div>
-          <div className="pnm-stepper-label">{slide.partLabel}</div>
-          <div className="pnm-stepper-bars">
-            <div className="pnm-stepper-bar-segment active"></div>
-            <div className="pnm-stepper-bar-segment active"></div>
-            <div className="pnm-stepper-bar-segment active"></div>
-            <div className="pnm-stepper-bar-segment active"></div>
-            <div className="pnm-stepper-bar-segment"></div>
-            <div className="pnm-stepper-bar-segment"></div>
-            <div className="pnm-stepper-bar-segment"></div>
-            <div className="pnm-stepper-bar-segment"></div>
-          </div>
+          <div className="pnm-check-text">{slide.item1}</div>
         </div>
 
-        <h2 className="pnm-card-title">{slide.title}</h2>
-        <p className="pnm-card-subtitle">{slide.subtitle}</p>
-
-        <div className="pnm-checklist-group">
-          <div className="pnm-check-item">
-            <div className="pnm-check-icon-circle">
-              <span style={{ fontSize: '1.5rem' }}>🛋️</span>
-            </div>
-            <div className="pnm-check-text">{slide.item1}</div>
+        <div className="pnm-check-item">
+          <div className="pnm-check-icon-circle">
+            <span>📱</span>
+            <span className="pnm-check-icon-badge">✓</span>
           </div>
-
-          <div className="pnm-check-item">
-            <div className="pnm-check-icon-circle">
-              <span style={{ fontSize: '1.5rem' }}>📱</span>
-              <span className="pnm-check-icon-badge">✓</span>
-            </div>
-            <div className="pnm-check-text">{slide.item2}</div>
-          </div>
-
-          <div className="pnm-check-item">
-            <div className="pnm-check-icon-circle">
-              <span style={{ fontSize: '1.5rem' }}>💧</span>
-            </div>
-            <div className="pnm-check-text">{slide.item3}</div>
-          </div>
+          <div className="pnm-check-text">{slide.item2}</div>
         </div>
 
+        <div className="pnm-check-item">
+          <div className="pnm-check-icon-circle">
+            <span>💧</span>
+          </div>
+          <div className="pnm-check-text">{slide.item3}</div>
+        </div>
+      </div>
+
+      <div className="pnm-phone-bottom-nav">
         <button 
           className="pnm-btn-pill-red w-full"
           onClick={() => {
@@ -1025,11 +1040,6 @@ function Slide5_Part2Intro({ slide }) {
           {slide.actionBtnText}
         </button>
       </div>
-
-      <div className="pnm-bottom-nav-row">
-        <button className="pnm-prev-btn" onClick={prevSlide}>{t.prevBtn}</button>
-        <button className="pnm-btn-pill-red" onClick={nextSlide}>{t.nextBtn}</button>
-      </div>
     </div>
   );
 }
@@ -1039,50 +1049,44 @@ function Slide6_Step1PrepBody({ slide }) {
   const { nextSlide, prevSlide, t } = useTraining();
 
   return (
-    <div className="pnm-stage-slide-content">
-      <div className="pnm-slide-card wide-card">
-        <h2 className="pnm-card-title">{slide.title}</h2>
+    <div className="pnm-slide-card-inner">
+      <h2 className="pnm-card-title">{slide.title}</h2>
 
-        <div className="pnm-dual-panel-container">
-          {/* Panel 1 */}
-          <div className="pnm-panel-row">
-            <div className="pnm-panel-img-box">
-              <img 
-                src="assets/mother_reclined.jpg" 
-                alt="Recline back horizontal belly"
-                onError={e => e.target.src = "assets/amni_p2_i1.jpeg"}
-              />
-            </div>
-            <div className="pnm-panel-text-box">
-              <h3 className="pnm-panel-title">{slide.panel1Title}</h3>
-              <p className="pnm-panel-desc">{slide.panel1Desc}</p>
-            </div>
+      <div className="pnm-dual-panel-container">
+        {/* Panel 1 */}
+        <div className="pnm-panel-row">
+          <div className="pnm-panel-img-box">
+            <img 
+              src="assets/mother_reclined.jpg" 
+              alt="Recline back horizontal belly"
+              onError={e => e.target.src = "assets/amni_p2_i1.jpeg"}
+            />
           </div>
-
-          {/* Panel 2 */}
-          <div className="pnm-panel-row">
-            <div className="pnm-panel-img-box">
-              <img 
-                src="assets/prep_posture_gel.jpg" 
-                alt="Apply generous ultrasound gel"
-                onError={e => e.target.src = "assets/amni_p3_i1.jpeg"}
-              />
-            </div>
-            <div className="pnm-panel-text-box">
-              <h3 className="pnm-panel-title">{slide.panel2Title}</h3>
-              <p className="pnm-panel-desc">{slide.panel2Desc}</p>
-            </div>
+          <div>
+            <h3 className="pnm-panel-title">{slide.panel1Title}</h3>
+            <p className="pnm-panel-desc">{slide.panel1Desc}</p>
           </div>
         </div>
 
-        <button className="pnm-btn-pill-red" onClick={nextSlide}>
-          {t.nextBtn}
-        </button>
+        {/* Panel 2 */}
+        <div className="pnm-panel-row">
+          <div className="pnm-panel-img-box">
+            <img 
+              src="assets/prep_posture_gel.jpg" 
+              alt="Apply generous ultrasound gel"
+              onError={e => e.target.src = "assets/amni_p3_i1.jpeg"}
+            />
+          </div>
+          <div>
+            <h3 className="pnm-panel-title">{slide.panel2Title}</h3>
+            <p className="pnm-panel-desc">{slide.panel2Desc}</p>
+          </div>
+        </div>
       </div>
 
-      <div className="pnm-bottom-nav-row">
+      <div className="pnm-phone-bottom-nav">
         <button className="pnm-prev-btn" onClick={prevSlide}>{t.prevBtn}</button>
-        <button className="pnm-btn-pill-red" onClick={nextSlide}>{t.nextBtn}</button>
+        <button className="pnm-btn-pill-red" style={{ flex: 1 }} onClick={nextSlide}>{t.nextBtn}</button>
       </div>
     </div>
   );
@@ -1094,46 +1098,40 @@ function Slide7_Step2MapArea({ slide }) {
   const [selectedQuadrant, setSelectedQuadrant] = useState(null);
 
   return (
-    <div className="pnm-stage-slide-content">
-      <div className="pnm-slide-card">
-        <h2 className="pnm-card-title">{slide.title}</h2>
-        <p className="pnm-card-body-text" style={{ marginBottom: '12px' }}>
-          {slide.subtitle}
-        </p>
+    <div className="pnm-slide-card-inner">
+      <h2 className="pnm-card-title">{slide.title}</h2>
+      <p className="pnm-card-body-text" style={{ marginBottom: '8px' }}>
+        {slide.subtitle}
+      </p>
 
-        {/* Quadrant Map Image */}
-        <div className="pnm-quadrant-map-box">
-          <img 
-            src="assets/pptx_slides/slide_7_img_1.png" 
-            alt="4-Quadrant Belly Demarcation"
-            onError={e => e.target.src = "assets/quadrant_map.jpg"}
-          />
-        </div>
-
-        {/* Interactive Quadrant Selectors */}
-        <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '20px' }}>
-          {slide.quadrants.map((q, idx) => (
-            <button
-              key={idx}
-              className={`pnm-header-btn ${selectedQuadrant === idx + 1 ? 'active' : ''}`}
-              onClick={() => {
-                setSelectedQuadrant(idx + 1);
-                soundFX.playClick();
-              }}
-            >
-              {q}
-            </button>
-          ))}
-        </div>
-
-        <button className="pnm-btn-pill-red" onClick={nextSlide}>
-          {t.nextBtn}
-        </button>
+      {/* Quadrant Map Image */}
+      <div className="pnm-quadrant-map-box">
+        <img 
+          src="assets/pptx_slides/slide_7_img_1.png" 
+          alt="4-Quadrant Belly Demarcation"
+          onError={e => e.target.src = "assets/quadrant_map.jpg"}
+        />
       </div>
 
-      <div className="pnm-bottom-nav-row">
+      {/* Interactive Quadrant Selectors */}
+      <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', justifyContent: 'center', margin: '8px 0 16px 0' }}>
+        {slide.quadrants.map((q, idx) => (
+          <button
+            key={idx}
+            className={`pnm-header-btn ${selectedQuadrant === idx + 1 ? 'active' : ''}`}
+            onClick={() => {
+              setSelectedQuadrant(idx + 1);
+              soundFX.playClick();
+            }}
+          >
+            {q}
+          </button>
+        ))}
+      </div>
+
+      <div className="pnm-phone-bottom-nav">
         <button className="pnm-prev-btn" onClick={prevSlide}>{t.prevBtn}</button>
-        <button className="pnm-btn-pill-red" onClick={nextSlide}>{t.nextBtn}</button>
+        <button className="pnm-btn-pill-red" style={{ flex: 1 }} onClick={nextSlide}>{t.nextBtn}</button>
       </div>
     </div>
   );
@@ -1141,88 +1139,31 @@ function Slide7_Step2MapArea({ slide }) {
 
 // --- Slide 8: Step 3: The Movement & Pace (5-10 Seconds) ---
 function Slide8_Step3MovementPace({ slide }) {
-  const { nextSlide, prevSlide, soundEnabled, t } = useTraining();
-  const [isSweeping, setIsSweeping] = useState(false);
-  const [sweepTime, setSweepTime] = useState(0);
-  const [showGrip, setShowGrip] = useState(false);
-
-  const startSweepPractice = () => {
-    if (isSweeping) return;
-    setIsSweeping(true);
-    setSweepTime(0);
-    soundFX.playWhoosh();
-
-    const start = Date.now();
-    const timer = setInterval(() => {
-      const elapsed = (Date.now() - start) / 1000;
-      if (elapsed >= 7) {
-        clearInterval(timer);
-        setIsSweeping(false);
-        setSweepTime(7);
-        if (soundEnabled) soundFX.playSuccess();
-      } else {
-        setSweepTime(elapsed);
-      }
-    }, 50);
-  };
+  const { nextSlide, prevSlide, t } = useTraining();
 
   return (
-    <div className="pnm-stage-slide-content">
-      <div className="pnm-slide-card">
-        <h2 className="pnm-card-title">{slide.title}</h2>
+    <div className="pnm-slide-card-inner">
+      <h2 className="pnm-card-title">{slide.title}</h2>
 
-        <div className="pnm-sweep-img-box">
-          <img 
-            src={showGrip ? "assets/pptx_slides/slide_8_img_2.png" : "assets/pptx_slides/slide_8_img_1.png"} 
-            alt="Step 3 Movement & Pace 5-10 Seconds"
-            onError={e => e.target.src = "assets/sweep_movement.jpg"}
-          />
-        </div>
-
-        <div style={{ textAlign: 'start', width: '100%', marginBottom: '14px' }}>
-          <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '0.98rem', color: '#1e293b' }}>
-            <li>{slide.point1}</li>
-            <li>{slide.point2}</li>
-            <li>{slide.point3}</li>
-          </ul>
-        </div>
-
-        {/* Interactive Pace Trainer */}
-        <div className="pnm-sweep-interactive-card">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.88rem', fontWeight: 700 }}>
-            <span>{slide.simTitle}</span>
-            <span style={{ color: sweepTime >= 5 && sweepTime <= 10 ? '#10b981' : '#0284c7' }}>
-              {sweepTime > 0 ? `${sweepTime.toFixed(1)}s (${slide.targetPace})` : slide.readyText}
-            </span>
-          </div>
-
-          <div className="pnm-sweep-track">
-            <div 
-              className="pnm-sweep-thumb" 
-              style={{ width: `${Math.min(100, (sweepTime / 7) * 100)}%` }}
-            ></div>
-          </div>
-
-          <div style={{ display: 'flex', gap: '8px', marginTop: '10px' }}>
-            <button className="pnm-header-btn" onClick={startSweepPractice} disabled={isSweeping}>
-              {isSweeping ? slide.practicingText : slide.practiceBtn}
-            </button>
-            <button className="pnm-header-btn" onClick={() => setShowGrip(!showGrip)}>
-              {showGrip ? slide.viewDiagram : slide.viewGrip}
-            </button>
-          </div>
-        </div>
-
-        <div style={{ marginTop: '20px' }}>
-          <button className="pnm-btn-pill-red" onClick={nextSlide}>
-            {t.nextBtn}
-          </button>
-        </div>
+      <div className="pnm-sweep-img-box">
+        <img 
+          src="assets/pptx_slides/slide_8_img_2.png" 
+          alt="Step 3 Movement & Pace 5-10 Seconds"
+          onError={e => e.target.src = "assets/sweep_movement.jpg"}
+        />
       </div>
 
-      <div className="pnm-bottom-nav-row">
+      <div style={{ textAlign: 'start', width: '100%', margin: '10px 0 18px 0' }}>
+        <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '0.88rem', color: '#1e293b' }}>
+          <li>{slide.point1}</li>
+          <li>{slide.point2}</li>
+          <li>{slide.point3}</li>
+        </ul>
+      </div>
+
+      <div className="pnm-phone-bottom-nav">
         <button className="pnm-prev-btn" onClick={prevSlide}>{t.prevBtn}</button>
-        <button className="pnm-btn-pill-red" onClick={nextSlide}>{t.nextBtn}</button>
+        <button className="pnm-btn-pill-red" style={{ flex: 1 }} onClick={nextSlide}>{t.nextBtn}</button>
       </div>
     </div>
   );
@@ -1231,66 +1172,31 @@ function Slide8_Step3MovementPace({ slide }) {
 // --- Slide 9: Step 4: Device Positioning (Crucial Angle) ---
 function Slide9_Step4DevicePositioning({ slide }) {
   const { nextSlide, prevSlide, t } = useTraining();
-  const [tiltAngle, setTiltAngle] = useState(0);
-
-  const isLevel = Math.abs(tiltAngle) <= 6;
 
   return (
-    <div className="pnm-stage-slide-content">
-      <div className="pnm-slide-card">
-        <h2 className="pnm-card-title red-text">{slide.title}</h2>
+    <div className="pnm-slide-card-inner">
+      <h2 className="pnm-card-title red-text">{slide.title}</h2>
 
-        {/* 90 Degree Diagram Image */}
-        <div className="pnm-tilt-diagram-box">
-          <img 
-            src="assets/pptx_slides/slide_9_img_1.png" 
-            alt="Step 4 Device Positioning 90 Degree Perpendicular"
-            onError={e => e.target.src = "assets/golden_rule_tilt.jpg"}
-          />
-        </div>
+      {/* 90 Degree Diagram Image */}
+      <div className="pnm-tilt-diagram-box">
+        <img 
+          src="assets/pptx_slides/slide_9_img_1.png" 
+          alt="Step 4 Device Positioning 90 Degree Perpendicular"
+          onError={e => e.target.src = "assets/golden_rule_tilt.jpg"}
+        />
+      </div>
 
-        {/* Red Alert Box */}
-        <div className="pnm-red-alert-box">
-          <div className="pnm-alert-triangle-icon">!</div>
-          <div className="pnm-red-alert-text">
-            {slide.alertText}
-          </div>
-        </div>
-
-        {/* Interactive Gyroscope Tilt Simulator */}
-        <div className="pnm-tilt-simulator-widget">
-          <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#1e293b' }}>
-            {slide.gyroTitle} ({tiltAngle}°)
-          </div>
-          
-          <div className="pnm-tilt-slider-row">
-            <span style={{ fontSize: '0.8rem', color: '#64748b' }}>-30° ({slide.tiltedText})</span>
-            <input 
-              type="range" 
-              min="-30" 
-              max="30" 
-              value={tiltAngle} 
-              onChange={e => setTiltAngle(Number(e.target.value))}
-              className="pnm-tilt-slider"
-            />
-            <span style={{ fontSize: '0.8rem', color: '#64748b' }}>+30° ({slide.tiltedText})</span>
-          </div>
-
-          <div className={`pnm-tilt-banner-status ${isLevel ? 'good' : 'warn'}`}>
-            {isLevel ? slide.goodStatus : slide.warnStatus}
-          </div>
-        </div>
-
-        <div style={{ marginTop: '20px' }}>
-          <button className="pnm-btn-pill-red" onClick={nextSlide}>
-            {t.nextBtn}
-          </button>
+      {/* Red Alert Box */}
+      <div className="pnm-red-alert-box">
+        <div className="pnm-alert-triangle-icon">!</div>
+        <div className="pnm-red-alert-text">
+          {slide.alertText}
         </div>
       </div>
 
-      <div className="pnm-bottom-nav-row">
+      <div className="pnm-phone-bottom-nav">
         <button className="pnm-prev-btn" onClick={prevSlide}>{t.prevBtn}</button>
-        <button className="pnm-btn-pill-red" onClick={nextSlide}>{t.nextBtn}</button>
+        <button className="pnm-btn-pill-red" style={{ flex: 1 }} onClick={nextSlide}>{t.nextBtn}</button>
       </div>
     </div>
   );
@@ -1301,67 +1207,61 @@ function Slide10_LiveFeedbackAlerts({ slide }) {
   const { nextSlide, prevSlide, t } = useTraining();
 
   return (
-    <div className="pnm-stage-slide-content">
-      <div className="pnm-slide-card wide-card">
-        <h2 className="pnm-card-title">{slide.title}</h2>
+    <div className="pnm-slide-card-inner">
+      <h2 className="pnm-card-title">{slide.title}</h2>
 
-        {/* Dual Feedback Screen Displays */}
-        <div className="pnm-alerts-dual-row">
-          {/* Yellow Warning Screen */}
-          <div className="pnm-alert-screen-card">
-            <div className="pnm-alert-banner-top yellow-warn">
-              {slide.yellowBanner}
-            </div>
-            <div className="pnm-alert-screen-body">
-              <img 
-                src="assets/scan_tilt_bad.jpg" 
-                alt="Keep it level warning"
-                onError={e => e.target.src = "assets/afv _p5_i2.jpeg"}
-              />
-              <div style={{
-                position: 'absolute',
-                width: '36px',
-                height: '36px',
-                borderRadius: '50%',
-                background: '#ef4444',
-                color: '#ffffff',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontWeight: 900,
-                fontSize: '1.2rem',
-                border: '2px solid #ffffff'
-              }}>!</div>
-            </div>
+      {/* Dual Feedback Screen Displays */}
+      <div className="pnm-alerts-dual-row">
+        {/* Yellow Warning Screen */}
+        <div className="pnm-alert-screen-card">
+          <div className="pnm-alert-banner-top yellow-warn">
+            {slide.yellowBanner}
           </div>
-
-          {/* Green Doing Great Screen */}
-          <div className="pnm-alert-screen-card">
-            <div className="pnm-alert-banner-top green-good">
-              {slide.greenBanner}
-            </div>
-            <div className="pnm-alert-screen-body">
-              <img 
-                src="assets/scan_tilt_good.jpg" 
-                alt="You're doing great upright position"
-                onError={e => e.target.src = "assets/afv _p5_i3.jpeg"}
-              />
-            </div>
+          <div className="pnm-alert-screen-body">
+            <img 
+              src="assets/scan_tilt_bad.jpg" 
+              alt="Keep it level warning"
+              onError={e => e.target.src = "assets/afv _p5_i2.jpeg"}
+            />
+            <div style={{
+              position: 'absolute',
+              width: '28px',
+              height: '28px',
+              borderRadius: '50%',
+              background: '#ef4444',
+              color: '#ffffff',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontWeight: 900,
+              fontSize: '1rem',
+              border: '2px solid #ffffff'
+            }}>!</div>
           </div>
         </div>
 
-        <p className="pnm-card-body-text" style={{ maxWidth: '640px', marginTop: '12px' }}>
-          {slide.description}
-        </p>
-
-        <button className="pnm-btn-pill-red" onClick={nextSlide}>
-          {t.nextBtn}
-        </button>
+        {/* Green Doing Great Screen */}
+        <div className="pnm-alert-screen-card">
+          <div className="pnm-alert-banner-top green-good">
+            {slide.greenBanner}
+          </div>
+          <div className="pnm-alert-screen-body">
+            <img 
+              src="assets/scan_tilt_good.jpg" 
+              alt="You're doing great upright position"
+              onError={e => e.target.src = "assets/afv _p5_i3.jpeg"}
+            />
+          </div>
+        </div>
       </div>
 
-      <div className="pnm-bottom-nav-row">
+      <p className="pnm-card-body-text" style={{ marginTop: '8px' }}>
+        {slide.description}
+      </p>
+
+      <div className="pnm-phone-bottom-nav">
         <button className="pnm-prev-btn" onClick={prevSlide}>{t.prevBtn}</button>
-        <button className="pnm-btn-pill-red" onClick={nextSlide}>{t.nextBtn}</button>
+        <button className="pnm-btn-pill-red" style={{ flex: 1 }} onClick={nextSlide}>{t.nextBtn}</button>
       </div>
     </div>
   );
@@ -1372,67 +1272,52 @@ function Slide11_ProcessingUploading({ slide }) {
   const { nextSlide, prevSlide, t } = useTraining();
 
   return (
-    <div className="pnm-stage-slide-content">
-      <h2 className="pnm-card-title" style={{ marginBottom: '16px' }}>{slide.title}</h2>
+    <div className="pnm-slide-card-inner" style={{ color: '#ffffff' }}>
+      <h2 className="pnm-card-title" style={{ color: '#ffffff', marginBottom: '8px' }}>{slide.title}</h2>
 
-      {/* Realistic Dark Phone Frame */}
-      <div className="pnm-iphone-mockup dark-theme">
-        <div className="pnm-iphone-notch-bar">
-          <span className="pnm-phone-clock">12:28</span>
-          <div className="pnm-phone-island"></div>
-          <div className="pnm-phone-status-icons">
-            <span>📶</span>
-            <span>84% 🔋</span>
-          </div>
+      <div style={{ textAlign: 'center', margin: '20px 0 16px 0' }}>
+        <h4 style={{ fontSize: '1.15rem', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>
+          {slide.pleaseWait}
+        </h4>
+        <p style={{ fontSize: '0.88rem', color: '#94a3b8' }}>
+          {slide.uploading}
+        </p>
+      </div>
+
+      <div style={{
+        background: '#1e293b',
+        borderRadius: '12px',
+        padding: '10px 14px',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '8px',
+        fontSize: '0.78rem',
+        color: '#cbd5e1',
+        marginBottom: '20px',
+        textAlign: 'start'
+      }}>
+        <span>🔒</span>
+        <span>{slide.caution}</span>
+      </div>
+
+      {/* Upload Progress Bar */}
+      <div className="pnm-upload-progress-box">
+        <div className="pnm-upload-bar-track">
+          <div className="pnm-upload-bar-fill" style={{ width: '100%' }}></div>
         </div>
-
-        <div className="pnm-phone-screen-content" style={{ justifyContent: 'center', padding: '20px' }}>
-          <div style={{ textAlign: 'center', marginBottom: '24px' }}>
-            <h4 style={{ fontSize: '1.2rem', fontWeight: 700, color: '#ffffff', marginBottom: '6px' }}>
-              {slide.pleaseWait}
-            </h4>
-            <p style={{ fontSize: '0.92rem', color: '#94a3b8' }}>
-              {slide.uploading}
-            </p>
-          </div>
-
-          <div style={{
-            background: '#1e293b',
-            borderRadius: '14px',
-            padding: '12px 16px',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '10px',
-            fontSize: '0.82rem',
-            color: '#cbd5e1',
-            marginBottom: '24px'
-          }}>
-            <span>🔒</span>
-            <span>{slide.caution}</span>
-          </div>
-
-          {/* Upload Progress Bar */}
-          <div className="pnm-upload-bar-track">
-            <div className="pnm-upload-bar-fill" style={{ width: '100%' }}></div>
-          </div>
-          <div style={{ textAlign: 'center', fontSize: '0.85rem', color: '#38bdf8', fontWeight: 700 }}>
-            {slide.processing}
-          </div>
-        </div>
-
-        <div className="pnm-phone-home-indicator">
-          <div className="pnm-home-bar-pill"></div>
+        <div style={{ textAlign: 'center', fontSize: '0.82rem', color: '#38bdf8', fontWeight: 700, marginTop: '6px' }}>
+          {slide.processing}
         </div>
       </div>
 
       {/* Red Callout Speech Bubble */}
-      <div className="pnm-callout-bubble tail-top" style={{ marginTop: '14px' }}>
+      <div className="pnm-callout-bubble tail-top" style={{ color: '#1e293b', marginTop: '16px' }}>
         {slide.calloutText}
       </div>
 
-      <div className="pnm-bottom-nav-row">
+      <div className="pnm-phone-bottom-nav">
         <button className="pnm-prev-btn" onClick={prevSlide}>{t.prevBtn}</button>
-        <button className="pnm-btn-pill-red" onClick={nextSlide}>{t.nextBtn}</button>
+        <button className="pnm-btn-pill-red" style={{ flex: 1 }} onClick={nextSlide}>{t.nextBtn}</button>
       </div>
     </div>
   );
@@ -1466,107 +1351,105 @@ function Slide12_13_Quiz({ slide, isPassedView = false }) {
   };
 
   return (
-    <div className="pnm-stage-slide-content">
-      <div className="pnm-slide-card red-border-card" style={{ maxWidth: '640px' }}>
-        <h2 className="pnm-card-title" style={{ color: '#0284c7' }}>
-          {slide.title}
-        </h2>
-        <p className="pnm-card-subtitle" style={{ color: '#1e293b', fontSize: '1.05rem', marginBottom: '20px' }}>
-          {slide.subtitle}
-        </p>
+    <div className="pnm-slide-card-inner">
+      <h2 className="pnm-card-title" style={{ color: '#0284c7' }}>
+        {slide.title}
+      </h2>
+      <p className="pnm-card-subtitle" style={{ color: '#1e293b', fontSize: '0.9rem', marginBottom: '14px' }}>
+        {slide.subtitle}
+      </p>
 
-        <div className="pnm-quiz-group">
-          {/* Question 1 */}
-          <div className="pnm-quiz-q-box">
-            <div className="pnm-quiz-q-text">
-              {slide.q1 || "1. During the scanning session, can you pause the ultrasound scanning?"}
-            </div>
-            <div className="pnm-quiz-options-row">
-              {(slide.q1_opts || ["Yes", "No"]).map((opt, idx) => (
-                <label key={idx} className="pnm-quiz-radio-label">
-                  <input 
-                    type="radio" 
-                    name="q1" 
-                    className="pnm-custom-radio"
-                    checked={answers.q1 === idx || (isPassedView && idx === 0)} 
-                    onChange={() => handleSelect('q1', idx)}
-                  />
-                  <span>{opt}</span>
-                </label>
-              ))}
-            </div>
+      <div className="pnm-quiz-group">
+        {/* Question 1 */}
+        <div className="pnm-quiz-q-box">
+          <div className="pnm-quiz-q-text">
+            {slide.q1 || "1. During the scanning session, can you pause the ultrasound scanning?"}
           </div>
-
-          {/* Question 2 */}
-          <div className="pnm-quiz-q-box">
-            <div className="pnm-quiz-q-text">
-              {slide.q2 || "2. What can you do to optimise your scans?"}
-            </div>
-            <div className="pnm-quiz-options-row">
-              {(slide.q2_opts || ["Add gel", "Press firmly", "Scan slower", "All answers"]).map((opt, idx) => (
-                <label key={idx} className="pnm-quiz-radio-label">
-                  <input 
-                    type="radio" 
-                    name="q2" 
-                    className="pnm-custom-radio"
-                    checked={answers.q2 === idx || (isPassedView && idx === 3)} 
-                    onChange={() => handleSelect('q2', idx)}
-                  />
-                  <span>{opt}</span>
-                </label>
-              ))}
-            </div>
-          </div>
-
-          {/* Question 3 */}
-          <div className="pnm-quiz-q-box">
-            <div className="pnm-quiz-q-text">
-              {slide.q3 || "3. Can you close the app immediately after finishing the scan?"}
-            </div>
-            <div className="pnm-quiz-options-row">
-              {(slide.q3_opts || ["Yes", "No, I'll wait for the scan upload confirmation"]).map((opt, idx) => (
-                <label key={idx} className="pnm-quiz-radio-label">
-                  <input 
-                    type="radio" 
-                    name="q3" 
-                    className="pnm-custom-radio"
-                    checked={answers.q3 === idx || (isPassedView && idx === 1)} 
-                    onChange={() => handleSelect('q3', idx)}
-                  />
-                  <span>{opt}</span>
-                </label>
-              ))}
-            </div>
+          <div className="pnm-quiz-options-row">
+            {(slide.q1_opts || ["Yes", "No"]).map((opt, idx) => (
+              <label key={idx} className="pnm-quiz-radio-label">
+                <input 
+                  type="radio" 
+                  name="q1" 
+                  className="pnm-custom-radio"
+                  checked={answers.q1 === idx || (isPassedView && idx === 0)} 
+                  onChange={() => handleSelect('q1', idx)}
+                />
+                <span>{opt}</span>
+              </label>
+            ))}
           </div>
         </div>
 
-        {/* Submit or Passed Button */}
-        {isSubmitted || isPassedView ? (
-          <div>
-            <button className="pnm-btn-pill-red w-full" style={{ marginBottom: '8px' }}>
-              {slide.passedBtn || "Passed"}
-            </button>
-            <div className="pnm-quiz-feedback-msg">
-              {slide.passedFeedback || "Great! You can proceed to the next slide."}
-            </div>
+        {/* Question 2 */}
+        <div className="pnm-quiz-q-box">
+          <div className="pnm-quiz-q-text">
+            {slide.q2 || "2. What can you do to optimise your scans?"}
           </div>
-        ) : (
-          <div>
-            <button className="pnm-btn-pill-red w-full" onClick={handleSubmit}>
-              {slide.submitBtn || "Submit"}
-            </button>
-            {hasErrors && (
-              <div style={{ color: '#ef4444', fontSize: '0.88rem', marginTop: '8px', fontWeight: 600 }}>
-                {slide.errorMsg || "Please check your answers and try again."}
-              </div>
-            )}
+          <div className="pnm-quiz-options-row">
+            {(slide.q2_opts || ["Add gel", "Press firmly", "Scan slower", "All answers"]).map((opt, idx) => (
+              <label key={idx} className="pnm-quiz-radio-label">
+                <input 
+                  type="radio" 
+                  name="q2" 
+                  className="pnm-custom-radio"
+                  checked={answers.q2 === idx || (isPassedView && idx === 3)} 
+                  onChange={() => handleSelect('q2', idx)}
+                />
+                <span>{opt}</span>
+              </label>
+            ))}
           </div>
-        )}
+        </div>
+
+        {/* Question 3 */}
+        <div className="pnm-quiz-q-box">
+          <div className="pnm-quiz-q-text">
+            {slide.q3 || "3. Can you close the app immediately after finishing the scan?"}
+          </div>
+          <div className="pnm-quiz-options-row">
+            {(slide.q3_opts || ["Yes", "No, I'll wait for the scan upload confirmation"]).map((opt, idx) => (
+              <label key={idx} className="pnm-quiz-radio-label">
+                <input 
+                  type="radio" 
+                  name="q3" 
+                  className="pnm-custom-radio"
+                  checked={answers.q3 === idx || (isPassedView && idx === 1)} 
+                  onChange={() => handleSelect('q3', idx)}
+                />
+                <span>{opt}</span>
+              </label>
+            ))}
+          </div>
+        </div>
       </div>
 
-      <div className="pnm-bottom-nav-row">
+      {/* Submit or Passed Button */}
+      {isSubmitted || isPassedView ? (
+        <div style={{ width: '100%', marginTop: '6px' }}>
+          <button className="pnm-btn-pill-red w-full" style={{ marginBottom: '6px' }}>
+            {slide.passedBtn || "Passed"}
+          </button>
+          <div className="pnm-quiz-feedback-msg">
+            {slide.passedFeedback || "Great! You can proceed to the next slide."}
+          </div>
+        </div>
+      ) : (
+        <div style={{ width: '100%', marginTop: '6px' }}>
+          <button className="pnm-btn-pill-red w-full" onClick={handleSubmit}>
+            {slide.submitBtn || "Submit"}
+          </button>
+          {hasErrors && (
+            <div style={{ color: '#ef4444', fontSize: '0.82rem', marginTop: '6px', fontWeight: 600 }}>
+              {slide.errorMsg || "Please check your answers and try again."}
+            </div>
+          )}
+        </div>
+      )}
+
+      <div className="pnm-phone-bottom-nav">
         <button className="pnm-prev-btn" onClick={prevSlide}>{t.prevBtn}</button>
-        <button className="pnm-btn-pill-red" onClick={nextSlide}>{t.nextBtn}</button>
+        <button className="pnm-btn-pill-red" style={{ flex: 1 }} onClick={nextSlide}>{t.nextBtn}</button>
       </div>
     </div>
   );
@@ -1574,136 +1457,59 @@ function Slide12_13_Quiz({ slide, isPassedView = false }) {
 
 // --- Slide 14: Congratulations & Completion ---
 function Slide14_Completed({ slide }) {
-  const { goToSlide, setIsProtocolModalOpen, t } = useTraining();
+  const { goToSlide } = useTraining();
+  const [isClosed, setIsClosed] = useState(false);
+
+  const handleCloseTraining = () => {
+    soundFX.playClick();
+    try {
+      window.open('', '_self');
+      window.close();
+    } catch (e) {}
+    setIsClosed(true);
+  };
+
+  if (isClosed) {
+    return (
+      <div className="pnm-slide-card-inner" style={{ justifyContent: 'center', minHeight: '360px', gap: '16px' }}>
+        <div className="pnm-callout-bubble" style={{ fontSize: '1.05rem', fontWeight: 700 }}>
+          {slide.closedMessage}
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="pnm-stage-slide-content">
+    <div className="pnm-slide-card-inner">
       {/* Top Red-Bordered Pill Badge */}
-      <div className="pnm-callout-bubble" style={{ maxWidth: '640px', marginBottom: '28px', fontSize: '1.35rem', fontWeight: 800 }}>
+      <div className="pnm-callout-bubble" style={{ fontSize: '1.1rem', fontWeight: 800, marginTop: '24px' }}>
         {slide.badgeText}
       </div>
 
-      {/* Cloud Illustration with Upward Arrows */}
-      <div className="pnm-cloud-sync-hero">
-        <div className="pnm-cloud-arrows-up">
-          <span className="pnm-cloud-arrow">▲</span>
-          <span className="pnm-cloud-arrow">▲</span>
-          <span className="pnm-cloud-arrow">▲</span>
-        </div>
-        <img 
-          src="assets/cloud_complete.jpg" 
-          alt="Encrypted Cloud Sync Complete"
-          className="pnm-cloud-img"
-          onError={e => e.target.src = "assets/congrats_preview.png"}
-        />
-      </div>
-
       {/* Pulsenmore Logo */}
-      <div className="pnm-completed-logo-badge">
+      <div className="pnm-completed-logo-badge" style={{ margin: '24px 0 12px 0' }}>
         <div className="pnm-logo-symbol">
           <span className="pnm-pulse-bar"></span>
           <span className="pnm-pulse-bar"></span>
           <span className="pnm-pulse-bar"></span>
           <span className="pnm-pulse-bar"></span>
         </div>
-        <span style={{ fontFamily: 'var(--font-heading)', fontSize: '1.45rem', fontWeight: 800, color: '#11263c' }}>
+        <span style={{ fontFamily: 'var(--font-heading)', fontSize: '1.15rem', fontWeight: 800, color: '#11263c' }}>
           {slide.logoText}
         </span>
       </div>
 
-      <p className="pnm-card-body-text" style={{ maxWidth: '660px', textAlign: 'center', margin: '14px 0 28px 0' }}>
+      <p className="pnm-card-body-text" style={{ textAlign: 'center', margin: '10px 0 24px 0' }}>
         {slide.closingText}
       </p>
 
-      <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center' }}>
-        <button className="pnm-btn-pill-red" onClick={() => goToSlide(1)}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%' }}>
+        <button className="pnm-btn-pill-red w-full" onClick={() => goToSlide(1)}>
           {slide.restartBtn}
         </button>
-        <button className="pnm-prev-btn" onClick={() => setIsProtocolModalOpen(true)}>
-          {slide.guideBtn}
+        <button className="pnm-prev-btn" style={{ width: '100%', textAlign: 'center' }} onClick={handleCloseTraining}>
+          {slide.closeBtn}
         </button>
-      </div>
-    </div>
-  );
-}
-
-// ==========================================================================
-// 5. Clinical Protocol Reference Modal
-// ==========================================================================
-function ClinicalProtocolModal({ isOpen, onClose }) {
-  const { lang } = useTraining();
-  if (!isOpen) return null;
-
-  return (
-    <div className="pnm-modal-overlay" onClick={onClose}>
-      <div className="pnm-modal-card" onClick={e => e.stopPropagation()}>
-        <div className="pnm-modal-header">
-          <h3>{lang === 'he' ? '📋 פרוטוקול מחקר CLR-E2994 — מדריך קליני' : '📋 Protocol CLR-E2994 — AFV-Dynamic Study Guide'}</h3>
-          <button className="pnm-modal-close-btn" onClick={onClose}>✕</button>
-        </div>
-        <div className="pnm-modal-body">
-          {lang === 'he' ? (
-            <>
-              <h4>1. מטרת המחקר ותהליך העבודה</h4>
-              <p>
-                המשתתפת במחקר AFV-Dynamic מבצעת הדרכה לביצוע סריקות אולטרסאונד ביתיות מודרכות-אפליקציה (AG Mode). הסריקה מחולקת לחלק 1 (ניטור חיוניות ומדדי העובר) ולחלק 2 (הערכה שיטתית של כמות מי השפיר ב-4 רבעים).
-              </p>
-
-              <h4>2. כלל הזהב של מנח המתמר (90° ניצב)</h4>
-              <p>
-                חובה להחזיק את המתמר <b>זקוף לחלוטין ובניצב של 90° לקרקע/למיטת הבדיקה</b>. הטיית המכשיר בהתאם לקימור הבטן גורמת לעיוות והצללה אקוסטית (Refraction artifacts), דבר המוביל לאבחון שגוי של מיעוט מי שפיר (False Oligohydramnios).
-              </p>
-
-              <h4>3. מיפוי ארבעת הרבעים</h4>
-              <ul>
-                <li><b>רבע ימני עליון (RUQ):</b> גבול עליון: קרקעית הרחם (Fundus); פנימי: קו האמצע (Linea Alba).</li>
-                <li><b>רבע שמאלי עליון (LUQ):</b> גבול עליון: קרקעית הרחם (Fundus); פנימי: קו האמצע (Linea Alba).</li>
-                <li><b>רבע ימני תחתון (RLQ):</b> גבול תחתון: עצם החיק (Symphysis Pubis); פנימי: קו האמצע.</li>
-                <li><b>רבע שמאלי תחתון (LLQ):</b> גבול תחתון: עצם החיק (Symphysis Pubis); פנימי: קו האמצע.</li>
-              </ul>
-
-              <h4>4. קצב תנועה ומריחת ג'ל אקוסטי</h4>
-              <p>
-                כל תנועת סריקה מהמותן פנימה לקו האמצע חייבת להתבצע בקצב רציף של <b>5 עד 10 שניות</b>. יש למרוח כמות ג'ל נדיבה הן על פני המתמר והן על צידי המותניים.
-              </p>
-
-              <h4>5. העלאת נתונים מאובטחת לענן</h4>
-              <p>
-                עם סיום הסריקה, סרטוני ה-DICOM מוצפנים ומועלים ישירות לפורטל הפענוח של הרופא/ה המטפל/ת. יש להשאיר את האפליקציה פתוחה עד להופעת אישור ההעלאה.
-              </p>
-            </>
-          ) : (
-            <>
-              <h4>1. Study Objective &amp; Workflow Overview</h4>
-              <p>
-                The participant enrolled in the AFV-Dynamic study completes training on app-guided home ultrasound scanning. Scans are divided into Part 1 (Fetal Well-Being) and Part 2 (Systematic 4-Quadrant Amniotic Fluid Assessment).
-              </p>
-
-              <h4>2. The Golden Rule of Transducer Orientation</h4>
-              <p>
-                The transducer must always be held strictly <b>90° perpendicular to the floor / examination couch</b>. Tilting the probe to follow the belly curvature creates acoustic refraction artifacts, leading to false diagnoses of oligohydramnios.
-              </p>
-
-              <h4>3. 4-Quadrant Sweep Demarcation</h4>
-              <ul>
-                <li><b>RUQ (Right Upper Quadrant):</b> Superior boundary: uterine fundus; Medial: linea alba.</li>
-                <li><b>LUQ (Left Upper Quadrant):</b> Superior boundary: uterine fundus; Medial: linea alba.</li>
-                <li><b>RLQ (Right Lower Quadrant):</b> Inferior boundary: symphysis pubis; Medial: linea alba.</li>
-                <li><b>LLQ (Left Lower Quadrant):</b> Inferior boundary: symphysis pubis; Medial: linea alba.</li>
-              </ul>
-
-              <h4>4. Sweep Pacing and Acoustic Gel</h4>
-              <p>
-                Each lateral-to-medial sweep must be executed steadily over <b>5 to 10 seconds</b>. Generous coupling gel must be applied to both the transducer face and lateral maternal flanks.
-              </p>
-
-              <h4>5. Data Transmission &amp; Upload</h4>
-              <p>
-                Upon scan completion, high-definition DICOM video clips are encrypted and uploaded to the centralized clinician overread cloud portal. The patient must leave the app open until the confirmation screen is displayed.
-              </p>
-            </>
-          )}
-        </div>
       </div>
     </div>
   );
@@ -1741,7 +1547,7 @@ function ContentEditorDrawer({ isOpen, onClose, onUpdateSlide }) {
         <button className="pnm-modal-close-btn" onClick={onClose}>✕</button>
       </div>
       <div className="pnm-editor-body">
-        <div style={{ fontSize: '0.85rem', color: '#64748b' }}>
+        <div style={{ fontSize: '0.82rem', color: '#64748b' }}>
           {t.slideLabel} <b>{currentSlide.id}: {currentSlide.title}</b>
         </div>
 
@@ -1755,7 +1561,7 @@ function ContentEditorDrawer({ isOpen, onClose, onUpdateSlide }) {
         </div>
 
         <div className="pnm-editor-field">
-          <label className="pnm-editor-label">Subtitle / Banner</label>
+          <label className="pnm-editor-label">Subtitle</label>
           <input 
             className="pnm-editor-input" 
             value={subtitle} 
@@ -1765,7 +1571,7 @@ function ContentEditorDrawer({ isOpen, onClose, onUpdateSlide }) {
 
         {currentSlide.description !== undefined && (
           <div className="pnm-editor-field">
-            <label className="pnm-editor-label">Body Text / Script</label>
+            <label className="pnm-editor-label">Body Text</label>
             <textarea 
               className="pnm-editor-textarea" 
               value={description} 
@@ -1790,7 +1596,6 @@ function App() {
   const [translations, setTranslations] = useState(TRANSLATIONS);
   const [currentStep, setCurrentStep] = useState(1);
   const [soundEnabled, setSoundEnabled] = useState(true);
-  const [isProtocolModalOpen, setIsProtocolModalOpen] = useState(false);
   const [isEditorOpen, setIsEditorOpen] = useState(false);
 
   const t = translations[lang] || translations.en;
@@ -1804,19 +1609,16 @@ function App() {
   const goToSlide = useCallback((step) => {
     soundFX.playClick();
     setCurrentStep(Math.max(1, Math.min(step, totalSteps)));
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [totalSteps]);
 
   const nextSlide = useCallback(() => {
     soundFX.playClick();
     setCurrentStep(prev => (prev < totalSteps ? prev + 1 : 1));
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [totalSteps]);
 
   const prevSlide = useCallback(() => {
     soundFX.playClick();
     setCurrentStep(prev => (prev > 1 ? prev - 1 : 1));
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
   const toggleSound = useCallback(() => {
@@ -1841,7 +1643,7 @@ function App() {
   // Keyboard Navigation (< and > arrow keys)
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (isEditorOpen || isProtocolModalOpen) return;
+      if (isEditorOpen) return;
       if (e.key === 'ArrowRight' || e.key === 'Space') {
         if (lang === 'he' && e.key === 'ArrowRight') prevSlide();
         else nextSlide();
@@ -1852,7 +1654,7 @@ function App() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [nextSlide, prevSlide, isEditorOpen, isProtocolModalOpen, lang]);
+  }, [nextSlide, prevSlide, isEditorOpen, lang]);
 
   // Render Slide Component based on slide ID
   const renderSlideComponent = () => {
@@ -1902,7 +1704,6 @@ function App() {
     prevSlide,
     soundEnabled,
     toggleSound,
-    setIsProtocolModalOpen,
     isEditorOpen,
     setIsEditorOpen
   };
@@ -1912,13 +1713,35 @@ function App() {
       <div 
         dir={lang === 'he' ? 'rtl' : 'ltr'} 
         className={lang === 'he' ? 'lang-he' : 'lang-en'}
-        style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', position: 'relative' }}
+        style={{ minHeight: '100vh', minHeight: '100dvh', display: 'flex', flexDirection: 'column', position: 'relative' }}
       >
         <BgDecorStars />
         <AppHeader />
         
         <main className="pnm-stage-wrapper">
-          {renderSlideComponent()}
+          {/* Centered Phone Container for All 14 Slides */}
+          <div className={`pnm-iphone-mockup ${currentStep === 11 ? 'dark-theme' : ''}`}>
+            {/* Top Notch & Status Bar */}
+            <div className="pnm-iphone-notch-bar">
+              <span className="pnm-phone-clock">12:17</span>
+              <div className="pnm-phone-island"></div>
+              <div className="pnm-phone-status-icons">
+                <span>5G</span>
+                <span>📶</span>
+                <span>86% 🔋</span>
+              </div>
+            </div>
+
+            {/* Inner Phone Screen */}
+            <div className="pnm-phone-screen-content">
+              {renderSlideComponent()}
+            </div>
+
+            {/* Home Indicator Bar */}
+            <div className="pnm-phone-home-indicator">
+              <div className="pnm-home-bar-pill"></div>
+            </div>
+          </div>
 
           {/* Bottom Dots Stepper */}
           <div className="pnm-dots-stepper">
@@ -1932,12 +1755,6 @@ function App() {
             ))}
           </div>
         </main>
-
-        {/* Clinical Protocol Reference Modal */}
-        <ClinicalProtocolModal 
-          isOpen={isProtocolModalOpen} 
-          onClose={() => setIsProtocolModalOpen(false)} 
-        />
 
         {/* Live Content Editor Drawer */}
         <ContentEditorDrawer 
