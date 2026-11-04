@@ -331,7 +331,7 @@ const TRANSLATIONS = {
         partLabel: "🎯 חלק 1 • תרגול סריקה",
         display1Tab: "שלב 1: סרטון הדרכה",
         d1_calloutTop: "תהליך הסריקה כולל 5 שלבים. במהלך כל שלב, החלק העליון יציג סרטון הדרכה מונחה.",
-        d1_scanStep: "סריקה 4/5",
+        d1_scanStep: "סריקה \u200E4/5\u200E",
         d1_duration: "25 שניות",
         d1_tapPrompt: "לחצי על הכפתור האדום להתחלת הסריקה",
         d1_calloutBottom: "לחיצה על הכפתור האדום תאפשר לך להתחיל.",
@@ -342,20 +342,20 @@ const TRANSLATIONS = {
       {
         id: 5,
         title: "חלק 2 (AFV) — שלב 1: מיפוי הבטן ל-4 רבעים",
-        stageBadge: "📖 הדרכת AFV (חלק 2) • שלב 1 מתוך 5",
-        subtitle: "חלק 2 מודד את כיסי מי השפיר (בחלק זה לא תראי את העובר על המסך). חלקי בדמיונך את הבטן לארבעה רבעים (1–4) — תסרקי כל אחד מארבעת האזורים הללו בנפרד.",
+        stageBadge: "📖 חלק 2: הדרכת AFV • שלב 1 מתוך 5",
+        subtitle: "חלק 2 מודד את כיסי מי השפיר (בחלק זה לא תראי את העובר על המסך). חלקי בדמיונך את הבטן לארבעה רבעים \u200E(1–4)\u200E — תסרקי כל אחד מארבעת האזורים הללו בנפרד.",
         quadrants: [
           "רביע 1",
           "רביע 2",
           "רביע 3",
           "רביע 4"
         ],
-        actionHint: "ℹ️ הכירו את 4 רבעי הבטן בתמונה שלמעלה, ולאחר מכן לחצו על 'הבא >' למטה להמשך."
+        actionHint: "ℹ️ הכירו את 4 רבעי הבטן בתמונה שלמעלה, ולאחר מכן לחצו על 'הבא' למטה להמשך."
       },
       {
         id: 6,
         title: "שלב 2: תנוחת הגוף ומריחת ג'ל",
-        stageBadge: "📖 הדרכת AFV (חלק 2) • שלב 2 מתוך 5",
+        stageBadge: "📖 חלק 2: הדרכת AFV • שלב 2 מתוך 5",
         panel1Title: "הישעני לאחור.",
         panel1Desc: "גלשי מעט מטה במושב כך שהבטן תהיה במנח אופקי. כוח המשיכה מסייע בפיזור והשקעת הנוזל.",
         panel2Title: "מרחי ג'ל בנדיבות.",
@@ -364,13 +364,13 @@ const TRANSLATIONS = {
       {
         id: 7,
         title: "שלב 3: מנח המכשיר (קריטי)",
-        stageBadge: "📖 הדרכת AFV (חלק 2) • שלב 3 מתוך 5",
+        stageBadge: "📖 חלק 2: הדרכת AFV • שלב 3 מתוך 5",
         alertText: "החזיקי את המכשיר זקוף לחלוטין, בניצב לקרקע (90°). אל תטי אותו בהתאם לקימור הבטן! מסך הטלפון צריך לפנות הצידה במדויק."
       },
       {
         id: 8,
         title: "שלב 4: התראות משוב בזמן אמת",
-        stageBadge: "📖 הדרכת AFV (חלק 2) • שלב 4 מתוך 5",
+        stageBadge: "📖 חלק 2: הדרכת AFV • שלב 4 מתוך 5",
         description: "במהלך הסריקה, האפליקציה מנטרת את זווית המכשיר בזמן אמת. אם תטי את המכשיר יתר על המידה, תופיע התראה צהובה. יישרי את המכשיר בניצב לקרקע (90°) עד שהחיווי יהפוך לירוק.",
         yellowBanner: "⚠️ שמרי על המכשיר ישר (מוטה)",
         greenBanner: "✓ מעולה! המשיכי כך! (ניצב 90°)"
@@ -378,7 +378,7 @@ const TRANSLATIONS = {
       {
         id: 9,
         title: "שלב 5: עיבוד והעלאת נתונים",
-        stageBadge: "📖 הדרכת AFV (חלק 2) • שלב 5 מתוך 5",
+        stageBadge: "📖 חלק 2: הדרכת AFV • שלב 5 מתוך 5",
         calloutText: "לאחר סיום הסריקה, אנא המתיני בסבלנות עד לסיום עיבוד הסרטונים והעלאתם המאובטחת לענן.",
         pleaseWait: "אנא המתיני,",
         uploading: "מעלה את נתוני הבדיקה...",
@@ -557,7 +557,7 @@ function AppHeader() {
             className="pnm-slide-selector-pill"
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           >
-            <span>{currentStep}/{totalSteps}</span>
+            <span dir="ltr">{`${currentStep}/${totalSteps}`}</span>
             <span style={{ fontSize: '0.65rem' }}>▼</span>
           </div>
 
@@ -572,7 +572,7 @@ function AppHeader() {
                     setIsDropdownOpen(false);
                   }}
                 >
-                  <span className="pnm-dropdown-badge">{s.id}</span>
+                  <span className="pnm-dropdown-badge" dir="ltr">{s.id}</span>
                   <span style={{ flex: 1, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                     {s.title}
                   </span>
@@ -1619,7 +1619,7 @@ function App() {
           </div>
 
           {/* Bottom Dots Stepper */}
-          <div className="pnm-dots-stepper">
+          <div className="pnm-dots-stepper" dir="ltr">
             {t.slides.map(s => (
               <div 
                 key={s.id}
