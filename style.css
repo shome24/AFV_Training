@@ -620,10 +620,10 @@ body {
 
 .pnm-panel-img-box {
   width: 100%;
-  height: 125px;
+  height: 120px;
   border-radius: 12px;
   overflow: hidden;
-  background: #e0f2fe;
+  background: #eaf5fc;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -632,7 +632,7 @@ body {
 .pnm-panel-img-box img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .pnm-panel-title {
@@ -1443,7 +1443,7 @@ body {
 }
 
 .pnm-alert-screen-body {
-  height: 120px;
+  height: 125px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1454,7 +1454,7 @@ body {
 .pnm-alert-screen-body img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 /* Slide 11: Uploading Screen */
@@ -1760,6 +1760,343 @@ body {
 
 .pnm-editor-textarea {
   min-height: 80px;
+}
+
+/* ==========================================================================
+   Ronit Feedback Enhancements: Phase Bar, Part 2 Hero, Non-Interactive Legend,
+   Abdomen Scan Path Overlay & AFV Practice Scan
+   ========================================================================== */
+.pnm-journey-phase-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 4px;
+  margin-bottom: 10px;
+  gap: 3px;
+}
+
+.pnm-journey-phase-step {
+  flex: 1;
+  text-align: center;
+  font-size: 0.64rem;
+  font-weight: 700;
+  color: #64748b;
+  padding: 5px 4px;
+  border-radius: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all 0.2s ease;
+}
+
+.pnm-journey-phase-step.active {
+  background: #0284c7;
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.28);
+}
+
+.pnm-journey-phase-step.active.practice-phase {
+  background: #0d9488;
+  box-shadow: 0 2px 6px rgba(13, 148, 136, 0.28);
+}
+
+.pnm-journey-phase-step.active.quiz-phase {
+  background: #7c3aed;
+  box-shadow: 0 2px 6px rgba(124, 58, 237, 0.28);
+}
+
+.pnm-journey-phase-step.done {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.pnm-stage-context-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  margin-bottom: 8px;
+  letter-spacing: 0.01em;
+}
+
+.pnm-stage-context-badge.instruction {
+  background: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #bae6fd;
+}
+
+.pnm-stage-context-badge.quiz {
+  background: #f3e8ff;
+  color: #6d28d9;
+  border: 1px solid #ddd6fe;
+}
+
+.pnm-stage-context-badge.practice {
+  background: #ccfbf1;
+  color: #0f766e;
+  border: 1px solid #99f6e4;
+}
+
+/* Part 2 AFV Visually Distinct Introduction Screen */
+.pnm-part2-distinct-banner {
+  width: 100%;
+  background: linear-gradient(135deg, #0f172a 0%, #0369a1 100%);
+  color: #ffffff;
+  border-radius: 18px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  text-align: start;
+  box-shadow: 0 8px 20px rgba(3, 105, 161, 0.22);
+  position: relative;
+  overflow: hidden;
+}
+
+.pnm-part2-tag {
+  display: inline-block;
+  background: rgba(56, 189, 248, 0.25);
+  border: 1px solid rgba(125, 211, 252, 0.5);
+  color: #e0f2fe;
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 2px 10px;
+  border-radius: 9999px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.pnm-part2-distinct-banner h2 {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 6px 0;
+  line-height: 1.25;
+}
+
+.pnm-part2-distinct-banner p {
+  font-size: 0.82rem;
+  color: #e0f2fe;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.pnm-afv-key-diffs-box {
+  width: 100%;
+  background: #f0f9ff;
+  border: 1.5px solid #bae6fd;
+  border-radius: 16px;
+  padding: 12px;
+  margin-bottom: 10px;
+  text-align: start;
+}
+
+.pnm-afv-key-diffs-title {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #0369a1;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pnm-afv-diff-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #ffffff;
+  border: 1px solid #e0f2fe;
+  border-radius: 12px;
+  padding: 8px 10px;
+  margin-bottom: 6px;
+}
+
+.pnm-afv-diff-item:last-child {
+  margin-bottom: 0;
+}
+
+.pnm-afv-diff-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: #e0f2fe;
+  color: #0284c7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05rem;
+  flex-shrink: 0;
+  font-weight: 800;
+}
+
+.pnm-afv-diff-text strong {
+  display: block;
+  font-size: 0.84rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.pnm-afv-diff-text span {
+  font-size: 0.76rem;
+  color: #475569;
+  line-height: 1.3;
+  display: block;
+}
+
+.pnm-afv-roadmap-note {
+  width: 100%;
+  background: #f8fafc;
+  border: 1px dashed #94a3b8;
+  border-radius: 12px;
+  padding: 8px 12px;
+  font-size: 0.76rem;
+  color: #334155;
+  text-align: start;
+  line-height: 1.35;
+  margin-bottom: 8px;
+}
+
+/* Step 2: Non-Interactive Quadrant Legend Grid */
+.pnm-quadrant-legend-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  width: 100%;
+  margin: 6px 0 8px 0;
+}
+
+.pnm-quadrant-info-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 6px 10px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #334155;
+  cursor: default;
+  user-select: none;
+}
+
+.pnm-quadrant-num-circle {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #e0f2fe;
+  color: #0284c7;
+  font-weight: 800;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pnm-instruction-next-hint {
+  width: 100%;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1e40af;
+  border-radius: 10px;
+  padding: 7px 10px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+/* Step 3: Abdomen Scan Lines Overlay */
+.pnm-abdomen-scanlines-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+  border-radius: 16px;
+  overflow: hidden;
+  margin: 6px 0;
+  border: 2px solid #bae6fd;
+  box-shadow: 0 6px 16px rgba(2, 132, 199, 0.12);
+}
+
+.pnm-abdomen-scanlines-wrapper img {
+  width: 100%;
+  height: 195px;
+  object-fit: cover;
+  display: block;
+}
+
+.pnm-abdomen-svg-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.pnm-pace-pill-overlay {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15, 23, 42, 0.82);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.5);
+  border-radius: 9999px;
+  padding: 3px 12px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  white-space: nowrap;
+  backdrop-filter: blur(4px);
+}
+
+/* Slide 12: AFV Practice Scan Experience */
+.pnm-afv-practice-box {
+  width: 100%;
+  background: #0f172a;
+  border-radius: 18px;
+  border: 2px solid #334155;
+  overflow: hidden;
+  margin: 6px 0 10px 0;
+}
+
+.pnm-afv-practice-top {
+  position: relative;
+  width: 100%;
+  height: 165px;
+  background: #000000;
+  overflow: hidden;
+}
+
+.pnm-afv-practice-top img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.pnm-afv-practice-bottom {
+  position: relative;
+  width: 100%;
+  height: 135px;
+  background: #000000;
+  border-top: 1px solid #334155;
+  overflow: hidden;
+}
+
+.pnm-afv-practice-bottom img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 /* ==========================================================================
