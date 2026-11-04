@@ -33,7 +33,7 @@
   <script type="text/babel">
 /**
  * Pulsenmore AFV-Dynamic Study Training Web Application
- * Unified Phone-First Architecture: All 12 Slides Fitted to Mobile Resolution
+ * Unified Phone-First Architecture: All 11 Slides Fitted to Mobile Resolution
  * Fully Bilingual (English & Hebrew) + Web Audio API + Ronit Feedback Enhancements
  */
 
@@ -120,7 +120,7 @@ class SoundFX {
 const soundFX = new SoundFX();
 
 // ==========================================================================
-// 2. Bilingual Dataset (English & Hebrew) — 12 Slides with Fixed Step Numbers
+// 2. Bilingual Dataset (English & Hebrew) — 11 Slides with Synchronized Flow
 // ==========================================================================
 const TRANSLATIONS = {
   en: {
@@ -138,7 +138,7 @@ const TRANSLATIONS = {
     slideLabel: "Slide",
     ofLabel: "of",
     langName: "עברית",
-    phaseLabels: ["1. Instructions", "2. Quiz", "3. Practice", "4. Scan"],
+    phaseLabels: ["1. Instructions", "2. Quiz", "3. Complete"],
     slides: [
       {
         id: 1,
@@ -191,20 +191,20 @@ const TRANSLATIONS = {
       {
         id: 5,
         title: "Part 2 (AFV) — Step 1: Map the Area",
-        stageBadge: "📖 Part 2: AFV Instructions • Step 1 of 4",
-        subtitle: "Part 2 measures amniotic fluid pockets (you won't see the baby on screen). Mentally divide your belly into four quarters — you will scan each of these four zones individually.",
+        stageBadge: "📖 Part 2: AFV Instructions • Step 1 of 5",
+        subtitle: "Part 2 measures amniotic fluid pockets (you won't see the baby on screen). Mentally divide your belly into four quarters (1–4) — you will scan each of these four zones individually.",
         quadrants: [
-          "Upper Right (RUQ)",
-          "Upper Left (LUQ)",
-          "Lower Right (RLQ)",
-          "Lower Left (LLQ)"
+          "Quarter 1",
+          "Quarter 2",
+          "Quarter 3",
+          "Quarter 4"
         ],
-        actionHint: "ℹ️ Review the 4 belly zones in the diagram above, then tap 'Next >' below to continue."
+        actionHint: "ℹ️ Review the 4 belly quarters in the image above, then tap 'Next >' below to continue."
       },
       {
         id: 6,
         title: "Step 2: Body Positioning & Gel",
-        stageBadge: "📖 Part 2: AFV Instructions • Step 2 of 4",
+        stageBadge: "📖 Part 2: AFV Instructions • Step 2 of 5",
         panel1Title: "Recline back.",
         panel1Desc: "Slide lower in your seat so your belly is horizontal. Gravity helps settle the fluid.",
         panel2Title: "Apply generous gel.",
@@ -213,22 +213,32 @@ const TRANSLATIONS = {
       {
         id: 7,
         title: "Step 3: Device Positioning (Crucial)",
-        stageBadge: "📖 Part 2: AFV Instructions • Step 3 of 4",
+        stageBadge: "📖 Part 2: AFV Instructions • Step 3 of 5",
         alertText: "Hold the device completely upright, 90° perpendicular to the ground. Do NOT tilt it to follow the curve of your belly. The phone screen should face perfectly sideways."
       },
       {
         id: 8,
         title: "Step 4: Live Feedback Alerts",
-        stageBadge: "📖 Part 2: AFV Instructions • Step 4 of 4",
+        stageBadge: "📖 Part 2: AFV Instructions • Step 4 of 5",
         description: "During the scan, the app monitors your device angle in real time. If you tilt the device too far, a yellow warning appears. Adjust your angle upright (90° to the ground) until the banner turns green.",
         yellowBanner: "⚠️ Keep it Level (Tilted)",
         greenBanner: "✓ You're Doing Great! (90° Upright)"
       },
       {
         id: 9,
+        title: "Step 5: Processing & Uploading",
+        stageBadge: "📖 Part 2: AFV Instructions • Step 5 of 5",
+        calloutText: "After finishing the scan, please wait patiently until all clips finish processing and uploading.",
+        pleaseWait: "Please wait,",
+        uploading: "procedure uploading",
+        caution: "Do not close or minimize the app while uploading",
+        processing: "Processing 100%"
+      },
+      {
+        id: 10,
         title: "Knowledge Check Questionnaire",
-        stageBadge: "📝 Step 2: Knowledge Check (Before Practice Scan)",
-        subtitle: "Let's verify your understanding of the AFV instructions before starting the practice scan.",
+        stageBadge: "📝 Step 2: Knowledge Check",
+        subtitle: "Let's verify your understanding of the AFV scan instructions to complete the training.",
         q1: "1. How must you hold the ultrasound probe during the Amniotic Fluid (AFV) scan?",
         q1_opts: [
           "Tilted to follow the curve of your belly",
@@ -247,40 +257,14 @@ const TRANSLATIONS = {
           "No, wait for the 100% scan upload confirmation"
         ],
         submitBtn: "Check Answers",
-        passedBtn: "✓ Passed! Proceed to Practice Scan >",
-        passedFeedback: "Great job! You completed all instructions and the quiz. Next is the AFV Practice Scan.",
+        passedBtn: "✓ Passed! Finish Training >",
+        passedFeedback: "Great job! You answered all questions correctly. Tap below to complete the training.",
         errorMsg: "Some answers need correction. Remember: hold the probe 90° perpendicular to the ground, use all optimization tips, and wait for upload confirmation."
       },
       {
-        id: 10,
-        title: "AFV Practice Scan",
-        stageBadge: "🎯 Step 3: AFV Practice Scan",
-        introTitle: "Ready for Your AFV Practice Scan",
-        introSubtitle: "You've completed the instructions and knowledge check! Let's do a quick practice run before the real scan.",
-        recap1: "Recline back so your belly is horizontal",
-        recap2: "Hold the probe completely upright — 90° perpendicular to the ground",
-        recap3: "Apply generous gel and scan each of the 4 quadrants",
-        startPracticeBtn: "🎯 Start Practice Scan",
-        activeBanner: "✓ You're Doing Great! Probe is 90° Perpendicular",
-        activeStepLabel: "Practice Scan • Quadrant 1/4",
-        greatPracticeTitle: "Great practice! Everything's in place.",
-        greatPracticeSub: "You kept the probe perpendicular to the ground and maintained good contact. You're ready for the real assessment!",
-        readyRealScanBtn: "I'm ready to scan >",
-        repeatPracticeBtn: "↺ Practice Again"
-      },
-      {
         id: 11,
-        title: "Processing & Uploading",
-        stageBadge: "☁️ Step 4: Real Scan Upload",
-        calloutText: "After completing the real scan, please wait patiently until all clips finish processing and uploading.",
-        pleaseWait: "Please wait,",
-        uploading: "procedure uploading",
-        caution: "Do not close or minimize the app while uploading",
-        processing: "Processing 100%"
-      },
-      {
-        id: 12,
         title: "Congratulations! Training Complete",
+        stageBadge: "✅ Step 3: Training Complete",
         badgeText: "Congratulations! You have completed the AFV training!",
         logoText: "Pulsenmore Home Ultrasound",
         closingText: "Your scan data will be securely sent and awaits interpretation by your healthcare provider. You can relax knowing you are prepared to perform the AFV scan accurately. Thank you for participating in the study.",
@@ -305,7 +289,7 @@ const TRANSLATIONS = {
     slideLabel: "שקף",
     ofLabel: "מתוך",
     langName: "English",
-    phaseLabels: ["1. הדרכה", "2. שאלון", "3. תרגול", "4. סריקה"],
+    phaseLabels: ["1. הדרכה", "2. שאלון", "3. סיום"],
     slides: [
       {
         id: 1,
@@ -358,20 +342,20 @@ const TRANSLATIONS = {
       {
         id: 5,
         title: "חלק 2 (AFV) — שלב 1: מיפוי הבטן ל-4 רבעים",
-        stageBadge: "📖 הדרכת AFV (חלק 2) • שלב 1 מתוך 4",
-        subtitle: "חלק 2 מודד את כיסי מי השפיר (בחלק זה לא תראי את העובר על המסך). חלקי בדמיונך את הבטן לארבעה רבעים — תסרקי כל אחד מארבעת האזורים הללו בנפרד.",
+        stageBadge: "📖 הדרכת AFV (חלק 2) • שלב 1 מתוך 5",
+        subtitle: "חלק 2 מודד את כיסי מי השפיר (בחלק זה לא תראי את העובר על המסך). חלקי בדמיונך את הבטן לארבעה רבעים (1–4) — תסרקי כל אחד מארבעת האזורים הללו בנפרד.",
         quadrants: [
-          "רביע ימני עליון (RUQ)",
-          "רביע שמאלי עליון (LUQ)",
-          "רביע ימני תחתון (RLQ)",
-          "רביע שמאלי תחתון (LLQ)"
+          "רביע 1",
+          "רביע 2",
+          "רביע 3",
+          "רביע 4"
         ],
-        actionHint: "ℹ️ הכירו את 4 אזורי הבטן בתרשים שלמעלה, ולאחר מכן לחצו על 'הבא >' למטה להמשך."
+        actionHint: "ℹ️ הכירו את 4 רבעי הבטן בתמונה שלמעלה, ולאחר מכן לחצו על 'הבא >' למטה להמשך."
       },
       {
         id: 6,
         title: "שלב 2: תנוחת הגוף ומריחת ג'ל",
-        stageBadge: "📖 הדרכת AFV (חלק 2) • שלב 2 מתוך 4",
+        stageBadge: "📖 הדרכת AFV (חלק 2) • שלב 2 מתוך 5",
         panel1Title: "הישעני לאחור.",
         panel1Desc: "גלשי מעט מטה במושב כך שהבטן תהיה במנח אופקי. כוח המשיכה מסייע בפיזור והשקעת הנוזל.",
         panel2Title: "מרחי ג'ל בנדיבות.",
@@ -380,22 +364,32 @@ const TRANSLATIONS = {
       {
         id: 7,
         title: "שלב 3: מנח המכשיר (קריטי)",
-        stageBadge: "📖 הדרכת AFV (חלק 2) • שלב 3 מתוך 4",
+        stageBadge: "📖 הדרכת AFV (חלק 2) • שלב 3 מתוך 5",
         alertText: "החזיקי את המכשיר זקוף לחלוטין, בניצב לקרקע (90°). אל תטי אותו בהתאם לקימור הבטן! מסך הטלפון צריך לפנות הצידה במדויק."
       },
       {
         id: 8,
         title: "שלב 4: התראות משוב בזמן אמת",
-        stageBadge: "📖 הדרכת AFV (חלק 2) • שלב 4 מתוך 4",
+        stageBadge: "📖 הדרכת AFV (חלק 2) • שלב 4 מתוך 5",
         description: "במהלך הסריקה, האפליקציה מנטרת את זווית המכשיר בזמן אמת. אם תטי את המכשיר יתר על המידה, תופיע התראה צהובה. יישרי את המכשיר בניצב לקרקע (90°) עד שהחיווי יהפוך לירוק.",
         yellowBanner: "⚠️ שמרי על המכשיר ישר (מוטה)",
         greenBanner: "✓ מעולה! המשיכי כך! (ניצב 90°)"
       },
       {
         id: 9,
+        title: "שלב 5: עיבוד והעלאת נתונים",
+        stageBadge: "📖 הדרכת AFV (חלק 2) • שלב 5 מתוך 5",
+        calloutText: "לאחר סיום הסריקה, אנא המתיני בסבלנות עד לסיום עיבוד הסרטונים והעלאתם המאובטחת לענן.",
+        pleaseWait: "אנא המתיני,",
+        uploading: "מעלה את נתוני הבדיקה...",
+        caution: "אין לסגור או למזער את האפליקציה במהלך ההעלאה",
+        processing: "מעבד 100%"
+      },
+      {
+        id: 10,
         title: "שאלון בדיקת הבנה",
-        stageBadge: "📝 שלב 2: שאלון הבנה (לפני סריקת התרגול)",
-        subtitle: "בואי נוודא שהנחיות סריקת מי השפיר (AFV) ברורות לפני שנתחיל בסריקת התרגול.",
+        stageBadge: "📝 שלב 2: שאלון הבנה",
+        subtitle: "בואי נוודא שהנחיות סריקת מי השפיר (AFV) ברורות לסיום ההדרכה.",
         q1: "1. כיצד חובה להחזיק את מתמר האולטרסאונד במהלך סריקת מי השפיר (AFV)?",
         q1_opts: [
           "מוטה בהתאם לקימור של הבטן",
@@ -414,40 +408,14 @@ const TRANSLATIONS = {
           "לא, יש להמתין לאישור סיום העלאת הסריקה (100%)"
         ],
         submitBtn: "בדיקת תשובות",
-        passedBtn: "✓ עברת בהצלחה! המשך לסריקת התרגול >",
-        passedFeedback: "מצוין! השלמת את כל ההנחיות ואת השאלון. השלב הבא הוא סריקת התרגול ל-AFV.",
+        passedBtn: "✓ עברת בהצלחה! לסיום ההדרכה >",
+        passedFeedback: "מצוין! ענית נכון על כל השאלות. לחצי למטה לסיום ההדרכה.",
         errorMsg: "חלק מהתשובות אינן נכונות. זכרי: יש להחזיק את המתמר בניצב (90°) לקרקע, להיעזר בכל הטיפים לשיפור הסריקה, ולהמתין לאישור סיום ההעלאה."
       },
       {
-        id: 10,
-        title: "סריקת תרגול (AFV Practice Scan)",
-        stageBadge: "🎯 שלב 3: סריקת תרגול AFV",
-        introTitle: "מוכנה לסריקת התרגול של חלק 2 (AFV)",
-        introSubtitle: "סיימת את כל ההנחיות ואת שאלון ההבנה! כעת נבצע סריקת תרגול קצרה לפני הבדיקה האמיתית.",
-        recap1: "הישעני לאחור כך שהבטן תהיה במנח אופקי",
-        recap2: "החזיקי את המתמר זקוף לחלוטין — בניצב (90°) לקרקע",
-        recap3: "מרחי ג'ל בנדיבות וסרקי כל אחד מ-4 הרבעים",
-        startPracticeBtn: "🎯 התחילי סריקת תרגול",
-        activeBanner: "✓ מעולה! המתמר מוחזק בניצב (90°) לקרקע",
-        activeStepLabel: "סריקת תרגול • רביע 1 מתוך 4",
-        greatPracticeTitle: "תרגול מצוין! הכל מוכן.",
-        greatPracticeSub: "שמרת על המתמר בניצב לקרקע ועל מגע רציף. כעת את מוכנה לסריקה האמיתית!",
-        readyRealScanBtn: "אני מוכנה לסריקה >",
-        repeatPracticeBtn: "↺ תרגול נוסף"
-      },
-      {
         id: 11,
-        title: "עיבוד והעלאת נתונים",
-        stageBadge: "☁️ שלב 4: העלאת נתוני הסריקה",
-        calloutText: "לאחר סיום הסריקה האמיתית, אנא המתיני בסבלנות עד לסיום עיבוד הסרטונים והעלאתם המאובטחת לענן.",
-        pleaseWait: "אנא המתיני,",
-        uploading: "מעלה את נתוני הבדיקה...",
-        caution: "אין לסגור או למזער את האפליקציה במהלך ההעלאה",
-        processing: "מעבד 100%"
-      },
-      {
-        id: 12,
         title: "כל הכבוד! השלמת את ההדרכה בהצלחה!",
+        stageBadge: "✅ שלב 3: סיום ההדרכה",
         badgeText: "כל הכבוד! השלמת את הדרכת ה-AFV בהצלחה!",
         logoText: "פולסנמור אולטרסאונד ביתי",
         closingText: "הנתונים שלך יישלחו בצורה מאובטחת וממתינים לפענוח על ידי הרופא/ה המטפל/ת. את יכולה להיות רגועה בידיעה שאת מוכנה לבצע את סריקת ה-AFV במדויק. תודה על שיתוף הפעולה במחקר.",
@@ -468,19 +436,17 @@ function useTraining() {
   return useContext(TrainingContext);
 }
 
-// 4-Stage Journey Progress Bar (Instructions -> Quiz -> Practice -> Scan)
+// 3-Stage Journey Progress Bar (1. Instructions [5..9] -> 2. Quiz [10] -> 3. Complete [11])
 function JourneyPhaseBar() {
   const { currentStep, t, goToSlide } = useTraining();
-  const labels = t.phaseLabels || ["1. Instructions", "2. Quiz", "3. Practice", "4. Scan"];
+  const labels = t.phaseLabels || ["1. Instructions", "2. Quiz", "3. Complete"];
 
-  // Map slide ID (5..12) to phase index (0: Instructions [5..8], 1: Quiz [9], 2: Practice [10], 3: Real Scan [11..12])
   let activePhase = 0;
-  if (currentStep <= 8) activePhase = 0;
-  else if (currentStep === 9) activePhase = 1;
-  else if (currentStep === 10) activePhase = 2;
-  else activePhase = 3;
+  if (currentStep <= 9) activePhase = 0;
+  else if (currentStep === 10) activePhase = 1;
+  else activePhase = 2;
 
-  const phaseStartSlides = [5, 9, 10, 11];
+  const phaseStartSlides = [5, 10, 11];
 
   return (
     <div className="pnm-journey-phase-bar">
@@ -638,7 +604,7 @@ function AppHeader() {
 }
 
 // ==========================================================================
-// 4. Slide Components (12-Slide Flow Fitted to Phone Dimensions)
+// 4. Slide Components (11-Slide Flow Fitted to Phone Dimensions)
 // ==========================================================================
 
 // --- Slide 1: Home Screen Intro with Callout pointing to START ---
@@ -978,7 +944,7 @@ function Slide4_Part1Scan({ slide }) {
   );
 }
 
-// --- Slide 5: AFV Step 1 of 4: Map the Area (4 Quadrants — Starts the AFV Training Section) ---
+// --- Slide 5: AFV Step 1 of 5: Map the Area (4 Quadrants — New Uploaded Belly Image) ---
 function Slide5_Step1MapArea({ slide }) {
   const { nextSlide, prevSlide, t } = useTraining();
 
@@ -995,12 +961,12 @@ function Slide5_Step1MapArea({ slide }) {
         {slide.subtitle}
       </p>
 
-      {/* Clean Cropped 4-Quadrant Map Image */}
-      <div className="pnm-quadrant-map-box" style={{ maxWidth: '220px', margin: '4px 0' }}>
+      {/* New Uploaded 4-Quadrant Belly Image */}
+      <div className="pnm-quadrant-map-box" style={{ maxWidth: '240px', margin: '4px 0', borderRadius: '16px', overflow: 'hidden', border: '2px solid #bae6fd' }}>
         <img 
-          src="assets/ronit_fixes/step2_quadrants_clean.png" 
-          alt="4-Quadrant Belly Demarcation"
-          onError={e => e.target.src = "assets/quadrant_map.jpg"}
+          src="assets/ronit_fixes/slide5_4q_belly.png" 
+          alt="4-Quadrant Belly Map"
+          style={{ width: '100%', height: 'auto', display: 'block' }}
         />
       </div>
 
@@ -1027,7 +993,7 @@ function Slide5_Step1MapArea({ slide }) {
   );
 }
 
-// --- Slide 6: AFV Step 2 of 4: Body Positioning & Gel ---
+// --- Slide 6: AFV Step 2 of 5: Body Positioning & Gel ---
 function Slide6_Step2PrepBody({ slide }) {
   const { nextSlide, prevSlide, t } = useTraining();
 
@@ -1079,7 +1045,7 @@ function Slide6_Step2PrepBody({ slide }) {
   );
 }
 
-// --- Slide 7: AFV Step 3 of 4: Device Positioning (Crucial 90° Perpendicular) ---
+// --- Slide 7: AFV Step 3 of 5: Device Positioning (Crucial 90° Perpendicular) ---
 function Slide7_Step3DevicePositioning({ slide }) {
   const { nextSlide, prevSlide, t } = useTraining();
 
@@ -1118,7 +1084,7 @@ function Slide7_Step3DevicePositioning({ slide }) {
   );
 }
 
-// --- Slide 8: AFV Step 4 of 4: Live Feedback Alerts ---
+// --- Slide 8: AFV Step 4 of 5: Live Feedback Alerts ---
 function Slide8_Step4LiveFeedbackAlerts({ slide }) {
   const { nextSlide, prevSlide, t } = useTraining();
 
@@ -1172,8 +1138,68 @@ function Slide8_Step4LiveFeedbackAlerts({ slide }) {
   );
 }
 
-// --- Slide 9: Knowledge Check Questionnaire ---
-function Slide9_Quiz({ slide }) {
+// --- Slide 9: AFV Step 5 of 5: Processing & Uploading (Placed BEFORE the Quiz) ---
+function Slide9_ProcessingUploading({ slide }) {
+  const { nextSlide, prevSlide, t } = useTraining();
+
+  return (
+    <div className="pnm-slide-card-inner" style={{ color: '#ffffff' }}>
+      <JourneyPhaseBar />
+
+      <span className="pnm-stage-context-badge instruction" style={{ marginBottom: '6px' }}>
+        {slide.stageBadge}
+      </span>
+
+      <h2 className="pnm-card-title" style={{ color: '#ffffff', marginBottom: '6px' }}>{slide.title}</h2>
+
+      <div style={{ textAlign: 'center', margin: '12px 0 12px 0' }}>
+        <h4 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>
+          {slide.pleaseWait}
+        </h4>
+        <p style={{ fontSize: '0.86rem', color: '#94a3b8' }}>
+          {slide.uploading}
+        </p>
+      </div>
+
+      <div style={{
+        background: '#1e293b',
+        borderRadius: '12px',
+        padding: '10px 14px',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '8px',
+        fontSize: '0.78rem',
+        color: '#cbd5e1',
+        marginBottom: '14px',
+        textAlign: 'start'
+      }}>
+        <span>🔒</span>
+        <span>{slide.caution}</span>
+      </div>
+
+      <div className="pnm-upload-progress-box" style={{ margin: '10px 0' }}>
+        <div className="pnm-upload-bar-track">
+          <div className="pnm-upload-bar-fill" style={{ width: '100%' }}></div>
+        </div>
+        <div style={{ textAlign: 'center', fontSize: '0.82rem', color: '#38bdf8', fontWeight: 700, marginTop: '6px' }}>
+          {slide.processing}
+        </div>
+      </div>
+
+      <div className="pnm-callout-bubble tail-top" style={{ color: '#1e293b', marginTop: '12px' }}>
+        {slide.calloutText}
+      </div>
+
+      <div className="pnm-phone-bottom-nav">
+        <button className="pnm-prev-btn" onClick={prevSlide}>{t.prevBtn}</button>
+        <button className="pnm-btn-pill-red" style={{ flex: 1 }} onClick={nextSlide}>{t.nextBtn}</button>
+      </div>
+    </div>
+  );
+}
+
+// --- Slide 10: Knowledge Check Questionnaire (After the Quiz, Training Ends on Slide 11) ---
+function Slide10_Quiz({ slide }) {
   const { nextSlide, prevSlide, soundEnabled, t } = useTraining();
   const [answers, setAnswers] = useState({ q1: null, q2: null, q3: null });
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -1306,218 +1332,8 @@ function Slide9_Quiz({ slide }) {
   );
 }
 
-// --- Slide 10: Start Practice Scan & Actual AFV Practice Scan ---
-function Slide10_AFVPracticeScan({ slide }) {
-  const { nextSlide, prevSlide, soundEnabled, t } = useTraining();
-  const [practiceStarted, setPracticeStarted] = useState(false);
-
-  const handleStartPractice = () => {
-    soundFX.playClick();
-    if (soundEnabled) soundFX.playSuccess();
-    setPracticeStarted(true);
-  };
-
-  return (
-    <div className="pnm-slide-card-inner">
-      <JourneyPhaseBar />
-
-      <span className="pnm-stage-context-badge practice">
-        {slide.stageBadge}
-      </span>
-
-      {!practiceStarted ? (
-        <div className="animate-fade-in" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <h2 className="pnm-card-title">{slide.introTitle}</h2>
-          <p className="pnm-card-subtitle" style={{ marginBottom: '10px', fontSize: '0.84rem' }}>
-            {slide.introSubtitle}
-          </p>
-
-          <div className="pnm-checklist-group" style={{ margin: '6px 0 14px 0', gap: '8px' }}>
-            <div className="pnm-check-item" style={{ padding: '10px 12px' }}>
-              <div className="pnm-check-icon-circle" style={{ width: '38px', height: '38px', minWidth: '38px' }}>
-                <span>🛋️</span>
-              </div>
-              <div className="pnm-check-text" style={{ fontSize: '0.84rem' }}>{slide.recap1}</div>
-            </div>
-
-            <div className="pnm-check-item" style={{ padding: '10px 12px' }}>
-              <div className="pnm-check-icon-circle" style={{ width: '38px', height: '38px', minWidth: '38px' }}>
-                <span>📐</span>
-                <span className="pnm-check-icon-badge">✓</span>
-              </div>
-              <div className="pnm-check-text" style={{ fontSize: '0.84rem' }}>{slide.recap2}</div>
-            </div>
-
-            <div className="pnm-check-item" style={{ padding: '10px 12px' }}>
-              <div className="pnm-check-icon-circle" style={{ width: '38px', height: '38px', minWidth: '38px' }}>
-                <span>💧</span>
-              </div>
-              <div className="pnm-check-text" style={{ fontSize: '0.84rem' }}>{slide.recap3}</div>
-            </div>
-          </div>
-
-          <button 
-            className="pnm-btn-pill-red w-full"
-            style={{ fontSize: '1.02rem', padding: '13px 24px', marginBottom: '8px' }}
-            onClick={handleStartPractice}
-          >
-            {slide.startPracticeBtn}
-          </button>
-        </div>
-      ) : (
-        <div className="animate-fade-in" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <div className="pnm-afv-practice-box">
-            <div className="pnm-alert-banner-top green-good" style={{ fontSize: '0.8rem', padding: '6px 10px' }}>
-              {slide.activeBanner}
-            </div>
-
-            <div className="pnm-afv-practice-top">
-              <img 
-                src="assets/ronit_fixes/feedback_tilt_good.png" 
-                alt="AFV Practice Scan Upright Probe"
-                style={{ objectFit: 'contain' }}
-              />
-              <svg className="pnm-abdomen-svg-overlay" viewBox="0 0 300 165">
-                <line x1="150" y1="15" x2="150" y2="150" stroke="rgba(56, 189, 248, 0.65)" strokeWidth="2" strokeDasharray="4,4" />
-                <line x1="65" y1="82" x2="235" y2="82" stroke="rgba(56, 189, 248, 0.65)" strokeWidth="2" strokeDasharray="4,4" />
-              </svg>
-              <div style={{
-                position: 'absolute',
-                bottom: '6px',
-                left: '8px',
-                right: '8px',
-                background: 'rgba(15, 23, 42, 0.8)',
-                color: '#e2e8f0',
-                fontSize: '0.7rem',
-                fontWeight: 700,
-                padding: '3px 8px',
-                borderRadius: '6px',
-                textAlign: 'center'
-              }}>
-                {slide.activeStepLabel}
-              </div>
-            </div>
-
-            <div className="pnm-afv-practice-bottom">
-              <img 
-                src="xxxx.jpg" 
-                alt="AFV Practice Ultrasound Feed"
-                onError={(e) => { e.target.src = "assets/xxxx.jpg"; }}
-              />
-            </div>
-          </div>
-
-          <div style={{
-            width: '100%',
-            background: '#f0fdf4',
-            border: '1.5px solid #86efac',
-            borderRadius: '14px',
-            padding: '10px 12px',
-            marginBottom: '8px',
-            textAlign: 'start'
-          }}>
-            <div style={{ fontWeight: 800, fontSize: '0.88rem', color: '#166534', marginBottom: '2px' }}>
-              ✓ {slide.greatPracticeTitle}
-            </div>
-            <div style={{ fontSize: '0.76rem', color: '#15803d', lineHeight: 1.35 }}>
-              {slide.greatPracticeSub}
-            </div>
-          </div>
-
-          <button 
-            className="pnm-btn-pill-red w-full"
-            onClick={nextSlide}
-          >
-            {slide.readyRealScanBtn}
-          </button>
-        </div>
-      )}
-
-      <div className="pnm-phone-bottom-nav">
-        <button
-          className="pnm-prev-btn"
-          onClick={() => {
-            if (practiceStarted) {
-              setPracticeStarted(false);
-            } else {
-              prevSlide();
-            }
-          }}
-        >
-          {practiceStarted ? slide.repeatPracticeBtn : t.prevBtn}
-        </button>
-        {!practiceStarted && (
-          <button className="pnm-btn-pill-red" style={{ flex: 1 }} onClick={handleStartPractice}>
-            {t.nextBtn}
-          </button>
-        )}
-      </div>
-    </div>
-  );
-}
-
-// --- Slide 11: Processing & Uploading ---
-function Slide11_ProcessingUploading({ slide }) {
-  const { nextSlide, prevSlide, t } = useTraining();
-
-  return (
-    <div className="pnm-slide-card-inner" style={{ color: '#ffffff' }}>
-      <JourneyPhaseBar />
-
-      <span className="pnm-stage-context-badge practice" style={{ marginBottom: '6px' }}>
-        {slide.stageBadge}
-      </span>
-
-      <h2 className="pnm-card-title" style={{ color: '#ffffff', marginBottom: '6px' }}>{slide.title}</h2>
-
-      <div style={{ textAlign: 'center', margin: '12px 0 12px 0' }}>
-        <h4 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>
-          {slide.pleaseWait}
-        </h4>
-        <p style={{ fontSize: '0.86rem', color: '#94a3b8' }}>
-          {slide.uploading}
-        </p>
-      </div>
-
-      <div style={{
-        background: '#1e293b',
-        borderRadius: '12px',
-        padding: '10px 14px',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '8px',
-        fontSize: '0.78rem',
-        color: '#cbd5e1',
-        marginBottom: '14px',
-        textAlign: 'start'
-      }}>
-        <span>🔒</span>
-        <span>{slide.caution}</span>
-      </div>
-
-      <div className="pnm-upload-progress-box" style={{ margin: '10px 0' }}>
-        <div className="pnm-upload-bar-track">
-          <div className="pnm-upload-bar-fill" style={{ width: '100%' }}></div>
-        </div>
-        <div style={{ textAlign: 'center', fontSize: '0.82rem', color: '#38bdf8', fontWeight: 700, marginTop: '6px' }}>
-          {slide.processing}
-        </div>
-      </div>
-
-      <div className="pnm-callout-bubble tail-top" style={{ color: '#1e293b', marginTop: '12px' }}>
-        {slide.calloutText}
-      </div>
-
-      <div className="pnm-phone-bottom-nav">
-        <button className="pnm-prev-btn" onClick={prevSlide}>{t.prevBtn}</button>
-        <button className="pnm-btn-pill-red" style={{ flex: 1 }} onClick={nextSlide}>{t.nextBtn}</button>
-      </div>
-    </div>
-  );
-}
-
-// --- Slide 12: Congratulations & Completion ---
-function Slide12_Completed({ slide }) {
+// --- Slide 11: Congratulations & Completion (Right After Quiz) ---
+function Slide11_Completed({ slide }) {
   const { goToSlide } = useTraining();
   const [isClosed, setIsClosed] = useState(false);
 
@@ -1544,7 +1360,11 @@ function Slide12_Completed({ slide }) {
     <div className="pnm-slide-card-inner">
       <JourneyPhaseBar />
 
-      <div className="pnm-callout-bubble" style={{ fontSize: '1.05rem', fontWeight: 800, marginTop: '14px' }}>
+      <span className="pnm-stage-context-badge practice">
+        {slide.stageBadge}
+      </span>
+
+      <div className="pnm-callout-bubble" style={{ fontSize: '1.05rem', fontWeight: 800, marginTop: '10px' }}>
         {slide.badgeText}
       </div>
 
@@ -1717,7 +1537,7 @@ function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [nextSlide, prevSlide, isEditorOpen, lang]);
 
-  // Render Slide Component based on slide ID (1..12)
+  // Render Slide Component based on slide ID (1..11)
   const renderSlideComponent = () => {
     switch (currentStep) {
       case 1:
@@ -1737,13 +1557,11 @@ function App() {
       case 8:
         return <Slide8_Step4LiveFeedbackAlerts slide={currentSlide} />;
       case 9:
-        return <Slide9_Quiz slide={currentSlide} />;
+        return <Slide9_ProcessingUploading slide={currentSlide} />;
       case 10:
-        return <Slide10_AFVPracticeScan slide={currentSlide} />;
+        return <Slide10_Quiz slide={currentSlide} />;
       case 11:
-        return <Slide11_ProcessingUploading slide={currentSlide} />;
-      case 12:
-        return <Slide12_Completed slide={currentSlide} />;
+        return <Slide11_Completed slide={currentSlide} />;
       default:
         return <Slide1_Home slide={currentSlide} />;
     }
@@ -1776,8 +1594,8 @@ function App() {
         <AppHeader />
         
         <main className="pnm-stage-wrapper">
-          {/* Centered Phone Container for All 12 Slides */}
-          <div className={`pnm-iphone-mockup ${currentStep === 11 ? 'dark-theme' : ''}`}>
+          {/* Centered Phone Container for All 11 Slides (Slide 9 is Dark Upload Screen) */}
+          <div className={`pnm-iphone-mockup ${currentStep === 9 ? 'dark-theme' : ''}`}>
             {/* Top Notch & Status Bar */}
             <div className="pnm-iphone-notch-bar">
               <span className="pnm-phone-clock">12:17</span>
