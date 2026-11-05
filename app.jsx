@@ -128,7 +128,7 @@ const TRANSLATIONS = {
         subtitle: "Baseline assessment of heartbeat & fetal movements",
         stageBadge: "📖 Part 1 • Introduction",
         description: "Right now, your baby is growing, moving, and getting stronger every day. This first part of the scan lets your care team check your baby's heartbeat and gentle movements. You'll see it all happen, live on your screen.",
-        image: "assets/pptx_slides/slide_2_img_1.png"
+        image: "assets/ronit_fixes/slide2_mom_clean.png"
       },
       {
         id: 3,
@@ -279,7 +279,7 @@ const TRANSLATIONS = {
         subtitle: "הערכת בסיס של דופק העובר ותנועותיו",
         stageBadge: "📖 חלק 1 • מבוא",
         description: "ממש עכשיו, התינוק שלך גדל, זז ומתחזק בכל יום. החלק הראשון של הבדיקה מאפשר לצוות הרפואי לבדוק את דופק העובר ואת תנועותיו העדינות. תוכלי לראות הכל קורה בשידור חי על גבי המסך שלך.",
-        image: "assets/pptx_slides/slide_2_img_1.png"
+        image: "assets/ronit_fixes/slide2_mom_clean.png"
       },
       {
         id: 3,
