@@ -318,8 +318,8 @@ body {
 .pnm-iphone-mockup {
   width: 390px;
   max-width: 100%;
-  height: 800px;
-  max-height: calc(100vh - 130px);
+  height: 670px;
+  max-height: calc(100vh - 165px);
   background: var(--phone-bezel);
   border: 4px solid var(--phone-border);
   border-radius: 46px;
@@ -2441,6 +2441,29 @@ body {
   width: 100%;
 }
 
+/* External Bottom Navigation Bar (Outside the Smartphone Screen) */
+.pnm-external-bottom-bar {
+  width: 390px;
+  max-width: 100%;
+  margin: 10px auto 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  border: 1px solid #e2e8f0;
+  border-radius: 9999px;
+  padding: 8px 10px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  z-index: 60;
+}
+
+.pnm-external-bottom-bar .pnm-prev-btn:disabled {
+  opacity: 0.38;
+  cursor: default;
+}
+
 /* ==========================================================================
    Hebrew Language & RTL Styling Support
    ========================================================================== */
@@ -2514,7 +2537,8 @@ body {
   }
 
   .pnm-stage-wrapper {
-    padding: 0;
+    padding: 0 0 74px 0;
+    justify-content: flex-start;
   }
 
   .pnm-iphone-mockup {
@@ -2522,18 +2546,30 @@ body {
     border-radius: 0;
     box-shadow: none;
     width: 100vw;
-    height: calc(100vh - 48px);
-    height: calc(100dvh - 48px);
+    height: auto;
+    flex: 1;
     max-height: unset;
     margin: 0;
   }
 
-  .pnm-iphone-notch-bar {
-    display: none; /* Let native phone status bar show */
+  .pnm-iphone-notch-bar,
+  .pnm-phone-home-indicator {
+    display: none;
   }
 
-  .pnm-phone-home-indicator {
-    padding-bottom: calc(4px + env(safe-area-inset-bottom, 0px));
+  .pnm-external-bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    border-radius: 0;
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px)) 16px;
+    box-shadow: 0 -4px 16px rgba(15, 23, 42, 0.06);
   }
 
   .pnm-dots-stepper {
