@@ -38,7 +38,7 @@
  * - Fully Bilingual (English & Hebrew) + Mobile-First Responsive Layout
  */
 
-const { useState, useEffect, useCallback, createContext, useContext } = React;
+const { useState, useCallback, createContext, useContext } = React;
 
 // ==========================================================================
 // 1. Audio Synthesizer (Web Audio API)
@@ -100,8 +100,6 @@ const TRANSLATIONS = {
     rev2: {
       avatarName: "Maya",
       avatarRole: "Ultrasound Guide",
-      listenBtn: "🔊 Listen",
-      stopListenBtn: "⏹️ Stop",
       repeatGuideBtn: "🔄 Repeat",
       closeGuideBtn: "✕ Finish & Close",
       closedMessage: "Training completed. You may now close this window.",
@@ -110,20 +108,17 @@ const TRANSLATIONS = {
           id: 1,
           badge: "1 / 5 • Overview",
           title: "A Short Guide to Your Home Scan",
-          bubble: "“Let’s walk through the scan together. It has two parts: checking your baby’s heartbeat and movements, and assessing the amount of amniotic fluid.”",
-          script: "Let’s walk through the scan together. It has two parts: checking your baby’s heartbeat and movements, and assessing the amount of amniotic fluid. In each part, you’ll watch a short tutorial, practice, and then continue with the scan.",
+          bubble: "Let’s walk through the scan together. It has two parts: checking your baby’s heartbeat and movements, and assessing the amount of amniotic fluid.",
           part1Title: "Part 1: Heartbeat & Movements",
           part1Desc: "Checks your baby's heartbeat and movements.",
           part2Title: "Part 2: Amniotic Fluid",
-          part2Desc: "Assesses amniotic fluid across 4 belly quarters.",
-          chips: ["🎬 Watch Video", "🎯 Practice", "📱 Scan"]
+          part2Desc: "Assesses amniotic fluid across 4 belly quarters."
         },
         {
           id: 2,
           badge: "2 / 5 • Preparation",
           title: "Before You Begin",
-          bubble: "“Before you begin, make sure your phone is charged. Apply a generous amount of gel to your abdomen. Lean back and get comfortable.”",
-          script: "Before you begin, make sure your phone is charged. Apply a generous amount of gel to your abdomen. Lean back and get comfortable.",
+          bubble: "Before you begin, make sure your phone is charged. Apply a generous amount of gel to your abdomen. Lean back and get comfortable.",
           items: [
             { icon: "🔋", title: "Charge your phone", desc: "Make sure your phone battery is charged before starting." },
             { icon: "💧", title: "Apply generous gel", desc: "Apply plenty of ultrasound gel to your abdomen." },
@@ -134,16 +129,14 @@ const TRANSLATIONS = {
           id: 3,
           badge: "3 / 5 • Part One",
           title: "Part 1: Heartbeat & Movements",
-          bubble: "“Move the probe slowly, exactly as demonstrated in the app. If you see HOLD, keep the probe in the same spot for several seconds.”",
-          script: "In the first part, move the probe slowly, exactly as demonstrated in the app. If you see a HOLD message, hold the device at the same location for several seconds as demonstrated in the video. This will allow the medical team to check your baby’s heartbeat and movements.",
+          bubble: "Move the probe slowly, exactly as demonstrated in the app. If you see HOLD, keep the probe in the same spot for several seconds.",
           holdBanner: "✋ When you see HOLD — pause in place for a few seconds"
         },
         {
           id: 4,
           badge: "4 / 5 • Amniotic Fluid",
           title: "During the Amniotic Fluid Scan",
-          bubble: "“Lean back so your abdomen is as horizontal as possible. Hold the probe upright, perpendicular to the floor — do not tilt it with the curve of your belly.”",
-          script: "Now let’s move on to the amniotic fluid scan. Lean back so that your abdomen is as horizontal as possible. Hold the probe upright, perpendicular to the floor, without tilting it to follow the curve of your abdomen.",
+          bubble: "Lean back so your abdomen is as horizontal as possible. Hold the probe upright, perpendicular to the floor — do not tilt it with the curve of your belly.",
           tag1: "🛋️ Horizontal Abdomen",
           tag2: "📐 90° Upright to Floor"
         },
@@ -151,8 +144,7 @@ const TRANSLATIONS = {
           id: 5,
           badge: "5 / 5 • 4 Quadrants",
           title: "Scan All 4 Quadrants",
-          bubble: "“Start in the lower right quadrant and scan slowly from the side toward the center (5–10 seconds each). Follow the demonstration in the app — thank you!”",
-          script: "Start in the lower right quadrant and scan slowly from the side toward the center of your abdomen. Each movement takes five to ten seconds. Continue in the same way through all four quadrants, following the instructions in the app. Thank you for your cooperation.",
+          bubble: "Start in the lower right quadrant and scan slowly from the side toward the center (5–10 seconds each). Follow the demonstration in the app — thank you!",
           tag1: "⏱️ 5–10 sec inward per quadrant"
         }
       ]
@@ -166,8 +158,6 @@ const TRANSLATIONS = {
     rev2: {
       avatarName: "מאיה",
       avatarRole: "מדריכת אולטרסאונד",
-      listenBtn: "🔊 הקראה",
-      stopListenBtn: "⏹️ עצור",
       repeatGuideBtn: "🔄 התחלה מחדש",
       closeGuideBtn: "✕ סיום וסגירה",
       closedMessage: "ההדרכה הסתיימה. ניתן לסגור חלון זה.",
@@ -176,20 +166,17 @@ const TRANSLATIONS = {
           id: 1,
           badge: "1 / 5 • פתיחה",
           title: "מדריך קצר לסריקה הביתית",
-          bubble: "״בואי נעבור יחד על הסריקה. היא כוללת שני חלקים: בדיקת הדופק והתנועות של העובר, והערכת כמות מי השפיר.״",
-          script: "בואי נעבור יחד על הסריקה. היא כוללת שני חלקים: בדיקת הדופק והתנועות של העובר, והערכת כמות מי השפיר. בכל חלק תצפי בהדרכה קצרה, תתרגלי, ואז תמשיכי לסריקה.",
+          bubble: "בואי נעבור יחד על הסריקה. היא כוללת שני חלקים: בדיקת הדופק והתנועות של העובר, והערכת כמות מי השפיר.",
           part1Title: "חלק 1: דופק ותנועות העובר",
           part1Desc: "בדיקת הדופק והתנועות העדינות של העובר.",
           part2Title: "חלק 2: כמות מי השפיר",
-          part2Desc: "הערכת מי השפיר בארבעת רבעי הבטן.",
-          chips: ["🎬 סרטון קצר", "🎯 תרגול", "📱 סריקה"]
+          part2Desc: "הערכת מי השפיר בארבעת רבעי הבטן."
         },
         {
           id: 2,
           badge: "2 / 5 • הכנה",
           title: "לפני שתתחילי",
-          bubble: "״לפני שתתחילי, ודאי שהטלפון טעון. מרחי כמות נדיבה של ג׳ל על הבטן. הישעני לאחור והתמקמי בנוחות.״",
-          script: "לפני שתתחילי, ודאי שהטלפון טעון. מרחי כמות נדיבה של ג׳ל על הבטן. הישעני לאחור והתמקמי בנוחות.",
+          bubble: "לפני שתתחילי, ודאי שהטלפון טעון. מרחי כמות נדיבה של ג׳ל על הבטן. הישעני לאחור והתמקמי בנוחות.",
           items: [
             { icon: "🔋", title: "ודאי שהטלפון טעון", desc: "לפני שתתחילי, ודאי שסוללת הטלפון טעונה." },
             { icon: "💧", title: "מרחי ג׳ל בנדיבות", desc: "מרחי כמות נדיבה של ג׳ל על הבטן." },
@@ -200,16 +187,14 @@ const TRANSLATIONS = {
           id: 3,
           badge: "3 / 5 • החלק הראשון",
           title: "החלק הראשון: דופק ותנועות",
-          bubble: "״הזיזי את המתמר באיטיות כפי שמודגם באפליקציה. אם תראי HOLD, עצרי את המתמר לכמה שניות באותו מקום.״",
-          script: "בחלק הראשון, הזיזי את המתמר באיטיות, בדיוק כפי שמודגם באפליקציה. אם תראי HOLD, יש לעצור את המתמר לכמה שניות במקום המתואר בסרטון. כך יוכל הצוות הרפואי לבדוק את הדופק ואת תנועות העובר.",
+          bubble: "הזיזי את המתמר באיטיות כפי שמודגם באפליקציה. אם תראי HOLD, עצרי את המתמר לכמה שניות באותו מקום.",
           holdBanner: "✋ כשמופיע HOLD — עצרי את המתמר במקומו לכמה שניות"
         },
         {
           id: 4,
           badge: "4 / 5 • מי השפיר",
           title: "בסריקת מי השפיר: תנוחה וזווית",
-          bubble: "״הישעני לאחור כך שהבטן תהיה אופקית ככל האפשר. החזיקי את המתמר זקוף, בניצב לרצפה, בלי להטות אותו לפי קימור הבטן.״",
-          script: "כעת נעבור למי השפיר. הישעני לאחור כך שהבטן תהיה אופקית ככל האפשר. החזיקי את המתמר זקוף, בניצב לרצפה, בלי להטות אותו לפי קימור הבטן.",
+          bubble: "הישעני לאחור כך שהבטן תהיה אופקית ככל האפשר. החזיקי את המתמר זקוף, בניצב לרצפה, בלי להטות אותו לפי קימור הבטן.",
           tag1: "🛋️ בטן אופקית",
           tag2: "📐 מתמר זקוף בניצב לרצפה"
         },
@@ -217,8 +202,7 @@ const TRANSLATIONS = {
           id: 5,
           badge: "5 / 5 • ארבעת הרבעים",
           title: "סריקת 4 רבעי הבטן",
-          bubble: "״התחילי ברביע הימני התחתון, וסרקי באיטיות מהצד לכיוון מרכז הבטן (5–10 שניות בכל רביע). עקבי אחר ההדגמה באפליקציה — תודה!״",
-          script: "התחילי ברביע הימני התחתון, וסרקי באיטיות מהצד לכיוון מרכז הבטן. כל תנועה נמשכת חמש עד עשר שניות. המשיכי כך בכל ארבעת הרבעים, לפי ההנחיות באפליקציה. תודה על שיתוף הפעולה.",
+          bubble: "התחילי ברביע הימני התחתון, וסרקי באיטיות מהצד לכיוון מרכז הבטן (5–10 שניות בכל רביע). עקבי אחר ההדגמה באפליקציה — תודה!",
           tag1: "⏱️ 5–10 שניות מהצד למרכז בכל רביע"
         }
       ]
@@ -235,53 +219,17 @@ function useTraining() {
   return useContext(TrainingContext);
 }
 
-// Friendly Clinical Ultrasound Guide SVG Avatar + Speech Bubble + Optional TTS Voice
-function GuideAvatar({ bubbleText, scriptText }) {
-  const { t, lang } = useTraining();
-  const [isSpeaking, setIsSpeaking] = useState(false);
-
-  useEffect(() => {
-    if (window.speechSynthesis) {
-      window.speechSynthesis.cancel();
-    }
-    setIsSpeaking(false);
-    return () => {
-      if (window.speechSynthesis) {
-        window.speechSynthesis.cancel();
-      }
-    };
-  }, [scriptText, lang]);
-
-  const handleToggleSpeech = () => {
-    soundFX.playClick();
-    if (!window.speechSynthesis) return;
-    if (isSpeaking) {
-      window.speechSynthesis.cancel();
-      setIsSpeaking(false);
-      return;
-    }
-    try {
-      window.speechSynthesis.cancel();
-      const cleanText = (scriptText || bubbleText || '').replace(/[“”״"]/g, '');
-      const utter = new SpeechSynthesisUtterance(cleanText);
-      utter.lang = lang === 'he' ? 'he-IL' : 'en-US';
-      utter.rate = 0.96;
-      utter.onend = () => setIsSpeaking(false);
-      utter.onerror = () => setIsSpeaking(false);
-      setIsSpeaking(true);
-      window.speechSynthesis.speak(utter);
-    } catch (e) {
-      setIsSpeaking(false);
-    }
-  };
+// Friendly Clinical Ultrasound Guide SVG Avatar + Speech Bubble (No Listen Button, No Quotes)
+function GuideAvatar({ bubbleText }) {
+  const { t } = useTraining();
 
   return (
     <div className="pnm-avatar-light-card">
       {/* Light & Airy Avatar Top Row */}
       <div className="pnm-avatar-light-top">
         <div className="pnm-avatar-Identity">
-          <div className={`pnm-avatar-circle-wrap ${isSpeaking ? 'speaking' : ''}`}>
-            <svg viewBox="0 0 100 100" width="50" height="50">
+          <div className="pnm-avatar-circle-wrap">
+            <svg viewBox="0 0 100 100" width="52" height="52">
               <circle cx="50" cy="50" r="48" fill="#e0f2fe" />
               <path d="M22 52 C22 25, 78 25, 78 52 L82 85 L18 85 Z" fill="#4a2e1b" />
               <path d="M16 98 C18 74, 82 74, 84 98 Z" fill="#0284c7" />
@@ -305,14 +253,6 @@ function GuideAvatar({ bubbleText, scriptText }) {
             <span className="pnm-avatar-role">{t.rev2.avatarRole}</span>
           </div>
         </div>
-
-        <button
-          className={`pnm-avatar-voice-btn ${isSpeaking ? 'speaking' : ''}`}
-          onClick={handleToggleSpeech}
-          title="Listen to guide narration"
-        >
-          {isSpeaking ? t.rev2.stopListenBtn : t.rev2.listenBtn}
-        </button>
       </div>
 
       {/* Concise, Airy Speech Bubble */}
@@ -452,7 +392,7 @@ function Rev2AvatarGuide() {
   if (isClosed) {
     return (
       <div className="pnm-slide-card-inner" style={{ justifyContent: 'center', minHeight: '360px', gap: '16px' }}>
-        <div className="pnm-callout-bubble" style={{ fontSize: '1.05rem', fontWeight: 700 }}>
+        <div className="pnm-callout-bubble" style={{ fontSize: '1.15rem', fontWeight: 700 }}>
           {t.rev2.closedMessage}
         </div>
       </div>
@@ -464,23 +404,23 @@ function Rev2AvatarGuide() {
       {/* Top Minimal Header & Title */}
       <div style={{ width: '100%' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
-          <span className="pnm-stage-context-badge instruction" style={{ marginBottom: 0 }}>
+          <span className="pnm-stage-context-badge instruction" style={{ marginBottom: 0, fontSize: '0.84rem' }}>
             {page.badge}
           </span>
-          <span dir="ltr" style={{ fontSize: '0.76rem', fontWeight: 800, color: '#94a3b8' }}>
+          <span dir="ltr" style={{ fontSize: '0.86rem', fontWeight: 800, color: '#94a3b8' }}>
             {`${rev2Step} / 5`}
           </span>
         </div>
 
-        <h2 className="pnm-card-title" style={{ fontSize: '1.22rem', marginBottom: '10px' }}>
+        <h2 className="pnm-card-title" style={{ fontSize: '1.38rem', marginBottom: '12px' }}>
           {page.title}
         </h2>
 
         {/* Light Virtual Guide Avatar + Concise Speech Bubble */}
-        <GuideAvatar bubbleText={page.bubble} scriptText={page.script} />
+        <GuideAvatar bubbleText={page.bubble} />
       </div>
 
-      {/* PAGE 1: Two Parts + 3 Light Flow Chips */}
+      {/* PAGE 1: Two Parts Only (No 3 Bottom Chips) */}
       {rev2Step === 1 && (
         <div className="pnm-light-cards-stack">
           <div className="pnm-light-pill-card">
@@ -497,12 +437,6 @@ function Rev2AvatarGuide() {
               <strong>{page.part2Title}</strong>
               <span>{page.part2Desc}</span>
             </div>
-          </div>
-
-          <div className="pnm-light-flow-chips">
-            {page.chips.map((chip, idx) => (
-              <span key={idx} className="pnm-light-chip">{chip}</span>
-            ))}
           </div>
         </div>
       )}
