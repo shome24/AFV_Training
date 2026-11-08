@@ -423,14 +423,14 @@ function Rev2AvatarGuide() {
         </div>
       )}
 
-      {/* PAGE 3: Part 1 — 1 Clean Illustration + Soft HOLD Banner */}
+      {/* PAGE 3: Part 1 — Guided App Illustration + Soft HOLD Banner */}
       {rev2Step === 3 && (
         <div className="pnm-light-cards-stack" style={{ alignItems: 'center' }}>
-          <div className="pnm-light-hero-visual">
+          <div className="pnm-light-hero-visual" style={{ maxWidth: '260px' }}>
             <img
-              src="assets/ronit_fixes/slide2_mom_clean.png"
-              alt="Part 1 scan"
-              onError={e => { e.target.src = "assets/pptx_slides/slide_2_img_1.png"; }}
+              src="assets/ronit_fixes/slide3_app_guided.png"
+              alt="Guided app scan screen"
+              style={{ height: '235px', objectFit: 'contain' }}
             />
           </div>
 
