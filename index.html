@@ -144,106 +144,76 @@ const TRANSLATIONS = {
     langName: "עברית",
     phaseLabels: ["1. Instructions", "2. Quiz", "3. Complete"],
     selector: {
-      badge: "Pulsenmore ES • AFV Home Scan Training",
-      title: "Choose Your Training Experience",
-      subtitle: "Select between the full step-by-step app walkthrough or the short avatar-guided overview:",
+      badge: "Pulsenmore ES • Home Scan Guide",
+      title: "Select Guide Version",
+      subtitle: "Choose between the detailed app walkthrough or the light 5-page overview:",
       rev1Pill: "Revision 1.0 • 11 Slides",
-      rev1Title: "Full Interactive App Training",
-      rev1Desc: "Detailed step-by-step walkthrough of the mobile app screens, Part 1 & Part 2 AFV instructions, upload screen, and knowledge check quiz.",
-      rev1Btn: "Open Revision 1.0 (Full Training) >",
-      rev2Pill: "Revision 2.0 • 5 Pages (NEW)",
-      rev2Title: "Short Avatar-Guided Home Scan Guide",
-      rev2Desc: "High-level visual summary guided by a virtual instructor avatar covering only the most important points in 5 quick pages.",
-      rev2Btn: "Open Revision 2.0 (Avatar Guide) >"
+      rev1Title: "Detailed App Walkthrough",
+      rev1Desc: "Step-by-step mobile app screens, AFV instructions, and quiz.",
+      rev1Btn: "Open Revision 1.0 >",
+      rev2Pill: "Revision 2.0 • 5 Pages",
+      rev2Title: "Short Avatar-Guided Overview",
+      rev2Desc: "Light, high-level summary of the key scan steps with a virtual guide.",
+      rev2Btn: "Open Revision 2.0 >"
     },
     rev2: {
-      avatarName: "Maya • Ultrasound Guide",
-      avatarRole: "Virtual Clinical Instructor",
+      avatarName: "Maya",
+      avatarRole: "Ultrasound Guide",
       listenBtn: "🔊 Listen",
       stopListenBtn: "⏹️ Stop",
-      switchRev1Btn: "📱 Switch to Full Training (Rev 1.0)",
-      repeatGuideBtn: "🔄 Repeat Short Guide",
-      closeGuideBtn: "✕ Close Training",
+      switchRev1Btn: "Full App Guide (1.0)",
+      repeatGuideBtn: "🔄 Repeat Guide",
+      closeGuideBtn: "✕ Finish & Close",
       closedMessage: "Training completed. You may now close this window.",
       pages: [
         {
           id: 1,
-          badge: "Page 1 of 5 • Opening",
+          badge: "1 / 5 • Overview",
           title: "A Short Guide to Your Home Scan",
-          script: "“Let’s walk through the scan together. It has two parts: checking your baby’s heartbeat and movements, and assessing the amount of amniotic fluid. In each part, you’ll watch a short tutorial, practice, and then continue with the scan.”",
-          summaryTitle: "How Your Home Scan Works:",
+          bubble: "“Let’s walk through the scan together. It has two parts: checking your baby’s heartbeat and movements, and assessing the amount of amniotic fluid.”",
+          script: "Let’s walk through the scan together. It has two parts: checking your baby’s heartbeat and movements, and assessing the amount of amniotic fluid. In each part, you’ll watch a short tutorial, practice, and then continue with the scan.",
           part1Title: "Part 1: Heartbeat & Movements",
-          part1Desc: "Checks your baby's heartbeat and gentle movements live on screen.",
-          part2Title: "Part 2: Amniotic Fluid (AFV)",
-          part2Desc: "Measures the amniotic fluid pockets across 4 quarters of your abdomen.",
-          flowTitle: "In Each Part You Will:",
-          flowSteps: [
-            "1. Watch a short tutorial video",
-            "2. Perform a quick practice scan",
-            "3. Continue scanning with app guidance"
-          ]
+          part1Desc: "Checks your baby's heartbeat and movements.",
+          part2Title: "Part 2: Amniotic Fluid",
+          part2Desc: "Assesses amniotic fluid across 4 belly quarters.",
+          chips: ["🎬 Watch Video", "🎯 Practice", "📱 Scan"]
         },
         {
           id: 2,
-          badge: "Page 2 of 5 • Preparation",
+          badge: "2 / 5 • Preparation",
           title: "Before You Begin",
-          script: "“Before you begin, make sure your phone is charged. Apply a generous amount of gel to your abdomen. Lean back and get comfortable.”",
-          checklistTitle: "Essential Preparation Checklist:",
+          bubble: "“Before you begin, make sure your phone is charged. Apply a generous amount of gel to your abdomen. Lean back and get comfortable.”",
+          script: "Before you begin, make sure your phone is charged. Apply a generous amount of gel to your abdomen. Lean back and get comfortable.",
           items: [
-            "Before you begin, make sure your phone is charged.",
-            "Apply a generous amount of gel to your abdomen.",
-            "Lean back and get comfortable.",
-            "Move and stop the probe slowly, as demonstrated in the app."
-          ],
-          cap1: "Lean back comfortably",
-          cap2: "Apply generous gel"
+            { icon: "🔋", title: "Charge your phone", desc: "Make sure your phone battery is charged before starting." },
+            { icon: "💧", title: "Apply generous gel", desc: "Apply plenty of ultrasound gel to your abdomen." },
+            { icon: "🛋️", title: "Lean back comfortably", desc: "Get comfortable and move the probe slowly as shown." }
+          ]
         },
         {
           id: 3,
-          badge: "Page 3 of 5 • Part One",
+          badge: "3 / 5 • Part One",
           title: "Part 1: Heartbeat & Movements",
-          script: "“In the first part, move the probe slowly, exactly as demonstrated in the app. If you see a HOLD message, hold the device at the same location for several seconds as demonstrated in the video. This will allow the medical team to check your baby’s heartbeat and movements.”",
-          holdAlert: "✋ If you see HOLD: Hold the probe steady in place for several seconds!",
-          points: [
-            "Move the probe slowly, following the exact pace and direction shown in the app.",
-            "Maintain continuous, gentle contact with your skin.",
-            "Pause and hold still whenever HOLD appears so the care team can assess heartbeat and movements."
-          ],
-          cap1: "Follow the app demonstration",
-          cap2: "Live ultrasound scan view"
+          bubble: "“Move the probe slowly, exactly as demonstrated in the app. If you see HOLD, keep the probe in the same spot for several seconds.”",
+          script: "In the first part, move the probe slowly, exactly as demonstrated in the app. If you see a HOLD message, hold the device at the same location for several seconds as demonstrated in the video. This will allow the medical team to check your baby’s heartbeat and movements.",
+          holdBanner: "✋ When you see HOLD — pause in place for a few seconds"
         },
         {
           id: 4,
-          badge: "Page 4 of 5 • Amniotic Fluid",
+          badge: "4 / 5 • Amniotic Fluid",
           title: "During the Amniotic Fluid Scan",
-          script: "“Now let’s move on to the amniotic fluid scan. Lean back so that your abdomen is as horizontal as possible. Hold the probe upright, perpendicular to the floor, without tilting it to follow the curve of your abdomen. Start in the lower right quadrant and scan slowly from the side toward the center of your abdomen. Each movement takes five to ten seconds. Continue in the same way through all four quadrants, following the instructions in the app.”",
-          rulesTitle: "3 Golden Rules for the AFV Scan:",
-          rules: [
-            "Lean back so that your abdomen is as horizontal as possible.",
-            "Hold the probe upright, perpendicular (90°) to the floor, rather than following the curve of your abdomen.",
-            "Scan all four quadrants (starting in the lower right quadrant) slowly from the outer side toward the center (5–10 seconds per sweep)."
-          ],
-          cap1: "Hold upright (90° to floor)",
-          cap2: "Scan all 4 quadrants (5–10s)"
+          bubble: "“Lean back so your abdomen is as horizontal as possible. Hold the probe upright, perpendicular to the floor — do not tilt it with the curve of your belly.”",
+          script: "Now let’s move on to the amniotic fluid scan. Lean back so that your abdomen is as horizontal as possible. Hold the probe upright, perpendicular to the floor, without tilting it to follow the curve of your abdomen.",
+          tag1: "🛋️ Horizontal Abdomen",
+          tag2: "📐 90° Upright to Floor"
         },
         {
           id: 5,
-          badge: "Page 5 of 5 • Closing & Summary",
-          title: "Ready for Your Home Scan!",
-          script: "“Throughout the scan, follow the demonstration in the app. Thank you for your cooperation.”",
-          box1Title: "📋 Before You Begin:",
-          box1Items: [
-            "1. Make sure your phone is charged.",
-            "2. Apply a generous amount of gel to your abdomen.",
-            "3. Lean back and get comfortable.",
-            "4. Move and stop the probe slowly, as demonstrated in the app."
-          ],
-          box2Title: "📐 During the Amniotic Fluid Scan:",
-          box2Items: [
-            "1. Lean back so that your abdomen is as horizontal as possible.",
-            "2. Hold the probe upright, perpendicular to the floor (do not tilt with your abdomen).",
-            "3. Scan all four quadrants of your abdomen according to the instructions in the app."
-          ]
+          badge: "5 / 5 • 4 Quadrants",
+          title: "Scan All 4 Quadrants",
+          bubble: "“Start in the lower right quadrant and scan slowly from the side toward the center (5–10 seconds each). Follow the demonstration in the app — thank you!”",
+          script: "Start in the lower right quadrant and scan slowly from the side toward the center of your abdomen. Each movement takes five to ten seconds. Continue in the same way through all four quadrants, following the instructions in the app. Thank you for your cooperation.",
+          tag1: "⏱️ 5–10 sec inward per quadrant"
         }
       ]
     },
@@ -400,106 +370,76 @@ const TRANSLATIONS = {
     langName: "English",
     phaseLabels: ["1. הדרכה", "2. שאלון", "3. סיום"],
     selector: {
-      badge: "Pulsenmore ES • הדרכת סריקה ביתית AFV",
-      title: "בחרי את מסלול ההדרכה",
-      subtitle: "ניתן לבחור בין ההדרכה המלאה על מסכי האפליקציה לבין מדריך קצר ומונחה עם אווטאר:",
+      badge: "Pulsenmore ES • מדריך סריקה ביתית",
+      title: "בחרי גרסת הדרכה",
+      subtitle: "בחרי בין ההדרכה המפורטת על האפליקציה לבין המדריך הקצר ב-5 עמודים:",
       rev1Pill: "גרסה 1.0 • 11 שקפים",
-      rev1Title: "הדרכת אפליקציה מלאה ומפורטת",
-      rev1Desc: "הדרכה מפורטת צעד-אחר-צעד על מסכי האפליקציה, הנחיות חלק 1 וחלק 2 (מי שפיר), העלאת נתונים ושאלון הבנה.",
-      rev1Btn: "כניסה לגרסה 1.0 (הדרכה מלאה) >",
-      rev2Pill: "גרסה 2.0 • 5 עמודים (חדש)",
-      rev2Title: "מדריך קצר לסריקה הביתית (עם אווטאר)",
-      rev2Desc: "סקירה קצרה, ברורה וממוקדת בליווי מדריכה וירטואלית (אווטאר) המציגה את ההנחיות החשובות ביותר ב-5 עמודים.",
-      rev2Btn: "כניסה לגרסה 2.0 (מדריך קצר עם אווטאר) >"
+      rev1Title: "הדרכת אפליקציה מפורטת",
+      rev1Desc: "מעבר שלב-אחר-שלב על מסכי האפליקציה, הנחיות AFV ושאלון.",
+      rev1Btn: "כניסה לגרסה 1.0 >",
+      rev2Pill: "גרסה 2.0 • 5 עמודים",
+      rev2Title: "מדריך קצר עם אווטאר",
+      rev2Desc: "סקירה קלילה וברורה של הדגשים החשובים בליווי מדריכה וירטואלית.",
+      rev2Btn: "כניסה לגרסה 2.0 >"
     },
     rev2: {
-      avatarName: "מאיה • מדריכת אולטרסאונד",
-      avatarRole: "מדריכה קלינית וירטואלית",
+      avatarName: "מאיה",
+      avatarRole: "מדריכת אולטרסאונד",
       listenBtn: "🔊 הקראה",
       stopListenBtn: "⏹️ עצור",
-      switchRev1Btn: "📱 מעבר להדרכה המלאה (גרסה 1.0)",
-      repeatGuideBtn: "🔄 צפייה מחדש במדריך הקצר",
-      closeGuideBtn: "✕ סגירת הדרכה",
+      switchRev1Btn: "להדרכה המלאה (1.0)",
+      repeatGuideBtn: "🔄 צפייה מחדש",
+      closeGuideBtn: "✕ סיום וסגירה",
       closedMessage: "ההדרכה הסתיימה. ניתן לסגור חלון זה.",
       pages: [
         {
           id: 1,
-          badge: "עמוד 1 מתוך 5 • פתיחה",
+          badge: "1 / 5 • פתיחה",
           title: "מדריך קצר לסריקה הביתית",
-          script: "״בואי נעבור יחד על הסריקה. היא כוללת שני חלקים: בדיקת הדופק והתנועות של העובר, והערכת כמות מי השפיר. בכל חלק תצפי בהדרכה קצרה, תתרגלי, ואז תמשיכי לסריקה.״",
-          summaryTitle: "מבנה הסריקה הביתית:",
-          part1Title: "חלק 1: בדיקת דופק ותנועות העובר",
-          part1Desc: "בדיקת הדופק והתנועות של העובר על ידי הצוות הרפואי.",
-          part2Title: "חלק 2: הערכת כמות מי השפיר (AFV)",
-          part2Desc: "מדידת כיסי מי השפיר בארבעת רבעי הבטן.",
-          flowTitle: "בכל חלק תבצעי 3 שלבים:",
-          flowSteps: [
-            "1. צפייה בסרטון הדרכה קצר",
-            "2. ביצוע סריקת תרגול קצרה",
-            "3. המשך לסריקות לפי ההנחיות באפליקציה"
-          ]
+          bubble: "״בואי נעבור יחד על הסריקה. היא כוללת שני חלקים: בדיקת הדופק והתנועות של העובר, והערכת כמות מי השפיר.״",
+          script: "בואי נעבור יחד על הסריקה. היא כוללת שני חלקים: בדיקת הדופק והתנועות של העובר, והערכת כמות מי השפיר. בכל חלק תצפי בהדרכה קצרה, תתרגלי, ואז תמשיכי לסריקה.",
+          part1Title: "חלק 1: דופק ותנועות העובר",
+          part1Desc: "בדיקת הדופק והתנועות העדינות של העובר.",
+          part2Title: "חלק 2: כמות מי השפיר",
+          part2Desc: "הערכת מי השפיר בארבעת רבעי הבטן.",
+          chips: ["🎬 סרטון קצר", "🎯 תרגול", "📱 סריקה"]
         },
         {
           id: 2,
-          badge: "עמוד 2 מתוך 5 • הכנה",
+          badge: "2 / 5 • הכנה",
           title: "לפני שתתחילי",
-          script: "״לפני שתתחילי, ודאי שהטלפון טעון. מרחי כמות נדיבה של ג׳ל על הבטן. הישעני לאחור והתמקמי בנוחות.״",
-          checklistTitle: "הנחיות חשובות לפני שמתחילים:",
+          bubble: "״לפני שתתחילי, ודאי שהטלפון טעון. מרחי כמות נדיבה של ג׳ל על הבטן. הישעני לאחור והתמקמי בנוחות.״",
+          script: "לפני שתתחילי, ודאי שהטלפון טעון. מרחי כמות נדיבה של ג׳ל על הבטן. הישעני לאחור והתמקמי בנוחות.",
           items: [
-            "לפני שתתחילי, ודאי שהטלפון טעון.",
-            "מרחי כמות נדיבה של ג׳ל על הבטן.",
-            "הישעני לאחור והתמקמי בנוחות.",
-            "הזיזי ועצרי את המתמר באיטיות כפי שמודגם באפליקציה."
-          ],
-          cap1: "הישעני לאחור בנוחות",
-          cap2: "מרחי ג׳ל בנדיבות"
+            { icon: "🔋", title: "ודאי שהטלפון טעון", desc: "לפני שתתחילי, ודאי שסוללת הטלפון טעונה." },
+            { icon: "💧", title: "מרחי ג׳ל בנדיבות", desc: "מרחי כמות נדיבה של ג׳ל על הבטן." },
+            { icon: "🛋️", title: "הישעני לאחור בנוחות", desc: "התמקמי בנוחות והזיזי את המתמר באיטיות." }
+          ]
         },
         {
           id: 3,
-          badge: "עמוד 3 מתוך 5 • החלק הראשון",
-          title: "החלק הראשון: דופק ותנועות העובר",
-          script: "״בחלק הראשון, הזיזי את המתמר באיטיות, בדיוק כפי שמודגם באפליקציה. אם תראי HOLD, יש לעצור את המתמר לכמה שניות במקום המתואר בסרטון. כך יוכל הצוות הרפואי לבדוק את הדופק ואת תנועות העובר.״",
-          holdAlert: "✋ אם מופיע HOLD: עצרי את המתמר במקומו למשך מספר שניות!",
-          points: [
-            "הזיזי את המתמר באיטיות, בדיוק כפי שמודגם באפליקציה.",
-            "שמרי על הצמדה ומגע רציף של המתמר עם העור.",
-            "כאשר מופיע הכיתוב HOLD, השאירי את המתמר באותו מקום לכמה שניות כדי לאפשר בדיקת דופק ותנועות עובר."
-          ],
-          cap1: "עקבי אחר ההדגמה באפליקציה",
-          cap2: "תצוגת האולטרסאונד בסריקה"
+          badge: "3 / 5 • החלק הראשון",
+          title: "החלק הראשון: דופק ותנועות",
+          bubble: "״הזיזי את המתמר באיטיות כפי שמודגם באפליקציה. אם תראי HOLD, עצרי את המתמר לכמה שניות באותו מקום.״",
+          script: "בחלק הראשון, הזיזי את המתמר באיטיות, בדיוק כפי שמודגם באפליקציה. אם תראי HOLD, יש לעצור את המתמר לכמה שניות במקום המתואר בסרטון. כך יוכל הצוות הרפואי לבדוק את הדופק ואת תנועות העובר.",
+          holdBanner: "✋ כשמופיע HOLD — עצרי את המתמר במקומו לכמה שניות"
         },
         {
           id: 4,
-          badge: "עמוד 4 מתוך 5 • מי השפיר",
-          title: "בסריקת מי השפיר",
-          script: "״כעת נעבור למי השפיר. הישעני לאחור כך שהבטן תהיה אופקית ככל האפשר. החזיקי את המתמר זקוף, בניצב לרצפה, בלי להטות אותו לפי קימור הבטן. התחילי ברביע הימני התחתון, וסרקי באיטיות מהצד לכיוון מרכז הבטן. כל תנועה נמשכת חמש עד עשר שניות. המשיכי כך בכל ארבעת הרבעים, לפי ההנחיות באפליקציה.״",
-          rulesTitle: "3 כללי מפתח בסריקת מי השפיר:",
-          rules: [
-            "הישעני לאחור כך שהבטן תהיה אופקית ככל האפשר.",
-            "החזיקי את המתמר זקוף, בניצב לרצפה (90°), ולא לפי קימור הבטן.",
-            "סרקי את ארבעת רבעי הבטן (החל מהרביע הימני התחתון) באיטיות מהצד לכיוון המרכז (5–10 שניות לכל תנועה)."
-          ],
-          cap1: "מתמר זקוף בניצב לרצפה (90°)",
-          cap2: "סריקת 4 רבעי הבטן (5–10 שניות)"
+          badge: "4 / 5 • מי השפיר",
+          title: "בסריקת מי השפיר: תנוחה וזווית",
+          bubble: "״הישעני לאחור כך שהבטן תהיה אופקית ככל האפשר. החזיקי את המתמר זקוף, בניצב לרצפה, בלי להטות אותו לפי קימור הבטן.״",
+          script: "כעת נעבור למי השפיר. הישעני לאחור כך שהבטן תהיה אופקית ככל האפשר. החזיקי את המתמר זקוף, בניצב לרצפה, בלי להטות אותו לפי קימור הבטן.",
+          tag1: "🛋️ בטן אופקית",
+          tag2: "📐 מתמר זקוף בניצב לרצפה"
         },
         {
           id: 5,
-          badge: "עמוד 5 מתוך 5 • סיום וסיכום",
-          title: "סיכום המדריך הקצר לסריקה הביתית",
-          script: "״לאורך הסריקה, עקבי אחר ההדגמה באפליקציה. תודה על שיתוף הפעולה.״",
-          box1Title: "📋 לפני שתתחילי:",
-          box1Items: [
-            "1. לפני שתתחילי, ודאי שהטלפון טעון.",
-            "2. מרחי כמות נדיבה של ג׳ל על הבטן.",
-            "3. הישעני לאחור והתמקמי בנוחות.",
-            "4. הזיזי ועצרי את המתמר באיטיות כפי שמודגם באפליקציה."
-          ],
-          box2Title: "📐 בסריקת מי השפיר:",
-          box2Items: [
-            "1. הישעני לאחור כך שהבטן תהיה אופקית ככל האפשר.",
-            "2. החזיקי את המתמר זקוף, בניצב לרצפה, ולא לפי קימור הבטן.",
-            "3. סרקי את ארבעת רבעי הבטן לפי ההנחיות באפליקציה."
-          ]
+          badge: "5 / 5 • ארבעת הרבעים",
+          title: "סריקת 4 רבעי הבטן",
+          bubble: "״התחילי ברביע הימני התחתון, וסרקי באיטיות מהצד לכיוון מרכז הבטן (5–10 שניות בכל רביע). עקבי אחר ההדגמה באפליקציה — תודה!״",
+          script: "התחילי ברביע הימני התחתון, וסרקי באיטיות מהצד לכיוון מרכז הבטן. כל תנועה נמשכת חמש עד עשר שניות. המשיכי כך בכל ארבעת הרבעים, לפי ההנחיות באפליקציה. תודה על שיתוף הפעולה.",
+          tag1: "⏱️ 5–10 שניות מהצד למרכז בכל רביע"
         }
       ]
     },
@@ -650,7 +590,7 @@ function useTraining() {
 }
 
 // Friendly Clinical Ultrasound Guide SVG Avatar + Speech Bubble + Optional TTS Voice
-function GuideAvatar({ scriptText }) {
+function GuideAvatar({ bubbleText, scriptText }) {
   const { t, lang } = useTraining();
   const [isSpeaking, setIsSpeaking] = useState(false);
 
@@ -676,7 +616,7 @@ function GuideAvatar({ scriptText }) {
     }
     try {
       window.speechSynthesis.cancel();
-      const cleanText = scriptText.replace(/[“”״"]/g, '');
+      const cleanText = (scriptText || bubbleText || '').replace(/[“”״"]/g, '');
       const utter = new SpeechSynthesisUtterance(cleanText);
       utter.lang = lang === 'he' ? 'he-IL' : 'en-US';
       utter.rate = 0.96;
@@ -690,59 +630,48 @@ function GuideAvatar({ scriptText }) {
   };
 
   return (
-    <div style={{ width: '100%' }}>
-      {/* Avatar Header Card */}
-      <div className="pnm-avatar-header-row">
-        <div className={`pnm-avatar-circle-wrap ${isSpeaking ? 'speaking' : ''}`}>
-          {/* Custom SVG Clinical Ultrasound Guide Avatar */}
-          <svg viewBox="0 0 100 100" width="60" height="60">
-            <circle cx="50" cy="50" r="48" fill="#e0f2fe" />
-            {/* Hair back */}
-            <path d="M22 52 C22 25, 78 25, 78 52 L82 85 L18 85 Z" fill="#4a2e1b" />
-            {/* Shoulders / Clinical Coat */}
-            <path d="M16 98 C18 74, 82 74, 84 98 Z" fill="#0284c7" />
-            <path d="M36 76 L50 94 L64 76 Z" fill="#ffffff" />
-            {/* Stethoscope */}
-            <path d="M34 78 C34 90, 66 90, 66 78" fill="none" stroke="#0f172a" strokeWidth="2.5" />
-            <circle cx="58" cy="88" r="4" fill="#38bdf8" stroke="#0f172a" strokeWidth="1.5" />
-            {/* Neck */}
-            <rect x="43" y="62" width="14" height="14" rx="5" fill="#f9d2b8" />
-            {/* Face */}
-            <ellipse cx="50" cy="46" rx="20" ry="22" fill="#fce0cc" />
-            {/* Hair front wave */}
-            <path d="M28 42 C30 22, 68 20, 72 42 C66 31, 44 29, 30 40 Z" fill="#5c3a21" />
-            {/* Eyes */}
-            <circle cx="42" cy="45" r="2.4" fill="#1e293b" />
-            <circle cx="58" cy="45" r="2.4" fill="#1e293b" />
-            {/* Eyebrows */}
-            <path d="M37 39 Q42 36 46 39" fill="none" stroke="#4a2e1b" strokeWidth="1.8" strokeLinecap="round" />
-            <path d="M54 39 Q58 36 63 39" fill="none" stroke="#4a2e1b" strokeWidth="1.8" strokeLinecap="round" />
-            {/* Warm Smile */}
-            <path d="M43 54 Q50 60 57 54" fill="none" stroke="#e11d48" strokeWidth="2.2" strokeLinecap="round" />
-            {/* Soft blush */}
-            <circle cx="36" cy="50" r="3.5" fill="#fda4af" opacity="0.45" />
-            <circle cx="64" cy="50" r="3.5" fill="#fda4af" opacity="0.45" />
-          </svg>
+    <div className="pnm-avatar-light-card">
+      {/* Light & Airy Avatar Top Row */}
+      <div className="pnm-avatar-light-top">
+        <div className="pnm-avatar-Identity">
+          <div className={`pnm-avatar-circle-wrap ${isSpeaking ? 'speaking' : ''}`}>
+            <svg viewBox="0 0 100 100" width="50" height="50">
+              <circle cx="50" cy="50" r="48" fill="#e0f2fe" />
+              <path d="M22 52 C22 25, 78 25, 78 52 L82 85 L18 85 Z" fill="#4a2e1b" />
+              <path d="M16 98 C18 74, 82 74, 84 98 Z" fill="#0284c7" />
+              <path d="M36 76 L50 94 L64 76 Z" fill="#ffffff" />
+              <path d="M34 78 C34 90, 66 90, 66 78" fill="none" stroke="#0f172a" strokeWidth="2.5" />
+              <circle cx="58" cy="88" r="4" fill="#38bdf8" stroke="#0f172a" strokeWidth="1.5" />
+              <rect x="43" y="62" width="14" height="14" rx="5" fill="#f9d2b8" />
+              <ellipse cx="50" cy="46" rx="20" ry="22" fill="#fce0cc" />
+              <path d="M28 42 C30 22, 68 20, 72 42 C66 31, 44 29, 30 40 Z" fill="#5c3a21" />
+              <circle cx="42" cy="45" r="2.4" fill="#1e293b" />
+              <circle cx="58" cy="45" r="2.4" fill="#1e293b" />
+              <path d="M37 39 Q42 36 46 39" fill="none" stroke="#4a2e1b" strokeWidth="1.8" strokeLinecap="round" />
+              <path d="M54 39 Q58 36 63 39" fill="none" stroke="#4a2e1b" strokeWidth="1.8" strokeLinecap="round" />
+              <path d="M43 54 Q50 60 57 54" fill="none" stroke="#e11d48" strokeWidth="2.2" strokeLinecap="round" />
+              <circle cx="36" cy="50" r="3.5" fill="#fda4af" opacity="0.45" />
+              <circle cx="64" cy="50" r="3.5" fill="#fda4af" opacity="0.45" />
+            </svg>
+          </div>
+          <div style={{ textAlign: 'start' }}>
+            <span className="pnm-avatar-name">{t.rev2.avatarName}</span>
+            <span className="pnm-avatar-role">{t.rev2.avatarRole}</span>
+          </div>
         </div>
 
-        <div className="pnm-avatar-meta">
-          <div className="pnm-avatar-name-row">
-            <span className="pnm-avatar-name">{t.rev2.avatarName}</span>
-            <button
-              className={`pnm-avatar-voice-btn ${isSpeaking ? 'speaking' : ''}`}
-              onClick={handleToggleSpeech}
-              title="Listen to guide narration"
-            >
-              {isSpeaking ? t.rev2.stopListenBtn : t.rev2.listenBtn}
-            </button>
-          </div>
-          <span className="pnm-avatar-role">{t.rev2.avatarRole}</span>
-        </div>
+        <button
+          className={`pnm-avatar-voice-btn ${isSpeaking ? 'speaking' : ''}`}
+          onClick={handleToggleSpeech}
+          title="Listen to guide narration"
+        >
+          {isSpeaking ? t.rev2.stopListenBtn : t.rev2.listenBtn}
+        </button>
       </div>
 
-      {/* Avatar Speech Bubble with Script Text */}
+      {/* Concise, Airy Speech Bubble */}
       <div className="pnm-avatar-speech-bubble">
-        {scriptText}
+        {bubbleText}
       </div>
     </div>
   );
@@ -1056,225 +985,140 @@ function Rev2AvatarGuide() {
   }
 
   return (
-    <div className="pnm-slide-card-inner animate-fade-in">
-      {/* Top Badge & Stepper Bars */}
-      <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
-        <span className="pnm-stage-context-badge instruction" style={{ marginBottom: 0 }}>
-          {page.badge}
-        </span>
-        <span dir="ltr" style={{ fontSize: '0.74rem', fontWeight: 800, color: '#0284c7' }}>
-          {`${rev2Step} / 5`}
-        </span>
+    <div className="pnm-slide-card-inner pnm-rev2-light-shell animate-fade-in">
+      {/* Top Minimal Header & Title */}
+      <div style={{ width: '100%' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
+          <span className="pnm-stage-context-badge instruction" style={{ marginBottom: 0 }}>
+            {page.badge}
+          </span>
+          <span dir="ltr" style={{ fontSize: '0.76rem', fontWeight: 800, color: '#94a3b8' }}>
+            {`${rev2Step} / 5`}
+          </span>
+        </div>
+
+        <h2 className="pnm-card-title" style={{ fontSize: '1.22rem', marginBottom: '10px' }}>
+          {page.title}
+        </h2>
+
+        {/* Light Virtual Guide Avatar + Concise Speech Bubble */}
+        <GuideAvatar bubbleText={page.bubble} scriptText={page.script} />
       </div>
 
-      <h2 className="pnm-card-title" style={{ fontSize: '1.15rem', marginBottom: '8px' }}>
-        {page.title}
-      </h2>
-
-      {/* Virtual Guide Avatar + Speech Bubble with Exact Script */}
-      <GuideAvatar scriptText={page.script} />
-
-      {/* PAGE 1 CONTENT: Opening & 2 Parts Overview */}
+      {/* PAGE 1: Two Parts + 3 Light Flow Chips */}
       {rev2Step === 1 && (
-        <div style={{ width: '100%' }}>
-          <div className="pnm-rev2-keypoints-card">
-            <div className="pnm-rev2-keypoints-title">
-              <span>🔍</span>
-              <span>{page.summaryTitle}</span>
-            </div>
-            <div className="pnm-rev2-bullet-list">
-              <div className="pnm-rev2-bullet-item">
-                <span className="pnm-rev2-num-badge" dir="ltr">1</span>
-                <div>
-                  <strong style={{ display: 'block', color: '#0f172a' }}>{page.part1Title}</strong>
-                  <span style={{ fontSize: '0.76rem', color: '#475569' }}>{page.part1Desc}</span>
-                </div>
-              </div>
-              <div className="pnm-rev2-bullet-item">
-                <span className="pnm-rev2-num-badge" dir="ltr">2</span>
-                <div>
-                  <strong style={{ display: 'block', color: '#0f172a' }}>{page.part2Title}</strong>
-                  <span style={{ fontSize: '0.76rem', color: '#475569' }}>{page.part2Desc}</span>
-                </div>
-              </div>
+        <div className="pnm-light-cards-stack">
+          <div className="pnm-light-pill-card">
+            <div className="pnm-light-pill-icon">💓</div>
+            <div className="pnm-light-pill-text">
+              <strong>{page.part1Title}</strong>
+              <span>{page.part1Desc}</span>
             </div>
           </div>
 
-          <div className="pnm-rev2-keypoints-card" style={{ background: '#f8fafc', marginBottom: '4px' }}>
-            <div className="pnm-rev2-keypoints-title" style={{ marginBottom: '6px' }}>
-              <span>🎬</span>
-              <span>{page.flowTitle}</span>
+          <div className="pnm-light-pill-card">
+            <div className="pnm-light-pill-icon">💧</div>
+            <div className="pnm-light-pill-text">
+              <strong>{page.part2Title}</strong>
+              <span>{page.part2Desc}</span>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '0.78rem', fontWeight: 600, color: '#334155' }}>
-              {page.flowSteps.map((st, i) => (
-                <div key={i}>{st}</div>
-              ))}
-            </div>
+          </div>
+
+          <div className="pnm-light-flow-chips">
+            {page.chips.map((chip, idx) => (
+              <span key={idx} className="pnm-light-chip">{chip}</span>
+            ))}
           </div>
         </div>
       )}
 
-      {/* PAGE 2 CONTENT: Before You Begin (Preparation) */}
+      {/* PAGE 2: Before You Begin — 3 Clean Icon Cards */}
       {rev2Step === 2 && (
-        <div style={{ width: '100%' }}>
-          <div className="pnm-rev2-visual-grid">
-            <div className="pnm-rev2-visual-box">
-              <img src="assets/ronit_fixes/prep_recline_clean.png" alt="Lean back" />
-              <div className="pnm-rev2-visual-caption">{page.cap1}</div>
+        <div className="pnm-light-cards-stack">
+          {page.items.map((item, idx) => (
+            <div key={idx} className="pnm-light-pill-card">
+              <div className="pnm-light-pill-icon">{item.icon}</div>
+              <div className="pnm-light-pill-text">
+                <strong>{item.title}</strong>
+                <span>{item.desc}</span>
+              </div>
             </div>
-            <div className="pnm-rev2-visual-box">
-              <img src="assets/ronit_fixes/prep_gel_clean.png" alt="Apply gel" />
-              <div className="pnm-rev2-visual-caption">{page.cap2}</div>
-            </div>
-          </div>
-
-          <div className="pnm-rev2-keypoints-card">
-            <div className="pnm-rev2-keypoints-title">
-              <span>✅</span>
-              <span>{page.checklistTitle}</span>
-            </div>
-            <div className="pnm-rev2-bullet-list">
-              {page.items.map((item, idx) => (
-                <div key={idx} className="pnm-rev2-bullet-item">
-                  <span className="pnm-rev2-num-badge" dir="ltr">{idx + 1}</span>
-                  <span>{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
       )}
 
-      {/* PAGE 3 CONTENT: Part 1 — Probe Movement & HOLD */}
+      {/* PAGE 3: Part 1 — 1 Clean Illustration + Soft HOLD Banner */}
       {rev2Step === 3 && (
-        <div style={{ width: '100%' }}>
-          <div className="pnm-hold-alert-pill">
-            {page.holdAlert}
+        <div className="pnm-light-cards-stack" style={{ alignItems: 'center' }}>
+          <div className="pnm-light-hero-visual">
+            <img
+              src="assets/ronit_fixes/slide2_mom_clean.png"
+              alt="Part 1 scan"
+              onError={e => { e.target.src = "assets/pptx_slides/slide_2_img_1.png"; }}
+            />
           </div>
 
-          <div className="pnm-rev2-visual-grid">
-            <div className="pnm-rev2-visual-box">
-              <img
-                src="assets/slide4_screens/display2_guide.png"
-                alt="Guided probe movement"
-                style={{ objectFit: 'cover' }}
-                onError={e => { e.target.src = "assets/afv _p4_i2.jpeg"; }}
-              />
-              <div className="pnm-rev2-visual-caption">{page.cap1}</div>
-            </div>
-            <div className="pnm-rev2-visual-box">
-              <img
-                src="xxxx.jpg"
-                alt="Ultrasound view"
-                style={{ background: '#000', objectFit: 'contain' }}
-                onError={e => { e.target.src = "assets/xxxx.jpg"; }}
-              />
-              <div className="pnm-rev2-visual-caption">{page.cap2}</div>
-            </div>
-          </div>
-
-          <div className="pnm-rev2-keypoints-card">
-            <div className="pnm-rev2-bullet-list">
-              {page.points.map((pt, idx) => (
-                <div key={idx} className="pnm-rev2-bullet-item">
-                  <span className="pnm-rev2-num-badge" dir="ltr">{idx + 1}</span>
-                  <span>{pt}</span>
-                </div>
-              ))}
-            </div>
+          <div className="pnm-hold-soft-banner">
+            {page.holdBanner}
           </div>
         </div>
       )}
 
-      {/* PAGE 4 CONTENT: During the Amniotic Fluid Scan */}
+      {/* PAGE 4: Amniotic Fluid — 1 Clean 90° Visual + 2 Light Tags */}
       {rev2Step === 4 && (
-        <div style={{ width: '100%' }}>
-          <div className="pnm-rev2-visual-grid">
-            <div className="pnm-rev2-visual-box">
-              <img src="assets/ronit_fixes/step4_tilt_90_clean.png" alt="90 degree perpendicular probe" />
-              <div className="pnm-rev2-visual-caption">{page.cap1}</div>
-            </div>
-            <div className="pnm-rev2-visual-box">
-              <img src="assets/ronit_fixes/slide5_4q_belly.png" alt="4 quadrants of abdomen" style={{ objectFit: 'cover' }} />
-              <div className="pnm-rev2-visual-caption">{page.cap2}</div>
-            </div>
+        <div className="pnm-light-cards-stack" style={{ alignItems: 'center' }}>
+          <div className="pnm-light-hero-visual">
+            <img
+              src="assets/ronit_fixes/step4_tilt_90_clean.png"
+              alt="90 degree perpendicular probe"
+            />
           </div>
 
-          <div className="pnm-rev2-keypoints-card">
-            <div className="pnm-rev2-keypoints-title">
-              <span>📐</span>
-              <span>{page.rulesTitle}</span>
-            </div>
-            <div className="pnm-rev2-bullet-list">
-              {page.rules.map((rule, idx) => (
-                <div key={idx} className="pnm-rev2-bullet-item">
-                  <span className="pnm-rev2-num-badge" dir="ltr">{idx + 1}</span>
-                  <span>{rule}</span>
-                </div>
-              ))}
-            </div>
+          <div className="pnm-light-tag-row">
+            <div className="pnm-light-tag">{page.tag1}</div>
+            <div className="pnm-light-tag">{page.tag2}</div>
           </div>
         </div>
       )}
 
-      {/* PAGE 5 CONTENT: Closing & Complete High-Level Summary */}
+      {/* PAGE 5: 4 Quadrants — 1 Clean 4Q Image + 1 Light Tag */}
       {rev2Step === 5 && (
-        <div style={{ width: '100%' }}>
-          <div className="pnm-rev2-keypoints-card">
-            <div className="pnm-rev2-keypoints-title">{page.box1Title}</div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '0.78rem', color: '#1e293b', fontWeight: 600 }}>
-              {page.box1Items.map((it, i) => (
-                <div key={i}>{it}</div>
-              ))}
-            </div>
+        <div className="pnm-light-cards-stack" style={{ alignItems: 'center' }}>
+          <div className="pnm-light-hero-visual">
+            <img
+              src="assets/ronit_fixes/slide5_4q_belly.png"
+              alt="4 abdominal quadrants"
+              style={{ objectFit: 'cover' }}
+            />
           </div>
 
-          <div className="pnm-rev2-keypoints-card" style={{ borderColor: '#7dd3fc', background: '#f8fafc' }}>
-            <div className="pnm-rev2-keypoints-title">{page.box2Title}</div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '0.78rem', color: '#1e293b', fontWeight: 600 }}>
-              {page.box2Items.map((it, i) => (
-                <div key={i}>{it}</div>
-              ))}
-            </div>
-          </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '7px', width: '100%', marginTop: '6px' }}>
-            <button
-              className="pnm-btn-pill-red w-full sm"
-              onClick={() => {
-                soundFX.playClick();
-                setRev2Step(1);
-              }}
-            >
-              {t.rev2.repeatGuideBtn}
-            </button>
-            <button
-              className="pnm-prev-btn"
-              style={{ width: '100%', textAlign: 'center', fontSize: '0.82rem', padding: '8px 14px' }}
-              onClick={() => {
-                soundFX.playClick();
-                goToSlide(1);
-                setMode('rev1');
-              }}
-            >
-              {t.rev2.switchRev1Btn}
-            </button>
-            <button
-              className="pnm-prev-btn"
-              style={{ width: '100%', textAlign: 'center', fontSize: '0.82rem', padding: '8px 14px' }}
-              onClick={handleClose}
-            >
-              {t.rev2.closeGuideBtn}
-            </button>
+          <div className="pnm-light-tag-row">
+            <div className="pnm-light-tag">{page.tag1}</div>
           </div>
         </div>
       )}
 
-      {/* Bottom Navigation for Pages 1..4 (and Back on Page 5) */}
-      {rev2Step < 5 && (
+      {/* Bottom Navigation */}
+      {rev2Step < 5 ? (
         <div className="pnm-phone-bottom-nav">
           <button className="pnm-prev-btn" onClick={prevRev2}>{t.prevBtn}</button>
           <button className="pnm-btn-pill-red" style={{ flex: 1 }} onClick={nextRev2}>{t.nextBtn}</button>
+        </div>
+      ) : (
+        <div className="pnm-phone-bottom-nav">
+          <button className="pnm-prev-btn" onClick={prevRev2}>{t.prevBtn}</button>
+          <button
+            className="pnm-prev-btn"
+            onClick={() => {
+              soundFX.playClick();
+              setRev2Step(1);
+            }}
+          >
+            {t.rev2.repeatGuideBtn}
+          </button>
+          <button className="pnm-btn-pill-red" style={{ flex: 1 }} onClick={handleClose}>
+            {t.rev2.closeGuideBtn}
+          </button>
         </div>
       )}
     </div>
