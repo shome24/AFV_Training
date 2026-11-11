@@ -72,7 +72,7 @@ const TRANSLATIONS = {
         {
           id: 1,
           badge: "1 / 5 • Overview",
-          title: "A Short Guide to Your Home Scan",
+          title: "Welcome to the\nPulsenmore App",
           bubble: "Let’s walk through the scan together. It has two parts: checking your baby’s heartbeat and movements, and assessing the amount of amniotic fluid.",
           part1Title: "Part 1: Heartbeat & Movements",
           part1Desc: "Checks your baby's heartbeat and movements.",
@@ -128,7 +128,7 @@ const TRANSLATIONS = {
         {
           id: 1,
           badge: "1 / 5 • פתיחה",
-          title: "מדריך קצר לסריקה הביתית",
+          title: "ברוכה הבאה\nלאפליקצית פלסאנמור",
           bubble: "בואי נעבור יחד על הסריקה. היא כוללת שני חלקים: בדיקת הדופק והתנועות של העובר, והערכת כמות מי השפיר.",
           part1Title: "חלק 1: דופק ותנועות העובר",
           part1Desc: "בדיקת הדופק והתנועות העדינות של העובר.",
@@ -290,7 +290,7 @@ function AppHeader() {
                 >
                   <span className="pnm-dropdown-badge" dir="ltr">{p.id}</span>
                   <span style={{ flex: 1, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                    {p.title}
+                    {p.title.replace('\n', ' ')}
                   </span>
                 </div>
               ))}
@@ -342,7 +342,7 @@ function Rev2AvatarGuide() {
           </span>
         </div>
 
-        <h2 className="pnm-card-title" style={{ fontSize: '1.38rem', marginBottom: '12px' }}>
+        <h2 className="pnm-card-title" style={{ fontSize: '1.38rem', marginBottom: '12px', whiteSpace: 'pre-line' }}>
           {page.title}
         </h2>
 
