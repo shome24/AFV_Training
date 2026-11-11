@@ -2298,6 +2298,7 @@ body {
   font-weight: 500;
   color: #1e293b;
   line-height: 1.52;
+  white-space: pre-line;
 }
 
 .pnm-light-cards-stack {
