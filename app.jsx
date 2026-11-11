@@ -1,6 +1,6 @@
 /**
  * Pulsenmore AFV-Dynamic Study Training Web Application
- * 5-Page Light & Airy Avatar-Guided Home Scan Guide
+ * 6-Page Light & Airy Home Scan Guide (5 Instruction Pages + 1 Short Quiz)
  * - External Bottom Navigation Bar (Outside the Smartphone Screen)
  * - Fully Bilingual (English & Hebrew) + Mobile-First Responsive Layout
  */
@@ -51,12 +51,33 @@ class SoundFX {
       osc.stop(this.ctx.currentTime + 0.04);
     } catch (e) {}
   }
+
+  playSuccess() {
+    if (!this.soundEnabled) return;
+    this.init();
+    if (!this.ctx) return;
+    try {
+      const notes = [523.25, 659.25, 783.99, 1046.50];
+      notes.forEach((freq, idx) => {
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, this.ctx.currentTime + idx * 0.08);
+        gain.gain.setValueAtTime(0.15, this.ctx.currentTime + idx * 0.08);
+        gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + idx * 0.08 + 0.35);
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start(this.ctx.currentTime + idx * 0.08);
+        osc.stop(this.ctx.currentTime + idx * 0.08 + 0.35);
+      });
+    } catch (e) {}
+  }
 }
 
 const soundFX = new SoundFX();
 
 // ==========================================================================
-// 2. Bilingual Dataset (English & Hebrew) — 5-Page Avatar-Guided Home Scan
+// 2. Bilingual Dataset (English & Hebrew) — 6-Page Home Scan Guide + Quiz
 // ==========================================================================
 const TRANSLATIONS = {
   en: {
@@ -67,11 +88,12 @@ const TRANSLATIONS = {
     rev2: {
       repeatGuideBtn: "🔄 Repeat",
       closeGuideBtn: "✕ Finish & Close",
+      checkQuizBtn: "Check Answers",
       closedMessage: "Training completed. You may now close this window.",
       pages: [
         {
           id: 1,
-          badge: "1 / 5 • Overview",
+          badge: "1 / 6 • Overview",
           title: "Welcome to the\nPulsenmore App",
           bubble: "Great to have you here!\nBefore we begin, let’s walk through the scan process together so you know exactly what to expect at each step.\nThe scan includes two parts:",
           part1Title: "Part 1: Heartbeat & Movements",
@@ -81,7 +103,7 @@ const TRANSLATIONS = {
         },
         {
           id: 2,
-          badge: "2 / 5 • Preparation",
+          badge: "2 / 6 • Preparation",
           title: "Before We Begin",
           bubble: "We will begin the scan in a moment. Take a few moments to make sure everything is ready, so your experience is as comfortable and simple as possible. The scan takes a few minutes.",
           items: [
@@ -92,22 +114,40 @@ const TRANSLATIONS = {
         },
         {
           id: 3,
-          badge: "3 / 5 • Part One",
+          badge: "3 / 6 • Part One",
           title: "Part 1: Fetal Heartbeat & Movements",
           bubble: "During the scan, you will see on-screen instructions guiding you where and how to move the probe. When the HOLD sign appears, you will be asked to hold the probe still for a few seconds."
         },
         {
           id: 4,
-          badge: "4 / 5 • Part Two",
-          title: "During the Amniotic Fluid Scan",
+          badge: "4 / 6 • Part Two",
+          title: "Part 2 - Amniotic Fluid",
           bubble: "During this part of the scan, you will be asked to lean further back and hold the probe perpendicular to the floor, with the phone screen facing sideways."
         },
         {
           id: 5,
-          badge: "5 / 5 • 4 Quadrants",
-          title: "Scan All 4 Quadrants",
-          bubble: "Start in the lower right quadrant and scan slowly from the side toward the center (5–10 seconds each). Follow the demonstration in the app — thank you!",
-          tag1: "⏱️ 5–10 sec inward per quadrant"
+          badge: "5 / 6 • Part Two",
+          title: "Part 2 - Amniotic Fluid",
+          bubble: "In this part, you will scan all four quadrants of your abdomen as guided by the app. Each quadrant is scanned for about 15 seconds, with the phone screen facing sideways."
+        },
+        {
+          id: 6,
+          badge: "6 / 6 • Short Quiz",
+          title: "Short Quiz",
+          q1: "Question 1: What should you do when the word HOLD appears on the screen?",
+          q1_opts: [
+            "A. Keep moving the probe quickly",
+            "B. Stop the probe for a few seconds exactly where it is",
+            "C. Lift the probe off your abdomen"
+          ],
+          q2: "Question 2: How should you hold the probe during the amniotic fluid scan?",
+          q2_opts: [
+            "A. Tilted to follow the curve of your abdomen",
+            "B. Parallel to the floor",
+            "C. Upright, perpendicular to the floor (a 90-degree angle)"
+          ],
+          successMsg: "✓ Great job! All answers are correct.",
+          errorMsg: "Please select the correct answer for both questions."
         }
       ]
     }
@@ -120,11 +160,12 @@ const TRANSLATIONS = {
     rev2: {
       repeatGuideBtn: "🔄 התחלה מחדש",
       closeGuideBtn: "✕ סיום וסגירה",
+      checkQuizBtn: "בדיקת תשובות",
       closedMessage: "ההדרכה הסתיימה. ניתן לסגור חלון זה.",
       pages: [
         {
           id: 1,
-          badge: "1 / 5 • פתיחה",
+          badge: "1 / 6 • פתיחה",
           title: "ברוכה הבאה\nלאפליקצית פלסאנמור",
           bubble: "איזה כיף שאת כאן!\nלפני שמתחילים, נעבור יחד על תהליך הסריקה כדי שתדעי בדיוק מה צפוי בכל שלב. הסריקה כוללת שני חלקים:",
           part1Title: "חלק 1: דופק ותנועות העובר",
@@ -134,7 +175,7 @@ const TRANSLATIONS = {
         },
         {
           id: 2,
-          badge: "2 / 5 • הכנה",
+          badge: "2 / 6 • הכנה",
           title: "לפני שמתחילים",
           bubble: "עוד רגע נתחיל בסריקה. הקדישי כמה רגעים לוודא שהכול מוכן, כדי שהחוויה תהיה נוחה ופשוטה ככל האפשר. הסריקה לוקחת מספר דקות",
           items: [
@@ -145,22 +186,40 @@ const TRANSLATIONS = {
         },
         {
           id: 3,
-          badge: "3 / 5 • החלק הראשון",
+          badge: "3 / 6 • החלק הראשון",
           title: "החלק הראשון: דופק ותנועות העובר",
           bubble: "במהלך הסריקה תראי על המסך הנחיות שיכוונו אותך היכן וכיצד להזיז את המתמר. כאשר יופיע הסימון HOLD, תתבקשי להחזיק את המתמר ללא תזוזה למספר שניות."
         },
         {
           id: 4,
-          badge: "4 / 5 • החלק השני",
-          title: "בסריקת מי השפיר: תנוחה וזווית",
+          badge: "4 / 6 • החלק השני",
+          title: "החלק השני - מי שפיר",
           bubble: "במהלך חלק זה של הסריקה תתבקשי להישען עוד לאחור ולהחזיק את המתמר בניצב לרצפה, כאשר מסך הטלפון פונה לצד."
         },
         {
           id: 5,
-          badge: "5 / 5 • ארבעת הרבעים",
-          title: "סריקת 4 רבעי הבטן",
-          bubble: "התחילי ברביע הימני התחתון, וסרקי באיטיות מהצד לכיוון מרכז הבטן (5–10 שניות בכל רביע). עקבי אחר ההדגמה באפליקציה — תודה!",
-          tag1: "⏱️ 5–10 שניות מהצד למרכז בכל רביע"
+          badge: "5 / 6 • החלק השני",
+          title: "החלק השני - מי שפיר",
+          bubble: "בחלק זה תסרקי את ארבעת רבעי הבטן בהנחיית האפליקציה. כל רבע נסרק במשך כ־15 שניות, כאשר מסך הטלפון פונה הצידה."
+        },
+        {
+          id: 6,
+          badge: "6 / 6 • שאלון קצר",
+          title: "שאלון קצר",
+          q1: "שאלה 1: מה עליך לעשות כשמופיע הכיתוב HOLD על המסך?",
+          q1_opts: [
+            "א. להמשיך להזיז את המתמר במהירות",
+            "ב. לעצור את המתמר לכמה שניות בדיוק במיקומו הנוכחי",
+            "ג. להרים את המתמר מהבטן"
+          ],
+          q2: "שאלה 2: כיצד יש להחזיק את המתמר בסריקת מי השפיר?",
+          q2_opts: [
+            "א. מוטה לפי קימור הבטן",
+            "ב. במקביל לרצפה",
+            "ג. זקוף, בניצב לרצפה (זווית של 90 מעלות)"
+          ],
+          successMsg: "✓ כל הכבוד! ענית נכון על כל השאלות.",
+          errorMsg: "חלק מהתשובות אינן נכונות, נסי שוב."
         }
       ]
     }
@@ -178,6 +237,7 @@ function useTraining() {
 
 // Clean Instruction Text Box (Maya Avatar & Title Removed)
 function GuideAvatar({ bubbleText }) {
+  if (!bubbleText) return null;
   return (
     <div className="pnm-avatar-light-card">
       <div className="pnm-avatar-speech-bubble">
@@ -233,6 +293,7 @@ function AppHeader() {
   } = useTraining();
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const totalPages = t.rev2.pages.length;
 
   return (
     <header className="pnm-app-header">
@@ -266,7 +327,7 @@ function AppHeader() {
             className="pnm-slide-selector-pill"
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           >
-            <span dir="ltr">{`${rev2Step}/5`}</span>
+            <span dir="ltr">{`${rev2Step}/${totalPages}`}</span>
             <span style={{ fontSize: '0.65rem' }}>▼</span>
           </div>
 
@@ -306,11 +367,25 @@ function AppHeader() {
 }
 
 // ==========================================================================
-// 4. 5-Page Avatar-Guided Short Scan Guide (Inside Phone Card)
+// 4. 6-Page Short Scan Guide + Quiz (Inside Phone Card)
 // ==========================================================================
 function Rev2AvatarGuide() {
-  const { t, rev2Step, isClosed } = useTraining();
+  const {
+    t,
+    rev2Step,
+    isClosed,
+    q1Ans,
+    setQ1Ans,
+    q2Ans,
+    setQ2Ans,
+    quizChecked,
+    setQuizChecked,
+    quizPassed,
+    setQuizPassed
+  } = useTraining();
+
   const pages = t.rev2.pages;
+  const totalPages = pages.length;
   const page = pages.find(p => p.id === rev2Step) || pages[0];
 
   if (isClosed) {
@@ -332,7 +407,7 @@ function Rev2AvatarGuide() {
             {page.badge}
           </span>
           <span dir="ltr" style={{ fontSize: '0.86rem', fontWeight: 800, color: '#94a3b8' }}>
-            {`${rev2Step} / 5`}
+            {`${rev2Step} / ${totalPages}`}
           </span>
         </div>
 
@@ -340,11 +415,11 @@ function Rev2AvatarGuide() {
           {page.title}
         </h2>
 
-        {/* Light Virtual Guide Avatar + Concise Speech Bubble */}
+        {/* Instruction Bubble (if present) */}
         <GuideAvatar bubbleText={page.bubble} />
       </div>
 
-      {/* PAGE 1: Two Parts Only (No 3 Bottom Chips) */}
+      {/* PAGE 1: Two Parts Only */}
       {rev2Step === 1 && (
         <div className="pnm-light-cards-stack">
           <div className="pnm-light-pill-card">
@@ -365,7 +440,7 @@ function Rev2AvatarGuide() {
         </div>
       )}
 
-      {/* PAGE 2: Before You Begin — 3 Clean Icon Cards */}
+      {/* PAGE 2: Before We Begin — 3 Clean Icon Cards */}
       {rev2Step === 2 && (
         <div className="pnm-light-cards-stack">
           {page.items.map((item, idx) => (
@@ -419,20 +494,111 @@ function Rev2AvatarGuide() {
         </div>
       )}
 
-      {/* PAGE 5: 4 Quadrants — 1 Clean 4Q Image + 1 Light Tag */}
+      {/* PAGE 5: 4 Quadrants — Large 4Q Image Only */}
       {rev2Step === 5 && (
         <div className="pnm-light-cards-stack" style={{ alignItems: 'center' }}>
-          <div className="pnm-light-hero-visual">
+          <div className="pnm-light-hero-visual" style={{ maxWidth: '285px', width: '100%' }}>
             <img
               src="assets/ronit_fixes/slide5_4q_belly.png"
               alt="4 abdominal quadrants"
-              style={{ objectFit: 'cover' }}
+              style={{ width: '100%', height: '250px', objectFit: 'cover', display: 'block' }}
             />
           </div>
+        </div>
+      )}
 
-          <div className="pnm-light-tag-row">
-            <div className="pnm-light-tag">{page.tag1}</div>
+      {/* PAGE 6: Short Quiz (2 Questions) */}
+      {rev2Step === 6 && (
+        <div className="pnm-quiz-group" style={{ margin: '4px 0 auto 0', gap: '16px' }}>
+          {/* Question 1 (Correct index: 1 -> B / ב) */}
+          <div className="pnm-quiz-q-box">
+            <div className="pnm-quiz-q-text">{page.q1}</div>
+            <div className="pnm-quiz-options-row">
+              {page.q1_opts.map((opt, idx) => {
+                let statusCls = '';
+                if (q1Ans === idx) statusCls = 'selected';
+                if (quizChecked) {
+                  if (idx === 1) statusCls = 'correct';
+                  else if (q1Ans === idx) statusCls = 'wrong';
+                }
+                return (
+                  <label
+                    key={idx}
+                    className={`pnm-quiz-radio-label ${statusCls}`}
+                    onClick={() => {
+                      soundFX.playClick();
+                      setQ1Ans(idx);
+                      setQuizChecked(false);
+                      setQuizPassed(false);
+                    }}
+                  >
+                    <input
+                      type="radio"
+                      name="q1"
+                      className="pnm-custom-radio"
+                      checked={q1Ans === idx}
+                      readOnly
+                    />
+                    <span>{opt}</span>
+                  </label>
+                );
+              })}
+            </div>
           </div>
+
+          {/* Question 2 (Correct index: 2 -> C / ג) */}
+          <div className="pnm-quiz-q-box">
+            <div className="pnm-quiz-q-text">{page.q2}</div>
+            <div className="pnm-quiz-options-row">
+              {page.q2_opts.map((opt, idx) => {
+                let statusCls = '';
+                if (q2Ans === idx) statusCls = 'selected';
+                if (quizChecked) {
+                  if (idx === 2) statusCls = 'correct';
+                  else if (q2Ans === idx) statusCls = 'wrong';
+                }
+                return (
+                  <label
+                    key={idx}
+                    className={`pnm-quiz-radio-label ${statusCls}`}
+                    onClick={() => {
+                      soundFX.playClick();
+                      setQ2Ans(idx);
+                      setQuizChecked(false);
+                      setQuizPassed(false);
+                    }}
+                  >
+                    <input
+                      type="radio"
+                      name="q2"
+                      className="pnm-custom-radio"
+                      checked={q2Ans === idx}
+                      readOnly
+                    />
+                    <span>{opt}</span>
+                  </label>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Quiz Feedback Banner */}
+          {quizChecked && (
+            <div
+              style={{
+                padding: '10px 14px',
+                borderRadius: '12px',
+                fontSize: '0.94rem',
+                fontWeight: 700,
+                textAlign: 'center',
+                background: quizPassed ? '#f0fdf4' : '#fef2f2',
+                border: `1.5px solid ${quizPassed ? '#86efac' : '#fca5a5'}`,
+                color: quizPassed ? '#15803d' : '#b91c1c'
+              }}
+            >
+              {quizPassed ? page.successMsg : page.errorMsg}
+            </div>
+          )}
         </div>
       )}
     </div>
@@ -447,6 +613,12 @@ function App() {
   const [rev2Step, setRev2Step] = useState(1);
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [isClosed, setIsClosed] = useState(false);
+
+  // Quiz state for Slide 6
+  const [q1Ans, setQ1Ans] = useState(null);
+  const [q2Ans, setQ2Ans] = useState(null);
+  const [quizChecked, setQuizChecked] = useState(false);
+  const [quizPassed, setQuizPassed] = useState(false);
 
   const t = TRANSLATIONS[lang] || TRANSLATIONS.en;
   const pages = t.rev2.pages;
@@ -471,6 +643,17 @@ function App() {
     setRev2Step(prev => (prev > 1 ? prev - 1 : 1));
   }, []);
 
+  const handleCheckQuiz = useCallback(() => {
+    soundFX.playClick();
+    setQuizChecked(true);
+    if (q1Ans === 1 && q2Ans === 2) {
+      soundFX.playSuccess();
+      setQuizPassed(true);
+    } else {
+      setQuizPassed(false);
+    }
+  }, [q1Ans, q2Ans]);
+
   const handleClose = useCallback(() => {
     soundFX.playClick();
     try {
@@ -489,7 +672,15 @@ function App() {
     soundEnabled,
     toggleSound,
     isClosed,
-    setIsClosed
+    setIsClosed,
+    q1Ans,
+    setQ1Ans,
+    q2Ans,
+    setQ2Ans,
+    quizChecked,
+    setQuizChecked,
+    quizPassed,
+    setQuizPassed
   };
 
   return (
@@ -538,7 +729,7 @@ function App() {
                 {t.prevBtn}
               </button>
 
-              {rev2Step < 5 ? (
+              {rev2Step < 6 ? (
                 <button
                   className="pnm-btn-pill-red"
                   style={{ flex: 1 }}
@@ -546,12 +737,24 @@ function App() {
                 >
                   {t.nextBtn}
                 </button>
+              ) : !quizPassed ? (
+                <button
+                  className="pnm-btn-pill-red"
+                  style={{ flex: 1 }}
+                  onClick={handleCheckQuiz}
+                >
+                  {t.rev2.checkQuizBtn}
+                </button>
               ) : (
                 <>
                   <button
                     className="pnm-prev-btn"
                     onClick={() => {
                       soundFX.playClick();
+                      setQ1Ans(null);
+                      setQ2Ans(null);
+                      setQuizChecked(false);
+                      setQuizPassed(false);
                       setRev2Step(1);
                     }}
                   >
