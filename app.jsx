@@ -122,7 +122,7 @@ const TRANSLATIONS = {
           id: 4,
           badge: "4 / 6 • Part Two",
           title: "Part 2 - Amniotic Fluid",
-          bubble: "During this part of the scan, you will be asked to lean further back and hold the probe perpendicular to the floor, with the phone screen facing sideways."
+          bubble: "During this part of the scan, you will be asked to lean further back (almost lying flat) and hold the probe perpendicular to the floor, with the phone screen facing sideways."
         },
         {
           id: 5,
@@ -207,7 +207,7 @@ const TRANSLATIONS = {
           id: 4,
           badge: "4 / 6 • החלק השני",
           title: "החלק השני - מי שפיר",
-          bubble: "במהלך חלק זה של הסריקה תתבקשי להישען עוד לאחור ולהחזיק את המתמר בניצב לרצפה, כאשר מסך הטלפון פונה לצד."
+          bubble: "במהלך חלק זה של הסריקה תתבקשי להישען עוד לאחור (כמעט שכיבה) ולהחזיק את המתמר בניצב לרצפה, כאשר מסך הטלפון פונה לצד."
         },
         {
           id: 5,
