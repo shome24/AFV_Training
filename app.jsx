@@ -65,8 +65,6 @@ const TRANSLATIONS = {
     nextBtn: "Next >",
     prevBtn: "< Back",
     rev2: {
-      avatarName: "Maya",
-      avatarRole: "Ultrasound Guide",
       repeatGuideBtn: "🔄 Repeat",
       closeGuideBtn: "✕ Finish & Close",
       closedMessage: "Training completed. You may now close this window.",
@@ -123,8 +121,6 @@ const TRANSLATIONS = {
     nextBtn: "הבא >",
     prevBtn: "< הקודם",
     rev2: {
-      avatarName: "מאיה",
-      avatarRole: "מדריכת אולטרסאונד",
       repeatGuideBtn: "🔄 התחלה מחדש",
       closeGuideBtn: "✕ סיום וסגירה",
       closedMessage: "ההדרכה הסתיימה. ניתן לסגור חלון זה.",
@@ -186,43 +182,10 @@ function useTraining() {
   return useContext(TrainingContext);
 }
 
-// Friendly Clinical Ultrasound Guide SVG Avatar + Speech Bubble (No Listen Button, No Quotes)
+// Clean Instruction Text Box (Maya Avatar & Title Removed)
 function GuideAvatar({ bubbleText }) {
-  const { t } = useTraining();
-
   return (
     <div className="pnm-avatar-light-card">
-      {/* Light & Airy Avatar Top Row */}
-      <div className="pnm-avatar-light-top">
-        <div className="pnm-avatar-Identity">
-          <div className="pnm-avatar-circle-wrap">
-            <svg viewBox="0 0 100 100" width="52" height="52">
-              <circle cx="50" cy="50" r="48" fill="#e0f2fe" />
-              <path d="M22 52 C22 25, 78 25, 78 52 L82 85 L18 85 Z" fill="#4a2e1b" />
-              <path d="M16 98 C18 74, 82 74, 84 98 Z" fill="#0284c7" />
-              <path d="M36 76 L50 94 L64 76 Z" fill="#ffffff" />
-              <path d="M34 78 C34 90, 66 90, 66 78" fill="none" stroke="#0f172a" strokeWidth="2.5" />
-              <circle cx="58" cy="88" r="4" fill="#38bdf8" stroke="#0f172a" strokeWidth="1.5" />
-              <rect x="43" y="62" width="14" height="14" rx="5" fill="#f9d2b8" />
-              <ellipse cx="50" cy="46" rx="20" ry="22" fill="#fce0cc" />
-              <path d="M28 42 C30 22, 68 20, 72 42 C66 31, 44 29, 30 40 Z" fill="#5c3a21" />
-              <circle cx="42" cy="45" r="2.4" fill="#1e293b" />
-              <circle cx="58" cy="45" r="2.4" fill="#1e293b" />
-              <path d="M37 39 Q42 36 46 39" fill="none" stroke="#4a2e1b" strokeWidth="1.8" strokeLinecap="round" />
-              <path d="M54 39 Q58 36 63 39" fill="none" stroke="#4a2e1b" strokeWidth="1.8" strokeLinecap="round" />
-              <path d="M43 54 Q50 60 57 54" fill="none" stroke="#e11d48" strokeWidth="2.2" strokeLinecap="round" />
-              <circle cx="36" cy="50" r="3.5" fill="#fda4af" opacity="0.45" />
-              <circle cx="64" cy="50" r="3.5" fill="#fda4af" opacity="0.45" />
-            </svg>
-          </div>
-          <div style={{ textAlign: 'start' }}>
-            <span className="pnm-avatar-name">{t.rev2.avatarName}</span>
-            <span className="pnm-avatar-role">{t.rev2.avatarRole}</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Concise, Airy Speech Bubble */}
       <div className="pnm-avatar-speech-bubble">
         {bubbleText}
       </div>
