@@ -146,8 +146,21 @@ const TRANSLATIONS = {
             "B. Parallel to the floor",
             "C. Upright, perpendicular to the floor (a 90-degree angle)"
           ],
+          q3: "Question 3: What is important to make sure of before starting the scan?",
+          q3_opts: [
+            "A. Sufficient amount of gel",
+            "B. Proper body position",
+            "C. Charged phone",
+            "D. All answers are correct"
+          ],
+          q4: "Question 4: In what position do you perform the 4-quadrant scan to assess amniotic fluid?",
+          q4_opts: [
+            "A. Sitting upright",
+            "B. Lying flat",
+            "C. Semi-reclined (beach chair position)"
+          ],
           successMsg: "✓ Great job! All answers are correct.",
-          errorMsg: "Please select the correct answer for both questions."
+          errorMsg: "Please select the correct answer for all questions."
         }
       ]
     }
@@ -217,6 +230,19 @@ const TRANSLATIONS = {
             "א. מוטה לפי קימור הבטן",
             "ב. במקביל לרצפה",
             "ג. זקוף, בניצב לרצפה (זווית של 90 מעלות)"
+          ],
+          q3: "שאלה 3: על מה חשוב להקפיד לפני תחילת הסריקה?",
+          q3_opts: [
+            "א. ג'ל בכמות מספקת",
+            "ב. מנח נכון",
+            "ג. טלפון טעון",
+            "ד. כל התשובות נכונות"
+          ],
+          q4: "שאלה 4: באיזה מנח מבצעים סריקת 4 רבעים להערכת כמות מי שפיר?",
+          q4_opts: [
+            "א. ישיבה",
+            "ב. שכיבה",
+            "ג. חצי שכיבה (כיסא חוף)"
           ],
           successMsg: "✓ כל הכבוד! ענית נכון על כל השאלות.",
           errorMsg: "חלק מהתשובות אינן נכונות, נסי שוב."
@@ -378,6 +404,10 @@ function Rev2AvatarGuide() {
     setQ1Ans,
     q2Ans,
     setQ2Ans,
+    q3Ans,
+    setQ3Ans,
+    q4Ans,
+    setQ4Ans,
     quizChecked,
     setQuizChecked,
     quizPassed,
@@ -507,9 +537,9 @@ function Rev2AvatarGuide() {
         </div>
       )}
 
-      {/* PAGE 6: Short Quiz (2 Questions) */}
+      {/* PAGE 6: Short Quiz (4 Questions) */}
       {rev2Step === 6 && (
-        <div className="pnm-quiz-group" style={{ margin: '4px 0 auto 0', gap: '16px' }}>
+        <div className="pnm-quiz-group" style={{ margin: '4px 0 auto 0', gap: '14px' }}>
           {/* Question 1 (Correct index: 1 -> B / ב) */}
           <div className="pnm-quiz-q-box">
             <div className="pnm-quiz-q-text">{page.q1}</div>
@@ -582,6 +612,78 @@ function Rev2AvatarGuide() {
             </div>
           </div>
 
+          {/* Question 3 (Correct index: 3 -> D / ד) */}
+          <div className="pnm-quiz-q-box">
+            <div className="pnm-quiz-q-text">{page.q3}</div>
+            <div className="pnm-quiz-options-row">
+              {page.q3_opts.map((opt, idx) => {
+                let statusCls = '';
+                if (q3Ans === idx) statusCls = 'selected';
+                if (quizChecked) {
+                  if (idx === 3) statusCls = 'correct';
+                  else if (q3Ans === idx) statusCls = 'wrong';
+                }
+                return (
+                  <label
+                    key={idx}
+                    className={`pnm-quiz-radio-label ${statusCls}`}
+                    onClick={() => {
+                      soundFX.playClick();
+                      setQ3Ans(idx);
+                      setQuizChecked(false);
+                      setQuizPassed(false);
+                    }}
+                  >
+                    <input
+                      type="radio"
+                      name="q3"
+                      className="pnm-custom-radio"
+                      checked={q3Ans === idx}
+                      readOnly
+                    />
+                    <span>{opt}</span>
+                  </label>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Question 4 (Correct index: 2 -> C / ג) */}
+          <div className="pnm-quiz-q-box">
+            <div className="pnm-quiz-q-text">{page.q4}</div>
+            <div className="pnm-quiz-options-row">
+              {page.q4_opts.map((opt, idx) => {
+                let statusCls = '';
+                if (q4Ans === idx) statusCls = 'selected';
+                if (quizChecked) {
+                  if (idx === 2) statusCls = 'correct';
+                  else if (q4Ans === idx) statusCls = 'wrong';
+                }
+                return (
+                  <label
+                    key={idx}
+                    className={`pnm-quiz-radio-label ${statusCls}`}
+                    onClick={() => {
+                      soundFX.playClick();
+                      setQ4Ans(idx);
+                      setQuizChecked(false);
+                      setQuizPassed(false);
+                    }}
+                  >
+                    <input
+                      type="radio"
+                      name="q4"
+                      className="pnm-custom-radio"
+                      checked={q4Ans === idx}
+                      readOnly
+                    />
+                    <span>{opt}</span>
+                  </label>
+                );
+              })}
+            </div>
+          </div>
+
           {/* Quiz Feedback Banner */}
           {quizChecked && (
             <div
@@ -614,9 +716,11 @@ function App() {
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [isClosed, setIsClosed] = useState(false);
 
-  // Quiz state for Slide 6
+  // Quiz state for Slide 6 (4 Questions)
   const [q1Ans, setQ1Ans] = useState(null);
   const [q2Ans, setQ2Ans] = useState(null);
+  const [q3Ans, setQ3Ans] = useState(null);
+  const [q4Ans, setQ4Ans] = useState(null);
   const [quizChecked, setQuizChecked] = useState(false);
   const [quizPassed, setQuizPassed] = useState(false);
 
@@ -646,13 +750,13 @@ function App() {
   const handleCheckQuiz = useCallback(() => {
     soundFX.playClick();
     setQuizChecked(true);
-    if (q1Ans === 1 && q2Ans === 2) {
+    if (q1Ans === 1 && q2Ans === 2 && q3Ans === 3 && q4Ans === 2) {
       soundFX.playSuccess();
       setQuizPassed(true);
     } else {
       setQuizPassed(false);
     }
-  }, [q1Ans, q2Ans]);
+  }, [q1Ans, q2Ans, q3Ans, q4Ans]);
 
   const handleClose = useCallback(() => {
     soundFX.playClick();
@@ -677,6 +781,10 @@ function App() {
     setQ1Ans,
     q2Ans,
     setQ2Ans,
+    q3Ans,
+    setQ3Ans,
+    q4Ans,
+    setQ4Ans,
     quizChecked,
     setQuizChecked,
     quizPassed,
@@ -753,6 +861,8 @@ function App() {
                       soundFX.playClick();
                       setQ1Ans(null);
                       setQ2Ans(null);
+                      setQ3Ans(null);
+                      setQ4Ans(null);
                       setQuizChecked(false);
                       setQuizPassed(false);
                       setRev2Step(1);
